@@ -64,7 +64,8 @@ else
 app.post('/removeAppoint',(req,res)=>{
 		appoint.findOneAndDelete({ name:req.body.name,docname:req.body.docname }).then((appoint1)=>{
 			
-   var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com',pass:'labbaikyahussain'}});
+   var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'*********' //put your password
+									}});
    const mailOptions = {from: 'syedhasnain9163@gmail.com', to: req.body.email,subject: 'One request cancelled', text:'Appointment Request Cancelled....Please Check Hospito'};
    transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});	
 			
@@ -95,7 +96,8 @@ app.post('/showAppointToDoctor',(req,res)=>{
 					user.findOne({name:req.body.name},(err,user1)=>{
 						if(err)console.log(err);
 						else {
-							var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com',pass:'labbaikyahussain'}});
+							var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'*********' //put your password}}}
+															     }}}
    const mailOptions = {from: 'syedhasnain9163@gmail.com', to: user1.email,subject: 'Appointment at Hospito', text:'Appointment Status Updated..Please Check Hospito'};
    transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});	
 			
