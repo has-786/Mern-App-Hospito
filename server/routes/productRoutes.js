@@ -7,7 +7,17 @@ user=db.user;
 order=db.order;
 cart=db.cart;
 
-app.get('/add',(req,res)=>{res.sendFile(path.join(__dirname+'/ex1.html'));});
+prodObj=null;
+
+
+  app.get('/showAllProds',(req,res)=>{
+	product.find({},(err,prods)=>{
+		if(err)console.log(err);
+		else  res.send(prods);  
+	});    
+  });
+  
+
 app.post('/addProduct',(req,res)=>{
 	
 var name=req.body.name,price=req.body.price,disease=req.body.disease; 
@@ -35,11 +45,10 @@ app.post('/showProduct',(req,res)=>{
 	}); 
 });
 
-prodObj=null;
 
 app.post('/addToCart',(req,res,next)=>{
   console.log('hi');
-  if(!global.name)res.send({msg:"Please login first"});
+
   username=req.body.name;
   prod=req.body.product;
   user.findOne({name:username},(err,user1)=>{

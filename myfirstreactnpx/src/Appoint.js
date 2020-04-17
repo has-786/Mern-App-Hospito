@@ -7,21 +7,18 @@ let username=null;
 class Showdoctor extends Component{
 	constructor(props){
 		super(props);
-this.state={arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
  this.fun = this.fun.bind(this);	}
 	
 componentDidMount()
 {
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then(response=>{
-	return response.json()}).then((body)=>{ username=body.username; }  ).catch(err=>console.log(JSON.stringify(err)));
-	
-	
-setTimeout(function(){	
+	this.state.username=localStorage.getItem('user');
+	alert(this.state.username);
 	fetch('http://localhost:8080/showAllDoctors',{ method: 'GET', 
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
-}.bind(this),1000);		
+	
 		
 }
 
@@ -86,16 +83,17 @@ render()
 </div>
   )}
   fun=(username,docname,email)=>{
+if(!this.state.username){alert('Please Login First'); return false;}
 	if( document.getElementById(docname).innerHTML==='Request An Appointment') 
 	{		
-	var data={"name":username,"docname":docname,"email":email};      alert(JSON.stringify(data));
+	var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/addAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
     (body)=>{alert(body.msg); if(body.msg=="Requested")document.getElementById(docname).innerHTML='Cancel Request'; }).catch(err=>console.log(err));
 	}
 	else 
 	{
-		var data={"name":username,"docname":docname,"email":email};      alert(JSON.stringify(data));
+		var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
        (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='Request An Appointment'; }).catch(err=>console.log(err));
@@ -104,6 +102,7 @@ render()
 
    fun1=(event)=>{
 	    event.preventDefault();
+
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/getDoctors',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
@@ -119,7 +118,7 @@ render()
 class Showappoint extends Component{
 	constructor(props){
 		super(props);
-this.state={arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
 	}
 	
 
@@ -127,16 +126,14 @@ this.state={arr:[{name:null,specialist:null,email:null}],obj:{name:null,speciali
 
 componentDidMount()
 {
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then(response=>{
-	return response.json()}).then((body)=>{ username=body.username; alert(username); }  ).catch(err=>console.log(JSON.stringify(err)));
-	
-	setTimeout(function(){	
-	var data={name:username}; //this.setState({ position: 1 });
+	this.state.username=localStorage.getItem('user');
+
+	var data={name:this.state.username}; //this.setState({ position: 1 });
 	fetch('http://localhost:8080/showAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{if(!Array.isArray(body)){this.setState({obj:body}); document.getElementById('show4').style.opacity=1;	} 
- else{ this.setState({arr:body}); if(!body.length)alert('No result found'); document.getElementById('show3').style.opacity=1;} }).catch(err=>console.log(err));}.bind(this),1000);      
+ else{ this.setState({arr:body}); if(!body.length)alert('No result found'); document.getElementById('show3').style.opacity=1;} }).catch(err=>console.log(err));      
 
 }
 
@@ -151,7 +148,7 @@ render()
 	<button class='btn btn-info'>Doctor</button>	<button class='btn btn-warning'> {res.docname} </button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class='btn btn-info'>Status</button><button class='btn btn-success'> {res.stat!=res.name+'stat'?res.stat:'___'} </button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class='btn btn-info'>Time</button><button class='btn btn-danger'> {res.timestamp!=res.name+'time'?res.timestamp:'__'} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-			<button  class='btn btn-warning' id={res.docname} onClick={this.fun.bind(this,username,res.docname)} >Cancel Request</button><br></br>
+			<button  class='btn btn-warning' id={res.docname} onClick={this.fun.bind(this,this.state.username,res.docname)} >Cancel Request</button><br></br>
 			<br></br><br></br><br></br><br></br>
 		</div>))}
 	</div> 
@@ -163,7 +160,7 @@ render()
 		<button class='btn btn-info'>Time</button>
 	<button class='btn btn-danger'> {this.state.obj.time==null?this.state.obj.time:'_'} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
 
-			<button  class='btn btn-warning' id={this.state.obj.docname} onClick={this.fun.bind(this,username,this.state.obj.docname)} >
+			<button  class='btn btn-warning' id={this.state.obj.docname} onClick={this.fun.bind(this,this.state.username,this.state.obj.docname)} >
 
 			Cancel Request</button>
 	</div>
@@ -183,21 +180,18 @@ class Updateappoint extends Component
 {
 	constructor(props){
 		super(props);
-this.state={arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
 	}
 		componentDidMount(){
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then(response=>{
-	return response.json()}).then((body)=>{ username=body.username; alert(username); }  ).catch(err=>alert(JSON.stringify(err)));
-	  
-		
-setTimeout(function(){	
-	var data={docname:username}; //this.setState({ position: 1 });
+	this.state.username=localStorage.getItem('user');
+	
+	var data={docname:this.state.username}; //this.setState({ position: 1 });
 	fetch('http://localhost:8080/showAppointToDoctor',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{
 	 this.setState({arr:body});document.getElementById('show7').style.opacity=1;}).catch(err=>console.log(err));	
-}.bind(this),1000);
+
 }
 
 
@@ -213,7 +207,54 @@ render()
 	<button class='btn btn-info'>Patient</button>	<button class='btn btn-warning'> {res.name} </button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class='btn btn-info'>Status</button><button class='btn btn-success'> {res.stat!=res.name+'stat'?res.stat:'___'} </button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class='btn btn-info'>Time</button><button class='btn btn-danger'> {res.timestamp!=res.name+'time'?res.timestamp:'___'} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-		<button>Status</button><input type='text' id={res.stat} required/><button>Time</button><input type='text' id={res.timestamp} required/> 
+		<button>Status</button><select type='text' id={res.stat} ><option>Confirmed</option><option>Rejected</option></select>
+		<button>Time</button>
+		Date<select id={res.timestamp+'date'} ><option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option></select>
+		
+		Month<select id={res.timestamp+'month'} ><option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option>
+		</select>
+		
+		Year<select id={res.timestamp+'year'} ><option>2020</option><option>2021</option><option>2022</option></select>
+		
+		Hour<select id={res.timestamp+'hour'}>
+		<option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		</select>
+
+		Minute<select id={res.timestamp+'minute'} ><option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option></select>
+		
+		Second<select id={res.timestamp+'second'} ><option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option>
+		<option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option>
+		<option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option><option>01</option></select>
+		
+		<select id={res.timestamp+'ampm'} ><option>am</option><option>pm</option></select>
+		
+		
 			
 			<button  class='btn btn-warning' id={res.name} onClick={this.fun.bind(this,username,res.name,res.stat,res.timestamp)} >Confirm</button><span><br></br></span>
 			<br></br><br></br><br></br><br></br><br></br><br></br>
@@ -222,7 +263,10 @@ render()
 	</div>)
 }
 	fun=(username,name,stat,timestamp)=>{
-	var data={"docname":username,"name":name,"stat":document.getElementById(stat).value,"timestamp":document.getElementById(timestamp).value};
+	var data={"docname":username,"name":name,"stat":document.getElementById(stat).value,"timestamp":
+	document.getElementById(timestamp+'date').value+'-'+document.getElementById(timestamp+'month').value+'-'+document.getElementById(timestamp+'year').value+
+	' '+document.getElementById(timestamp+'hour').value+':'+document.getElementById(timestamp+'minute').value+':'+document.getElementById(timestamp+'second').value
+	+' '+document.getElementById(timestamp+'ampm').value};
 	alert(JSON.stringify(data));
 		fetch('http://localhost:8080/updateAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
@@ -239,21 +283,17 @@ render()
 
 
 class  Hospital extends Component{
-constructor(props){ super(props);  this.state={arr:[{name:null,address:null,email:null,phone:null}],msg:null};
+constructor(props){ super(props);  this.state={username:null,arr:[{name:null,address:null,email:null,phone:null}],msg:null};
 this.fun.bind(this); 
 }
 componentDidMount()
 { 
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then((response)=>{
-		return response.json()}).then((body)=>{ username=body.username;alert("user: "+username);}).catch(err=>console.log(err));
-		
+		this.state.username=localStorage.getItem('user');
 	
-    setTimeout(function(){	
 	fetch('http://localhost:8080/showAllHospitals',{ method: 'GET',
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
-}.bind(this),1000);		
 			
 }	
 render()

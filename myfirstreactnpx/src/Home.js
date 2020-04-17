@@ -1,40 +1,63 @@
 import React ,{Component} from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './App.css';
-let username=null;
+let username=null,redir=false;
 
 
 class Home  extends Component{
 	constructor(props){
 		super(props); this.state={username:null}
 	}
-		
+		redirect=(event)=>{			  
+	if(redir)return <Redirect to='/' />	
+	}
+
+
+ signout=(event)=>{
+	 event.preventDefault();
+	 alert('Signed Out Successfully');
+	 	localStorage.removeItem('user');
+
+	 this.componentDidMount();
+	redir=true;  
+}
+
 componentDidMount()
 {
-	 
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then((response)=>{
-		return response.json()}).then((body)=>{ username=body.username; this.setState({username:username});
-   if(username)document.getElementById('link').innerHTML=
-		"<a href='http://localhost:8080/signout'><button id='login' class='btn btn-primary' id='login'>Logout</button></a>";
+	
+	this.state.username=localStorage.getItem('user');
+	alert(this.state.username);
 
-		else document.getElementById('link').innerHTML="<a href='http://localhost:3000/signin'><button id='login' class='btn btn-primary btn-sm' >Login</button></a>"; 
-		document.getElementById('profile').style.display='block';
-		  }  ).catch(err=>console.log(JSON.stringify(err)));   
-		  
+	 if(this.state.username)
+	 {
+		 document.getElementById('login1').style.display='block';document.getElementById('login').style.display='None';
+		 		document.getElementById('profile').style.display='block';  
+
+	 }
+	 else 
+	 {
+		 document.getElementById('login').style.display='block';document.getElementById('login1').style.display='None';
+	 }
+		 
+  
 }	
 render()
 {
 return (<div>
- <center> <h2 style={{backgroundColor:"pink",color:"white",padding:"20px",marginTop:"0%"}}>Welcome to Hospito<br></br><button class='btn btn-info' >We care about your health </button></h2>
+<div>{this.redirect.bind(this)}</div>
 
+ <center> <h2 style={{backgroundColor:"pink",color:"white",padding:"20px",marginTop:"0%"}}>Welcome to Hospito<br></br><button class='btn btn-info' >We care about your health </button></h2>
  <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4" width="1000px" height="300px" />
 	  </div></center>
 
-<span id='link' style={{float:"right",marginTop:"-20%"}}><a  href='http://localhost:3000/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a></span>	
-
+<span id='link' style={{float:"right",marginTop:"-20%"}}>
+<button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
+<a  href='http://localhost:3000/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a></span>	
+		
 <div id='profile' style={{display:"None"}}>
- <i class='fa fa-male' style={{float:"left",marginTop:"-15%",marginLeft:"10px",color:"green",fontSize:"60px"}}> </i> <a class='btn btn-primary' 
+
+ <i class='fa fa-male' style={{float:"left",marginTop:"-15%",marginLeft:"10px",color:"green",fontSize:"60px"}}> {this.state.username}</i> <a class='btn btn-primary' 
  style={{marginTop:"-20%"}}href="http://localhost:3000/profile" >My Profile</a>   
  
  <button class='btn btn-success' style={{float:"left",marginTop:"-20%",marginLeft:"0px"}}>{username}</button>  
@@ -57,7 +80,7 @@ return (<div>
             <div class="features-icons-icon d-flex">
 <i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
             <h3 ><a href="/hospital">Seach Health Centres</a></h3>
-            <p class="lead mb-0">Search Nearby Hospitals and Nursey Homes</p>
+            <p class="lead mb-0">Search Nearby Hospitals and Nursey Homes<a href='/Donation'>Donate</a></p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -73,7 +96,8 @@ return (<div>
         <div class="col-lg-4">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
-<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
+			<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
+
 </div>
             <h3 ><a href='/medicine'>Buy Medicines</a></h3>
             <p class="lead mb-0">Buy medicines online</p>
@@ -81,7 +105,69 @@ return (<div>
         </div>
 		
       </div>
-    </div>
+	  <div class="row">
+<div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-money' style={{fontSize:"40px",color:"green"}}></i>
+
+</div>
+            <h3 ><a href='/Donation'>Donate And Save A Life</a></h3>
+            <p class="lead mb-0">Donate Online Here</p>
+          </div>
+        </div>
+
+<div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-file' style={{fontSize:"40px",color:"grey"}}></i>
+
+</div>
+            <h3 ><a href='/ShowBlog'>Blogs</a></h3>
+            <p class="lead mb-0">Check Out Daily Updates in the world of Health and Fitness</p>
+          </div>
+        </div>
+		
+<div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-ambulance' style={{fontSize:"40px",color:"tomato"}}></i>
+
+</div>
+            <h3 ><a href='/GetAmbulance'>Book An Ambulance</a></h3>
+            <p class="lead mb-0">Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
+          </div>
+        </div>
+		
+		<div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-video' style={{fontSize:"40px",color:"darkblue"}}></i>
+
+</div>
+            <h3 ><a href='/video'>Informative Videos</a></h3>
+            <p class="lead mb-0">Videos By Eminent Doctors And Physicians</p>
+          </div>
+        </div>
+		
+		
+		<div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-info' style={{fontSize:"40px",color:"red"}}></i>
+
+</div>
+            <h3 ><a href='/pandemic'>Updates During Pandemic</a></h3>
+            <p class="lead mb-0">Authentic Updates During Pandemic</p>
+          </div>
+        </div>
+		
+		
+		
+      </div>
+
+	  
+	  </div>
   </section>
 
   
@@ -154,6 +240,26 @@ class Signin extends Component{
 		super(props);
 	}
 	
+	
+	componentDidMount()
+	{
+			
+	alert(username);
+	}
+	
+	fun=(event)=>{
+		event.preventDefault();
+		//alert(username);
+		var data={name:document.getElementById('1').value,pass:document.getElementById('2').value };
+		fetch('http://localhost:8080/localSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username);  }
+		else alert('The username or password is incorrect!! Please Try Again');
+		}).catch(err=>console.log(err));
+		
+	  
+		
+	}
+	
 render()
 {
  return (
@@ -163,15 +269,24 @@ render()
 		<div class = "right-box">
 			<center><h5><span class = "signin">Sign In </span></h5></center>
 				
-	<form action='http://localhost:8080/localSignin' method='post'>
+	
 			<input type = "text" name = "name" id='1' placeholder="Username" required/><br></br><br></br>
 			<input type = "password" name = "pass" id='2'  placeholder="password" required/>		
 
 		<br></br><br></br>
-			<input type = "submit" name = "signup-button"  class='btn btn-primary' value = "sign in"/><br></br><br></br>
-	</form>	<a href='/forgotPassword' ><button class='btn btn-danger btn-sm'>forgot password?</button></a>
+			<button name = "signup-button" onClick={this.fun.bind(this)} class='btn btn-primary' value = "sign in">Sign In</button><br></br><br></br>
+	<a href='/forgotPassword' ><button class='btn btn-danger btn-sm'>forgot password?</button></a>
 <br></br><br></br>
-				<a href='/signup'><button class='btn btn-success'>Don't have an account</button></a>	
+
+				<a href='/signup'><button class='btn btn-warning'>Don't have an account</button></a><br></br>
+				<a href='/olddriver'><button class='btn btn-primary'>Sign in As Ambulance</button></a>
+
+<br></br><br></br>
+
+				<a href='/'><button class='btn btn-success'>Back to Home</button></a>
+				 				 
+				 
+				
 		</div>
 	</div>
  </div>
@@ -182,18 +297,26 @@ render()
 
 class Profile  extends Component{
 	constructor(props){
-		super(props);
+		super(props); this.state={username:null};
 	}
 		
 componentDidMount()
 {
-	 
-	fetch('http://localhost:8080/profile',{ method:'GET',headers: {"Content-Type": "application/json" } }).then((response)=>{
-		return response.json()}).then((body)=>{ username=body.username; this.setState({username:username});
-		if(body.type=='Doctor')document.getElementById('update').style.display='block';
-		  }  ).catch(err=>alert(JSON.stringify(err)));
-	
+	 this.setState({username:localStorage.getItem('user')});
+	// if(!this.state.username)document.getElementById('link').innerHTML="<a href='/signin'><button id='login' class='btn btn-primary'>Login</button></a>";
 }	
+	redirect=(event)=>{			  
+	if(redir)return <Redirect to='/' />	
+	}
+
+
+ signout=(event)=>{
+	 event.preventDefault();
+ alert('Signed Out Successfully');localStorage.removeItem('user');
+	 this.componentDidMount();	
+	redir=true;  
+}
+
 render()
 {
 return (<div>
@@ -202,14 +325,14 @@ return (<div>
  <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRF7W_oipmjH-McfQ8P_gJXHXteq2WOz1lnYMNYiiU92Q6cx2Mz" width="1000px" height="300px" />
 	  </div></center>
 
-<span id='link' style={{float:"right",marginTop:"-20%"}}><a  href='http://localhost:3000/signin' ><button id='login' class='btn btn-primary'>Logout</button></a></span>	
+<span id='link' style={{float:"right",marginTop:"-20%"}}><button id='login' class='btn btn-primary' onClick={this.signout.bind(this)}>Logout</button></span>	
 
 <div id='profile'>
  <i class='fa fa-home' style={{float:"left",marginTop:"-15%",marginLeft:"5px",color:"green",fontSize:"60px"}}> </i> <a class='btn btn-primary' 
  style={{marginTop:"-20%"}}href="http://localhost:3000/" >Home
 </a>  <a  href='http://localhost:3000/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
  
- <button class='btn btn-success' style={{float:"left",marginTop:"-25%",marginLeft:"0px"}}>{username}</button>   
+ <button class='btn btn-success' style={{float:"left",marginTop:"-25%",marginLeft:"0px"}}>{this.state.username}</button>   
  </div>
 <span><br></br></span>
   <section class="features-icons bg-light text-center">
@@ -223,6 +346,7 @@ return (<div>
             <p class="lead mb-0">Check What's in your cart</p>
           </div>
         </div>
+		
         <div class="col-lg-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
@@ -233,7 +357,7 @@ return (<div>
             <p class="lead mb-0">Check your appointments</p>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
@@ -244,9 +368,49 @@ return (<div>
         </div>
 		
       </div>
+	   
     </div>
   </section>
+   
+ <span><br></br><br></br><br></br></span>
+ <section class="features-icons bg-light text-center">
+    <div id='contain1' class="container" >
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
+            <h3 ><a href="/cart">My Cart</a></h3>
+            <p class="lead mb-0">Check What's in your cart</p>
+          </div>
+        </div>
+		
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
 
+            </div>
+            <h3 ><a href='/showappoint'> Appointments With Doctors</a> </h3>
+            <p class="lead mb-0">Check your appointments</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
+</div>
+            <h3 ><a href='/order'>My Orders</a></h3>
+            <p class="lead mb-0">Check Your Medicine Orders</p>
+          </div>
+        </div>
+		
+      </div>
+	   
+    </div>
+  </section>
+ 
+ 
   
  <span><br></br><br></br><br></br></span>
     <div class="container-fluid p-0" >
@@ -325,19 +489,19 @@ render()
 		<div class = "right-box">
 			<center><h5><span class = "signin">Sign Up </span></h5></center>
 				
-	<form onSubmit={this.fun} action='http://localhost:8080/localSignup' method='post'>
 			<input type = "text" name = "name" id='1' placeholder="Username" required/><br></br><br></br>
 			<input type = "text" name = "email" id='2' pattern="[a-zA-Z0-9]+@gmail.com" placeholder="Email" required/><br></br><br></br>
 			<input type = "password" name = "pass" id='3'  placeholder="password" required/><br></br><br></br>
 			<input type = "password" name = "password" id='4'  placeholder="Retypepassword" required/><br></br><br></br>
-			<select name='type' required>
+			<select name='type' id='5' required>
 			<option>User</option><option>Doctor</option>
 			</select>
 			<br></br><br></br>
 			<input type='text' placeholder='specialist if Doctor' name='specialist' /><br></br><br></br>
-			<input type = "submit" name = "signup-button"  class='btn btn-primary' value = "sign up"/><br></br><br></br>
-	</form>
-				<a href='/signin'><button class='btn btn-success'>Already have an account</button></a>	
+			<button  name = "signup-button"  class='btn btn-primary' value = "sign up" onClick={this.fun.bind(this)}>Sign Up</button><br></br><br></br>
+				<a href='/signin'><button class='btn btn-warning'>Already have an account</button></a><br></br>	
+				<a href='/'><button class='btn btn-success'>Back to Home</button></a>	
+
 		</div>
 			<div class = "left-box">
 			<center><h5><span class = "signinwith">Sign in with Social Network</span></h5></center><br></br><br></br>
@@ -346,74 +510,35 @@ render()
 			<div><a class="fa fa-linkedin-square" href = "http://localhost:8080/auth/linkedin"></a></div>
 			</div>
 			
+			
 	</div>
  </div>
  
 )}
+
+google=(event)=>{
+		event.preventDefault();
+		fetch('http://localhost:8080/auth/google',{ method:'GET',headers: {"Content-Type": "application/json" } }).then((response)=>{
+		return response.json()}).then((body)=>{  
+					alert(body.user);  
+		}).catch(err=>console.log(err));
+		
+		
+}
+
+
+
 fun=(event)=>{
-	//event.preventDefault();
-	if(document.getElementById('3').value!=document.getElementById('4').value){alert("Password Doesn't Match");return false;}	
-}
-
-}
-
-class forgotPassword extends Component
-{
-    constructor(props){super(props);}
-	render(){
-	return (
-		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Forgot Password</h1></center>
-		<form method='post' action='http://localhost:8080/passwordForgot'>
-		<button class='btn btn-danger'>Enter Email ID</button><input type='text' name='email' pattern="[0-9a-zA-Z]+@gmail.com" required />
-		<input type='submit' value='submit' />
-		</form>
-		</div>	)
+	event.preventDefault();
+	if(document.getElementById('3').value!=document.getElementById('4').value){alert("Password Doesn't Match");return false;}
+	var data={name:document.getElementById('1').value,email:document.getElementById('2').value,pass:document.getElementById('3').value,type:
+	document.getElementById('5').value  };
+fetch('http://localhost:8080/localSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username);  }
+		else alert('Username is already taken!! Please Try Another');
+		}).catch(err=>console.log(err));
 	}
 }
 
 
-class changePassword extends Component
-{
-    constructor(props){super(props);}
-	render(){
-	return (
-		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Change Password</h1></center>
-		<form method='post'action='http://localhost:8080/passwordChanged'>
-		<button class='btn btn-primary'>Enter OTP</button><input type='text' name='otp'  required />
-		<input type='submit' value='Go' />
-		</form>
-		</div>	)
-	}
-}
-
-
-class updatePassword extends Component
-{
-    constructor(props){super(props);}
-	render(){
-	return (
-		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Update Password</h1></center>
-		<form method='post' action='http://localhost:8080/passwordUpdated'>
-		<button class='btn btn-danger'>Enter Email ID</button><input type='text' name='email' pattern="[0-9a-zA-Z]+@gmail.com" required />
-		<button class='btn btn-success'>Enter New Password</button><input type='text' name='pass'  required />
-		<input type='submit' value='change' />
-		</form>
-		</div>	)
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export  {Home,Signup,Signin,Profile,forgotPassword,changePassword,updatePassword}
+export  {Home};

@@ -4,6 +4,11 @@ require('./loginRoutes.js')(app,passport,bcrypt,nodemailer);
 require('./otpRoutes.js')(app,nodemailer,bcrypt);
 require('./productRoutes.js')(app);
 require('./orderRoutes.js')(app);
+require('./hospitalRoutes.js')(app);
+require('./ambulanceRoutes.js')(app);
+require('./appointRoutes.js')(app,nodemailer);
+require('./donationRoutes.js')(app);
+
 
 
 /*

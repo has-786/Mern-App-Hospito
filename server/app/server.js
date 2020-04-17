@@ -8,14 +8,7 @@ path=require('path');
 
 app=express();
 
-/*
-app.use(express.static(path.join(__dirname, "../client/build")));
-app.get("*", (req, res) => {
-res.sendFile(path.join(__dirname + "../client/build/index.html"));
-});
-*/
-
-app.set('trust proxy', 1); // trust first proxy
+//app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 'QySpAJrjqoaUd32I',
   resave: false,

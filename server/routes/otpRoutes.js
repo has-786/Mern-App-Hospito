@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
  service:'Gmail',
  auth: {
         user:'syedhasnain9163@gmail.com',
-        pass:'*********' //put your password
+        pass:'labbaikyahussain' //put your password
     }
 });
 const mailOptions = {
@@ -24,38 +24,33 @@ const mailOptions = {
 
 transporter.sendMail(mailOptions, function (err, info) {
    if(err)
-   { console.log(err); res.send(err);}
+   { console.log(err); res.send({msg:'error'});}
    else
-   {  console.log(info);  res.redirect('http://localhost:3000/changePassword');}
+   {  console.log(info);  res.send({msg:'An OTP has been sent to your mail',otp:global.otp}); }
 });	
 	
 });  
 
+/*
 app.post('/passwordChanged',(req,res)=>{
 	if(global.otp===req.body.otp)global.otpFlag=global.otp; 	
 	res.redirect('http://localhost:3000/updatePassword');
 }); 
+*/
 
 app.post('/passwordUpdated',(req,res)=>{
 	
 	user.findOne({email:req.body.email},(err,user1)=>{if(err)throw err; else if(!user1){console.log('Email Id not registered');}
 	else {
-		  console.log('ok');
+		  console.log('ok'); 
 		 bcrypt.hash(req.body.pass,12).then(h=>{ 
-user.updateOne({ email:req.body.email },{$set:{pass:h}}, (err, obj)=> {console.log('Password Reset');global.otp=null;global.otpFlag=null;
-res.redirect('http://localhost:3000/signin');}); 
-		console.log(h);
+user.updateOne({ email:req.body.email },{$set:{pass:h}}, (err, obj)=> {console.log('Password Reset');global.otp=null;global.otpFlag=null;}); 
+		console.log(h); res.send({msg:'Password Updated Succesfully'});
 		
 		}).then((k)=>{console.log(k)}).catch(err=>res.send(err));		
 	     }
 	});	
 });
-function isOtp(req,res,next)
-{
-	if(global.otpFlag)return next();
-	res.redirect('http://localhost:3000/changePassword');
-}
-
 
 
 }

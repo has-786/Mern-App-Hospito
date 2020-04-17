@@ -7,6 +7,8 @@ product=db.product;
 user=db.user;
 order=db.order;
 cart=db.cart;
+
+var msg='Error!!!Try Again';
 prods=null;
 	
 app.post('/CreateOrder',(req,res)=>{
@@ -37,7 +39,6 @@ app.post('/CompletePaidOrder',(req,res)=>{
 var Neworder=new order({userId:id,paymentId:paymentId,address:address,prods:cart1.prods,amount:amount,paymentMethod:paymentMethod,timestamp:timestamp});
 			Neworder.save((err,order1)=>{if(err)console.log(err); else console.log(order1); });			}).catch((err)=> {if(err)console.log(err); else console.log("Successful deletion of Cart"); });
 		
-			
 		}
 	});
 });
@@ -56,10 +57,10 @@ app.post('/CompleteCashOrder',(req,res)=>{
 			id=user1._id;
 			cart.findOneAndDelete({ userId:id }).then((cart1)=>{console.log(cart1/prods);
 	var Neworder=new order({userId:id,paymentId:paymentId,address:address,prods:cart1.prods,amount:amount,paymentMethod:paymentMethod,timestamp:timestamp});
-			Neworder.save((err,order1)=>{if(err)console.log(err); else {console.log(order1);}  });
+			Neworder.save((err,order1)=>{if(err)console.log(err); else {console.log(order1);  global.msg="Order Was Successful";  				res.send({msg:global.msg});
+ }  });
 			}).catch((err)=> {if(err)console.log(err); else console.log("Successful deletion"); });
-			
-	
+
 		}
 	});
 });
@@ -70,20 +71,25 @@ if(err)console.log(err);
 else if(!user1){}
 else 
 {
-var id=user1._id;
-order.find({userId:id},(err,order1)=>{if(err)console.log(err); else {console.log(order1);res.send(order1);}  });
-
-
-
+ var id=user1._id;
+ order.find({userId:id},(err,order1)=>{if(err)console.log(err); else {console.log(order1);res.send(order1);}  });
 }
 
 });
 
 
 
-})
+});
+
+
+
+
+
+
 
 
 	
-	
+
+
 }
+
