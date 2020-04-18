@@ -7,8 +7,9 @@ user=db.user;
 order=db.order;
 cart=db.cart;
 
+status=0;
 prodObj=null;
-
+prodReq=null;
 
   app.get('/showAllProds',(req,res)=>{
 	product.find({},(err,prods)=>{
@@ -51,6 +52,9 @@ app.post('/addToCart',(req,res,next)=>{
 
   username=req.body.name;
   prod=req.body.product;
+  global.prodReq=req.body.product;
+  console.log( global.prodReq); 
+  global.status=0;
   user.findOne({name:username},(err,user1)=>{
 		if(err)console.log(err); 
 		else if(user1)
@@ -71,10 +75,21 @@ app.post('/addToCart',(req,res,next)=>{
 			else
 			{	
 				        product.findOne({prodName:prod},(err,prod1)=>{console.log(prod1);   
-
+						
+			            cart.findOne({ userId: id},(err,cart2)=>{
+							   var Oldprod=cart1.prods; var prod; 
+							   for(var i=0;i<Oldprod.length;i++){console.log(Oldprod[i].prodName+" "+global.prodReq); if(Oldprod[i].prodName===global.prodReq)global.status=1;     }
+							   console.log(global.status);
+							   if(global.status==0){
 		                cart.updateOne({ userId: id},{ $push: {prods: prod1} },(err, cart1)=> 
-						{ if (err) res.send({msg:"Error Occured"}); else{ console.log(cart1); res.send({msg:"Added to cart"}); }  });   });			
+						{ if (err) res.send({msg:"Error Occured"}); else{ console.log(cart1); res.send({msg:"Added to cart"}); }  }); 
+							   }
+							 else res.send({msg:"Already Added"});
+							 
+						});			
 
+						});
+						
 			}});
 		}
 		else console.log("User not available\n"); 

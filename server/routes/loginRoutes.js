@@ -11,6 +11,7 @@ donation=db.donation;
 
 
 name=null; 
+var type=null;
 f=0;
 msg="Already Requested";	
 
@@ -41,13 +42,12 @@ app.post('/localSignin',(req,res,next)=>{
 	global.name=req.body.name;  	                          
 	 user.findOne({name:global.name})
     .then(function(user1) {
-		if(user1)return bcrypt.compare(req.body.pass,user1.pass);
+		if(user1){type=user1.type; return bcrypt.compare(req.body.pass,user1.pass); }
     })
     .then(function(samePassword) {
          console.log(samePassword);if(samePassword==true){console.log('Signed In SuccessFully');}
-		 else global.name=null;
-		
-		res.send({username:global.name});
+		 else global.name=null; 
+		 if(global.name)user.findOne({name:global.name},(err,user2)=>{	console.log(user2.type);	res.send({username:global.name,type:user2.type});  }); 
      })
     .catch(function(error){
         console.log("Error authenticating user: ");
