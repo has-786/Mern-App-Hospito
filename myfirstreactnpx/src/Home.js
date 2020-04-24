@@ -53,11 +53,11 @@ return (<div>
 
 <span id='link' style={{float:"right",marginTop:"-20%"}}>
 <button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
-<a  href='http://localhost:3000/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a></span>	
+<a  href='/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a></span>	
 		
 <div id='profile' style={{display:"None"}}>
  <i class='fa fa-male' style={{float:"left",marginTop:"-15%",marginLeft:"10px",color:"green",fontSize:"60px"}}></i> <a class='btn btn-primary' 
-style={{marginTop:"-20%"}}href="http://localhost:3000/profile" >My Profile</a>   
+style={{marginTop:"-20%"}}href="/profile" >My Profile</a>   
 
 </div> 
 

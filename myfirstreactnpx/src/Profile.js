@@ -36,8 +36,8 @@ return (<div>
 
 <div id='profile'>
  <i class='fa fa-home' style={{float:"left",marginTop:"-15%",marginLeft:"5px",color:"green",fontSize:"60px"}}> </i> <a class='btn btn-primary' 
- style={{marginTop:"-20%"}}href="http://localhost:3000/" >Home</a>
- <a  href='http://localhost:3000/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
+ style={{marginTop:"-20%"}}href="/" >Home</a>
+ <a  href='/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
  
  <button class='btn btn-success' style={{float:"left",marginTop:"-25%",marginLeft:"0px"}}>{this.state.username}</button>   
  </div>
