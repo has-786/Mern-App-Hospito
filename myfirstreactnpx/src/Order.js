@@ -123,31 +123,66 @@ render()
  <div>
  <center><h2 >MY ORDERS</h2></center>
 <br></br><br></br>
-	<div id='show3'>
-		{this.state.arr.map( (res)=>(
- <div><button class='btn btn-warning'>OrderID</button><button class='btn btn-primary'> {res._id} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-<button class='btn btn-warning'>Status</button><button class='btn btn-danger'> {res.paymentMethod} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-warning'>Time</button><button class='btn btn-danger'> {res.timestamp} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-<br></br>   <br></br>               
-  
-  
-  
+
+<div id='show3'>
+	<section class="features-icons bg-light text-center"  >
+    <div id='contain' class="container"   >
+      <div class="row" >
+		{this.state.arr.reverse().map( res=>( 
+	    <div class="col-lg-4"  >		<br></br><br></br>
+			<div class="row" >
+				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
+		  		<br></br>
+
+						<div class="features-icons-icon d-flex" >
+							<div class="col-lg-3"><center><button class='btn btn-warning'>OrderID</button></center></div>
+							<div class="col-lg-9"><center><button class='btn btn-primary'> {res._id} </button></center></div>
+						</div>
+						<br></br>
+						
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-3"><button class='btn btn-warning'>Status</button></div>
+							<div class="col-lg-9"><center><button class='btn btn-danger'> {res.paymentMethod} </button></center></div>
+						</div><br></br>
+			
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-3"><button class='btn btn-warning'>Time</button></div>
+							<div class="col-lg-9"><center><button class='btn btn-danger'> {res.timestamp} </button></center></div>
+						</div><br></br><br></br>
+			
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-12">	<button  class='btn btn-secondary'   style={{marginRight:"15px"}}>Products</button></div>
+							<br></br><br></br><br></br>
+						</div>
+		                 
+						<div class="features-icons-icon d-flex">
+			 			
 {res.prods.map( (prod)=>(
- <div><button class='btn btn-info'>Name</button><button class='btn btn-primary'> {prod.prodName} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-<button class='btn btn-info'>Price</button><button class='btn btn-danger'> {prod.price} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Disease</button><button class='btn btn-danger'> {prod.disease} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-<br></br>   <br></br>       
+ <div class="row">
+ <div class="col-lg-4"><center><button class='btn btn-info'>Name</button></center></div>
+ <div class="col-lg-8"><center><button class='btn btn-primary'>{prod.prodName} </button></center></div><br></br><br></br>
+ 
+<div class="col-lg-4"><center><button class='btn btn-info'>Price</button></center></div>
+<div class="col-lg-8"><center><button class='btn btn-success'> Rs.{prod.price} </button></center></div><br></br><br></br>
+
+<div class="col-lg-4"><center><button class='btn btn-info'>Disease</button></center></div>
+<div class="col-lg-8"><center><button class='btn btn-danger'>  {prod.disease} </button></center></div><br></br><br></br>
+<br></br>   <br></br>   <br></br>       
 
 
 	</div>))}
-<br></br>   <br></br>       <br></br>   <br></br>      
-<br></br>   <br></br>       
-       
+						</div>
 
-	</div>))}
-	</div> 
-	
-	
+					</div>
+				</div><br></br><br></br><br></br>
+			</div>	
+		))}
+		</div>
+	 </div>
+  </section>
+</div> 
+		
+
 </div>
   )
 }
@@ -156,5 +191,7 @@ render()
 }
 
 
+
+	
 
 export {Order,Payment};

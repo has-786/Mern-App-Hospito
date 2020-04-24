@@ -157,22 +157,48 @@ render()
  <div>
  <center><h2 >MY CART</h2></center>
 <a href='/payment'><button  id='showcart' class='btn btn-success' >Checkout</button></a>
-	<div id='show1'>
-		{this.state.arr.map( res=>( <div><button class='btn btn-info'>Name</button>
-		<button class='btn btn-primary'> {res.prodName} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Price</button><button class='btn btn-success'> Rs.{res.price} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Disease</button><button class='btn btn-danger'> {res.disease} </button>		&nbsp;&nbsp;&nbsp;&nbsp;
-			<button  class='btn btn-warning' id={res.prodName} onClick={this.fun.bind(this,this.state.username,res.prodName)} >Remove from Cart</button><span><br></br></span><br></br><br></br><br></br>
-		</div>))}
-	</div> 
-		
-	<div id='show4'>
-		<button class='btn btn-info'>Name</button><button class='btn btn-primary'> {this.state.obj.prodName} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Price</button><button class='btn btn-success'> Rs. &nbsp;{this.state.obj.price} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Disease</button><button class='btn btn-danger'> {this.state.obj.disease} </button> 
-		&nbsp;&nbsp;&nbsp;&nbsp;
-			<button  class='btn btn-warning' id={this.state.obj.prodName} onClick={this.fun.bind(this,this.state.username,this.state.obj.prodName)} >Remove from Cart</button>
-	</div>
+
+	
+<div id='show1'>
+	<section class="features-icons bg-light text-center"  >
+    <div id='contain' class="container"   >
+      <div class="row" >
+		{this.state.arr.map( res=>( 
+	    <div class="col-lg-4"  >		<br></br><br></br>
+			<div class="row" >
+				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
+		  		<br></br>
+
+						<div class="features-icons-icon d-flex" >
+							<div class="col-lg-3"><center><button class='btn btn-info'>Name</button></center></div>
+							<div class="col-lg-9"><center><button class='btn btn-primary'> {res.prodName} </button></center></div>
+						</div>
+						<br></br>
+						
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-3"><button class='btn btn-info'>Price</button></div>
+							<div class="col-lg-9"><center><button class='btn btn-success'> Rs. &nbsp;{res.price} </button></center></div>
+						</div><br></br>
+			
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-3"><button class='btn btn-info'>Disease</button></div>
+							<div class="col-lg-9"><center><button class='btn btn-danger'> {res.disease} </button></center></div>
+						</div><br></br><br></br>
+
+						<div class="features-icons-icon d-flex">
+							<div class="col-lg-12">	<button  class='btn btn-warning' id={res.prodName} onClick={this.fun.bind(this,this.state.username,res.prodName)} >Remove from Cart</button></div>
+							<br></br><br></br><br></br><br></br>
+						</div>
+						
+					</div>
+				</div><br></br><br></br><br></br>
+			</div>	
+		))}
+		</div>
+	 </div>
+  </section>
+</div> 
+	
 	
 </div>
   )}

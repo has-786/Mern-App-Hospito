@@ -15,6 +15,9 @@ import {Showdoctor,Showappoint,Updateappoint} from './Appoint';
 import {Hospital} from './Hospital';
 import {Ambulance,NewDriver,OldDriver} from './Ambulance';
 import {GetAmbulance} from './GetAmbulance';   
+import {WorldPan} from './WorldPan';
+import {CountryPan} from './CountryPan';
+import {Pandemic} from './Pandemic';
 
 ReactDOM.render(
 <Router>
@@ -41,6 +44,10 @@ ReactDOM.render(
 		  <Route exact path='/GetAmbulance' component={GetAmbulance}/>  
 		  <Route exact path='/newdriver' component={NewDriver}/>
 		  <Route exact path='/olddriver' component={OldDriver}/>
+		  <Route exact path='/World' component={WorldPan}/>
+		  <Route exact path='/Country' component={CountryPan}/>
+		  <Route exact path='/Pandemic' component={Pandemic}/>
+
 	
 
 

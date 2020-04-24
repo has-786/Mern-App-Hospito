@@ -1,6 +1,8 @@
 mongoose=require('mongoose');
 function con(mongoose){
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});                
+	//mongodb+srv://has123:<password>@cluster0-xzpel.mongodb.net/test
+	//mongodb://localhost/test
+mongoose.connect('mongodb+srv://has123:yaali@786@cluster0-xzpel.mongodb.net/test', {useNewUrlParser: true});                
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

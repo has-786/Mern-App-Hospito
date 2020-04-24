@@ -90,6 +90,8 @@ class ShowDonation extends Component{
 componentDidMount()
 {
 	
+	this.state.username=localStorage.getItem('user');
+	
 	var data={name:this.state.username};   
 		if(!this.state.username){alert('Please Login First');}
 

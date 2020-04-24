@@ -28,8 +28,7 @@ componentDidMount()
 					fetch('http://localhost:8080/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
-		             // var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id2=body.ambu._id; 
-						//    	  localStorage.setItem('cookies',JSON.stringify(cookies));
+		          
 					if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; alert(body);
 							document.getElementById('Cancel').innerHTML='Cancel';
 				}			}).catch(err=>console.log(err));    }  
@@ -179,8 +178,7 @@ render()
  <div>
   <center><h2>BOOK AN AMBULANCE</h2></center><br></br>
   <center><button class='btn btn-primary'>Phone No.</button><input type='text' id='1' /><button class='btn btn-primary' onClick={this.fun.bind(this)}>Save</button></center>
-    <br></br><div><button class='btn btn-primary' id='search'  onClick={this.search.bind(this)}>Search</button>&nbsp;&nbsp;&nbsp; 
-<button class='btn btn-primary' id='book'  style={{display:'None'}} onClick={this.book.bind(this)}>Book Now</button></div>
+    <br></br>
   <section>
   <div class="row" >
 	
@@ -218,6 +216,8 @@ render()
 	
         </div>	
 		</div></section>
+	 <center>	<div><button class='btn btn-primary' id='search'  onClick={this.search.bind(this)}>Search</button>&nbsp;&nbsp;&nbsp; 
+ <button class='btn btn-primary' id='book'  style={{display:'None'}} onClick={this.book.bind(this)}>Book Now</button></div> </center>
 </div>);
 }
 

@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom';
 
 class Profile  extends Component{
 	constructor(props){
-		super(props); this.state={username:null};
+		super(props); this.state={username:null,type:null};
 	}
 		
 componentDidMount()
 {
-	 this.setState({username:localStorage.getItem('user')});
-	// if(!this.state.username)document.getElementById('link').innerHTML="<a href='/signin'><button id='login' class='btn btn-primary'>Login</button></a>";
+	 this.setState({username:localStorage.getItem('user')});	 
+	 this.setState({type:localStorage.getItem('type')});
+
+	 setTimeout(function(){
+	 if(this.state.type=='Doctor')document.getElementById('update').style.display='block';}.bind(this),500);
 }	
 	
  signout=(event)=>{
@@ -33,8 +36,8 @@ return (<div>
 
 <div id='profile'>
  <i class='fa fa-home' style={{float:"left",marginTop:"-15%",marginLeft:"5px",color:"green",fontSize:"60px"}}> </i> <a class='btn btn-primary' 
- style={{marginTop:"-20%"}}href="http://localhost:3000/" >Home
-</a>  <a  href='http://localhost:3000/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
+ style={{marginTop:"-20%"}}href="http://localhost:3000/" >Home</a>
+ <a  href='http://localhost:3000/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
  
  <button class='btn btn-success' style={{float:"left",marginTop:"-25%",marginLeft:"0px"}}>{this.state.username}</button>   
  </div>

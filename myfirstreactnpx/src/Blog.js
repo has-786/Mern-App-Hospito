@@ -7,10 +7,10 @@ let username=null;
 
 class InsertBlog extends Component{
 	constructor(props){
-		super(props);  this.state={amount:0,cause:null,timestamp:null};
+		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
 	}
 	
-	
+	componentDidMount(){this.state.username=localStorage.getItem('user'); }
 
 render()
 {
@@ -38,6 +38,8 @@ render()
 
 
 fun2=()=>{
+		if(!this.state.username){alert('Please Login First');return false;}
+
 	var tempDate = new Date();
   var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
   const currDate = date;
@@ -55,18 +57,19 @@ class ShowBlog extends Component{
 	constructor(props)
 	{
 		super(props);
-		this.state={arr:[{_id:null,img:null,topic:null,data:null,timestamp:null }]}; 
+		this.state={username:null,arr:[{_id:null,img:null,topic:null,data:null,timestamp:null }]}; 
 	}
 	
 componentDidMount()
 {
+	this.state.username=localStorage.getItem('user');
 	
 setTimeout(function(){	
-	var data={name:username};   
-	fetch('http://localhost:8080/showblog',{ method: 'POST', body:JSON.stringify(data),
+	var data={name:this.state.username};   
+	fetch('http://localhost:8080/showblog',{ method: 'GET',
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
- (body)=>{this.setState({arr:body}); alert(JSON.toString(this.state.arr));    }).catch(err=>console.log(err));	
+ (body)=>{this.setState({arr:body});    }).catch(err=>console.log(err));	
 }.bind(this),1000);
 
 }
@@ -86,7 +89,7 @@ render()
  <div>
  <center><h2 >BLOGS</h2></center>
  	<div><form onSubmit={this.fun.bind(this)}>
-<button class='btn btn-primary'>Search for Blogs </button>&nbsp;&nbsp;&nbsp;&nbsp;	<input type='text'  name='name'  id='1' required/>
+<button class='btn btn-primary'>Search Blogs </button>&nbsp;&nbsp;&nbsp;&nbsp;	<input type='text'  name='name'  id='1' required/>
 				<input type='submit'  value='Search' />
            </form>	<br></br><br></br><br></br>	</div>
 <br></br><br></br>
@@ -115,8 +118,8 @@ render()
 
 			
 			<div class="features-icons-icon d-flex">
-					<div class="col-lg-12"><center><p class='junbotron' style={{fontSize:"25px"}}>{res.data}</p></center></div>
-		<div class="col-lg-12"><center><img src={res.img} alt='not found' width={400} height={500} /></center></div>
+					<div class="col-lg-12"><center><p class='junbotron' style={{backgroundColor:'white',border:'3px solid purple',padding:'5px', fontSize:"15px"}}>{res.data}</p></center></div>
+		<div class="col-lg-12"><center><img src={res.img} alt='not found' width={300} height={400} /></center></div>
 			</div><br></br><br></br>
 			
 			
