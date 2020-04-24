@@ -11,7 +11,7 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-     "start": "cd ../server/app && node server.js",
+     "start": "node server.js",
       "heroku-postbuild": "cd myfirstreactnpx && npm install && npm run build"
    
   },
