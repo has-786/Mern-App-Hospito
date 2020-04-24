@@ -16,6 +16,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }))
+app.use(express.static(path.join(__dirname, 'myfirstreactnpx/build')));
 
 passport=require('passport');
 var bodyParser = require('body-parser');
