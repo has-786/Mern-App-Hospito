@@ -22,8 +22,8 @@ passport=require('passport');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));   app.use(bodyParser.json());
 
-require('../security/passport.js')(passport);   
-require('../routes/mainRoutes.js')(app,passport,bcrypt,nodemailer);
+require('./server/security/passport.js')(passport);   
+require('./server/routes/mainRoutes.js')(app,passport,bcrypt,nodemailer);
 
 var port = 8080;
 
