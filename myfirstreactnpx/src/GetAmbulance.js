@@ -53,7 +53,7 @@ componentDidMount()
 						else alert( "Geolocation is not supported by this browser.");
 				   }
 
-	}.bind(this),2000);				
+	}.bind(this),5000);				
   
 
 	
@@ -112,7 +112,7 @@ componentDidMount()
 									
 					}		
 		  }	  
-   }.bind(this),5000);
+   }.bind(this),6000);
  
 
 }

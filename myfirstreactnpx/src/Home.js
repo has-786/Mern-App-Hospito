@@ -27,7 +27,8 @@ componentDidMount()
 {
 	
 	this.state.username=localStorage.getItem('user');
-	alert(this.state.username);
+	if(this.state.username)alert("Hi "+this.state.username);
+	if(this.state.username && this.state.username==='hospito123'){ document.getElementById('admin1').style.display='block';document.getElementById('admin2').style.display='block';}
 username=this.state.username;
 	 if(this.state.username)
 	 {
@@ -45,7 +46,6 @@ username=this.state.username;
 render()
 {
 return (<div>
-<div>{this.redirect.bind(this)}</div>
 
  <center> <h2 style={{backgroundColor:"pink",color:"white",padding:"20px",marginTop:"0%"}}>Welcome to Hospito<br></br><button class='btn btn-info' >We care about your health </button></h2>
  <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4" width="1000px" height="300px" />
@@ -53,7 +53,12 @@ return (<div>
 
 <span id='link' style={{float:"right",marginTop:"-20%"}}>
 <button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
-<a  href='/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a></span>	
+<a  href='/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a>
+<br></br>
+<a href='/Insert'><button class='btn btn-success' id='admin1' style={{display:'None'}}>Insert</button></a><br></br>
+<a href='/Delete'><button class='btn btn-danger' id='admin2' style={{display:'None'}}>Delete</button></a>
+
+</span>	
 		
 <div id='profile' style={{display:"None"}}>
  <i class='fa fa-male' style={{float:"left",marginTop:"-15%",marginLeft:"10px",color:"green",fontSize:"60px"}}></i> <a class='btn btn-primary' 

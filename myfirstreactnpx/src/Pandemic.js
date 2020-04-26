@@ -27,7 +27,7 @@ render()
 <br></br><br></br> 
 	<div class="row" >
 			<div class="col-lg-6"><center><a href='/World'><button class='btn btn-primary'>Pandemic In World</button></a></center></div>
-			<div class="col-lg-6"><center><a href='/Country'><button class='btn btn-success'>Pandemic In My Country</button></a></center></div>
+			<div class="col-lg-3"><center><a href='/Country'><button class='btn btn-success'>Pandemic In My Country</button></a></center></div>
 	</div>
 <br></br><br></br>
 	<div id='show1'>		

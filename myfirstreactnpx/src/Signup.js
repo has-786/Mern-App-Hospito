@@ -74,7 +74,7 @@ class Signin extends Component{
 	componentDidMount()
 	{
 			
-	  alert(username);
+	if(username)alert("Hi "+username);
 	}
 	
 	fun=(event)=>{

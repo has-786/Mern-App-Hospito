@@ -2,7 +2,7 @@ module.exports=function(app)
 {
 require('../security/passport.js')(passport);
 
-db.con(mongoose);
+//db.con(mongoose);
 product=db.product;
 user=db.user;
 order=db.order;

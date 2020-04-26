@@ -2,7 +2,7 @@ mongoose=require('mongoose');
 function con(mongoose){
 	//mongodb+srv://has123:<password>@cluster0-xzpel.mongodb.net/test
 	//mongodb://localhost/test
-mongoose.connect('mongodb+srv://has123:yaali@786@cluster0-xzpel.mongodb.net/test', {useNewUrlParser: true});                
+mongoose.connect('mongodb+srv://has123:yaali@786@cluster0-xzpel.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});                
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -14,7 +14,7 @@ var userSchema=new mongoose.Schema({name:String,email:String,pass:String,type:St
 var user=mongoose.model('user',userSchema);
 
 
-var productSchema=new mongoose.Schema({prodName:String,price:Number,disease:String});  
+var productSchema=new mongoose.Schema({prodName:String,quantity:String,price:Number,disease:String});  
 var product=mongoose.model('product',productSchema);                                    
 
 var OrderSchema=new mongoose.Schema({userId:String,paymentId:String,address:String,prods:[productSchema],amount:Number,paymentMethod:{type:String,default:'Cash'},timestamp:String});  

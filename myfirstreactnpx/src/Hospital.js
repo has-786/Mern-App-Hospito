@@ -34,10 +34,10 @@ render()
 <br></br><br></br><br></br><br></br>
 	<div id='show1'>		
 
-		{this.state.arr.map( res=>( <div class="col-lg-4">		<br></br><br></br>
+		{this.state.arr.map( res=>( <div class="col-lg-4"  >		<br></br><br></br>
 
-					 <div class="row" >
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{backgroundColor:"pink",borderRadius:'10px',border:"5px solid green"}} >
+					 <div class="row">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{padding:"20px",backgroundColor:"pink",borderRadius:'10px',border:"5px solid green"}} >
 		  		<br></br>
 
             <div class="features-icons-icon d-flex" >

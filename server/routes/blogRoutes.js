@@ -33,4 +33,24 @@ var name=req.body.name;
 
 
 
+
+
+app.post('/deleteblog',(req,res)=>{
+	var id=req.body.id; 
+	blog.findOneAndDelete({_id:id},(err,blog1)=>{
+		if(err)console.log(err); 
+		else if(!blog1)res.send({msg:"No such Blog"});	
+		else   
+		{
+			res.send({msg:"Blog Removed Successfully"});
+		}
+	});	
+});
+
+
+
+
+
+
+
 }

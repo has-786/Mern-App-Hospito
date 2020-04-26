@@ -12,13 +12,13 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
 let username=null;
 
 class  Medicine extends Component{
-constructor(props){ super(props);  this.state={username:null,arr:[{prodName:null,price:null,disease:null}],obj:{prodName:null,price:null,disease:null},msg:null}; 
+constructor(props){ super(props);  this.state={username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:null,price:null,disease:null},msg:null}; 
  this.fun = this.fun.bind(this);  this.fun1 = this.fun1.bind(this);  
 }
 componentDidMount()
 { 
 	this.state.username=localStorage.getItem('user');
-	alert(this.state.username);  
+	if(this.state.username)alert("Hi "+this.state.username);
     
 	var data={name:this.state.username}; //this.setState({ position: 1 });
 	fetch('http://localhost:8080/showAllProds',{ method: 'GET',
@@ -50,12 +50,25 @@ render()
 	    <div class="col-lg-4"  >		<br></br><br></br>
 
 					 <div class="row" >
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{padding:"20px",border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
 		  		<br></br>
 
+				    <div class="features-icons-icon d-flex" >
+<div class="col-lg-4">	<button class='btn btn-secondary'>ID</button></div><div class="col-lg-8" ><span style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}>{res._id}</span></div>
+			</div><br></br>
+				
+				
+				
             <div class="features-icons-icon d-flex" >
 <div class="col-lg-4">	<button class='btn btn-secondary'>Name</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{res.prodName}</button></center></div>
 			</div><br></br>
+			
+			
+			
+			   <div class="features-icons-icon d-flex" >
+<div class="col-lg-4">	<button class='btn btn-secondary'>Quantity</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{res.quantity}</button></center></div>
+			</div><br></br>
+			
 			<div class="features-icons-icon d-flex">
 						
 		<div class="col-lg-3"><button class='btn btn-secondary'>Price</button></div><div class="col-lg-9"><center><button class='btn btn-success'> Rs.{res.price} </button></center></div>
@@ -65,7 +78,7 @@ render()
 				  <div class="col-lg-9"><center><button class='btn btn-danger'> {res.disease} </button></center></div>
 			</div><br></br><br></br>
 			<div class="features-icons-icon d-flex">
-		 <div class="col-lg-12">	<button  class='btn btn-warning' id={res.prodName} onClick={this.fun1.bind(this,this.state.username,res.prodName)} style={{marginRight:"15px"}}>Add To Cart</button></div>
+		 <div class="col-lg-12">	<button  class='btn btn-warning' id={res.prodName+res.quantity} onClick={this.fun1.bind(this,this.state.username,res.prodName,res.quantity)} style={{marginRight:"15px"}}>Add To Cart</button></div>
 		 <br></br><br></br><br></br>
 			</div>	
 			</div>
@@ -78,13 +91,6 @@ render()
 		</div></div></section>
 	</div> 
 		
-	<div id='show2'>
-		<button class='btn btn-info'>Name</button><button class='btn btn-primary'> {this.state.obj.prodName} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Price</button><button class='btn btn-success'> Rs. &nbsp;{this.state.obj.price} </button>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class='btn btn-info'>Disease</button><button class='btn btn-danger'> {this.state.obj.disease} </button> 
-		&nbsp;&nbsp;&nbsp;&nbsp;
-			<button  class='btn btn-warning' id={this.state.obj.prodName} onClick={this.fun1.bind(this,this.state.username,this.state.obj.prodName)} >Add To Cart</button>
-	</div>
 	
 </div>
   )
@@ -95,27 +101,26 @@ render()
 		fetch('http://localhost:8080/showProduct',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{ if(!Array.isArray(body)){this.setState({obj:body});document.getElementById('show2').style.opacity=1;} 
- else	 { this.setState({arr:body});if(!body.length)alert('No result found'); document.getElementById('show1').style.opacity=1;} }).catch(err=>console.log(err));
- 
+           else { this.setState({arr:body});if(!body.length)alert('No result found'); document.getElementById('show1').style.opacity=1;} }).catch(err=>console.log(err));
  
 }
 
-fun1=(username,prodName)=>{
+fun1=(username,prodName,quantity)=>{
 	
-	
-if(document.getElementById(prodName).innerHTML=='Add To Cart'){
+if(document.getElementById(prodName+quantity).innerHTML==='Add To Cart'){
 	if(!this.state.username){alert('Please Login First');return false;}
-	var data={"name":username,"product":prodName};      alert(JSON.stringify(data));
+	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/addToCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
- (body)=>{alert(body.msg);   if(body.msg=='Added to cart')document.getElementById(prodName).innerHTML='Remove From Cart';  }).catch(err=>console.log(err));
+ (body)=>{alert(body.msg);   if(body.msg=='Added to cart')document.getElementById(prodName+quantity).innerHTML='Remove From Cart';  }).catch(err=>console.log(err));
 }
+
 else 
 {
-	var data={"name":username,"product":prodName};      alert(JSON.stringify(data));
+	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
-(body)=>{alert(body.msg);document.getElementById(prodName).innerHTML='Add To Cart';}).catch(err=>console.log(err));                                                                                                    
+(body)=>{alert(body.msg);document.getElementById(prodName+quantity).innerHTML='Add To Cart';}).catch(err=>console.log(err));                                                                                                    
 }
 	
 
@@ -128,7 +133,7 @@ else
 class Showcart extends Component{
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{prodName:null,price:null,disease:null}],obj:{prodName:'',price:'',disease:''},msg:null,position:null}; 
+this.state={username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:'',quantity:null,price:'',disease:''},msg:null,position:null}; 
  this.fun = this.fun.bind(this);
  }
 	
@@ -174,6 +179,11 @@ render()
 							<div class="col-lg-9"><center><button class='btn btn-primary'> {res.prodName} </button></center></div>
 						</div>
 						<br></br>
+						<div class="features-icons-icon d-flex" >
+							<div class="col-lg-3"><center><button class='btn btn-info'>Quantity</button></center></div>
+							<div class="col-lg-9"><center><button class='btn btn-primary'> {res.quantity} </button></center></div>
+						</div>
+						<br></br>
 						
 						<div class="features-icons-icon d-flex">
 							<div class="col-lg-3"><button class='btn btn-info'>Price</button></div>
@@ -186,7 +196,7 @@ render()
 						</div><br></br><br></br>
 
 						<div class="features-icons-icon d-flex">
-							<div class="col-lg-12">	<button  class='btn btn-warning' id={res.prodName} onClick={this.fun.bind(this,this.state.username,res.prodName)} >Remove from Cart</button></div>
+							<div class="col-lg-12">	<button  class='btn btn-warning' id={res.prodName+res.quantity} onClick={this.fun.bind(this,this.state.username,res.prodName,res.quantity)} >Remove from Cart</button></div>
 							<br></br><br></br><br></br><br></br>
 						</div>
 						
@@ -202,11 +212,11 @@ render()
 	
 </div>
   )}
-  fun=(username,prodName)=>{
-	var data={"name":username,"prodName":prodName};      alert(JSON.stringify(data));
+  fun=(username,prodName,quantity)=>{
+	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
- (body)=>{alert(body.msg); if(!body.length)document.getElementById(prodName).innerHTML='Add To Cart'; }).catch(err=>console.log(err));
+ (body)=>{alert(body.msg); if(!body.length)document.getElementById(prodName+quantity).innerHTML='____'; }).catch(err=>console.log(err));
 }
   
 }

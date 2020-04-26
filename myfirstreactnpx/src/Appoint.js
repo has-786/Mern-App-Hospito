@@ -13,7 +13,7 @@ this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name
 componentDidMount()
 {
 	this.state.username=localStorage.getItem('user');
-	alert(this.state.username); 
+	if(this.state.username)alert("Hi "+this.state.username);
 	fetch('http://localhost:8080/showAllDoctors',{ method: 'GET', 
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
@@ -46,7 +46,7 @@ render()
 	    <div class="col-lg-4">		
 
 					 <div class="row" >
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{backgroundColor:"pink",borderRadius:'10px',border:"5px solid green"}} >
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{padding:"20px",backgroundColor:"pink",borderRadius:'10px',border:"5px solid green"}} >
 		  		<br></br>
 
             <div class="features-icons-icon d-flex" >
@@ -75,8 +75,7 @@ render()
 </div>
   )}
   fun=(username,docname,email)=>{
-	  alert(username);
-if(username===null){alert(username); alert('Please Login First'); return false;}
+if(username===null){ alert('Please Login First'); return false;}
 	if( document.getElementById(docname).innerHTML==='Request An Appointment') 
 	{		
 	var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
@@ -122,7 +121,7 @@ componentDidMount()
 	this.state.username=localStorage.getItem('user');
     if(this.state.username==null){alert('Please Login First'); }
 	else {
-		alert(this.state.username);
+	if(this.state.username)alert("Hi "+this.state.username);
 		var data={name:this.state.username}; //this.setState({ position: 1 });
 	fetch('http://localhost:8080/showAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
