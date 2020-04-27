@@ -18,6 +18,12 @@ app.use(session({
 }))
 app.use(express.static(path.join(__dirname, 'myfirstreactnpx/build')));
 
+app.get('*',(req,res)=>{
+	res.sendFile(path.join(__dirname,'client','build','index.html'));
+	
+});
+
+
 passport=require('passport');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));   app.use(bodyParser.json());
