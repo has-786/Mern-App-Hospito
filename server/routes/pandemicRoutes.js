@@ -4,7 +4,17 @@ const request=require('request')
 const cheerio=require('cheerio')
 const fs=require('fs')
 
-
+/*
+ "google-map-react": "^1.1.5",
+    "mongoose": "^5.9.10",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-geolocated": "^3.0.1",
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.8.3"
+*/
 var c1,c2,c3,url
 
 //var json={c1:"",c2:"",c3:""}
