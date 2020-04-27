@@ -1,6 +1,5 @@
 var mongoose=require('mongoose');
 var express=require('express');
-var session=require('express-session');
 var bcrypt=require('bcrypt');
 var nodemailer=require('nodemailer');
 randomstring=require('randomstring');
@@ -9,13 +8,6 @@ path=require('path');
 
 app=express();
 
-//app.set('trust proxy', 1); // trust first proxy
-app.use(session({
-  secret: 'QySpAJrjqoaUd32I',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}))
 app.use(express.static(path.join(__dirname, 'myfirstreactnpx/build')));
 
 app.get('*',(req,res)=>{
