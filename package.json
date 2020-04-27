@@ -14,10 +14,10 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "client-install":"npm install --prefix myfirstreactnpx",
+    "client-install":"npm install --prefix client",
     "start": "node server.js",
 	"client":"npm start --prefix client",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix myfirstreactnpx & npm run build --prefix myfirstreactnpx"
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client & npm run build --prefix client"
   },
   "eslintConfig": {
     "extends": "react-app"
