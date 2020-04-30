@@ -63,9 +63,11 @@ fun2=()=>{
 	var tempDate = new Date();
   var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
   const currDate = date;
+  var username=this.state.username;
+  alert(username)
     let options = {
       key: "rzp_test_SQG8JPTfI1KtZ9",
-      amount: this.state.amount*1000, // 2000 paise = INR 20, amount in paisa
+      amount: this.state.amount*100, // 2000 paise = INR 20, amount in paisa
       name: "Hospito",
       description: "",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS50VEonvgI1-sTW6CHykn0U_7xk8N2_ntoTusf5VatlP7d4ukU",
@@ -111,7 +113,7 @@ componentDidMount()
 	fetch('http://localhost:8080/showOrder',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
- (body)=>{this.setState({arr:body}); alert(JSON.toString(this.state.arr)); document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	
+ (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	
 
 }
 
@@ -131,7 +133,7 @@ render()
 		{this.state.arr.reverse().map( res=>( 
 	    <div class="col-lg-4"  >		<br></br><br></br>
 			<div class="row" >
-				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
+				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{padding:"10px",border:"5px solid green",borderRadius:"10px",backgroundColor:"pink"}} >
 		  		<br></br>
 
 						<div class="features-icons-icon d-flex" >
@@ -155,23 +157,29 @@ render()
 							<br></br><br></br><br></br>
 						</div>
 		                 
-						<div class="features-icons-icon d-flex">
+						
 			 			
-{res.prods.map( (prod)=>(
- <div class="row">
- <div class="col-lg-4"><center><button class='btn btn-info'>Name</button></center></div>
- <div class="col-lg-8"><center><button class='btn btn-primary'>{prod.prodName} </button></center></div><br></br><br></br>
- 
-<div class="col-lg-4"><center><button class='btn btn-info'>Price</button></center></div>
-<div class="col-lg-8"><center><button class='btn btn-success'> Rs.{prod.price} </button></center></div><br></br><br></br>
+{res.prods.map( (prod)=>(<div>
 
-<div class="col-lg-4"><center><button class='btn btn-info'>Disease</button></center></div>
-<div class="col-lg-8"><center><button class='btn btn-danger'>  {prod.disease} </button></center></div><br></br><br></br>
-<br></br>   <br></br>   <br></br>       
+<div class="features-icons-icon d-flex">
+	<div class="col-lg-3">	<button  class='btn btn-success'   >Name</button></div>
+	<div class="col-lg-9">	<button  class='btn btn-primary' >{prod.prodName}</button></div>
+	<br></br><br></br>
 
-
-	</div>))}
-						</div>
+</div>
+<div class="features-icons-icon d-flex">
+	<div class="col-lg-3">	<button  class='btn btn-success'   >Quantity</button></div>
+	<div class="col-lg-9">	<button  class='btn btn-primary' >{prod.quantity}</button></div>
+	<br></br><br></br>
+</div>
+<div class="features-icons-icon d-flex">
+	<div class="col-lg-3">	<button  class='btn btn-success'   >Price</button></div>
+	<div class="col-lg-9">	<button  class='btn btn-primary' >Rs. &nbsp;{prod.price}</button></div>
+	<br></br><br></br><br></br><br></br>
+</div>
+</div>
+))}
+						
 
 					</div>
 				</div><br></br><br></br><br></br>

@@ -148,7 +148,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 			<i class='fa fa-video' style={{fontSize:"40px",color:"darkblue"}}></i>
 
 </div>
-            <h3 ><a href='/video'>Informative Videos</a></h3>
+            <h3 ><a href='Video'>Informative Videos</a></h3>
             <p class="lead mb-0">Videos By Eminent Doctors And Physicians</p>
           </div>
         </div>

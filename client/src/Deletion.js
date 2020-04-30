@@ -120,6 +120,44 @@ fun2=()=>{
 
 
 
+class DeleteVideo extends Component{
+	constructor(props){
+		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
+	}
+	
+	componentDidMount(){this.state.username=localStorage.getItem('user'); }
+
+render()
+{
+ return (
+ <div>
+  <center><h2 >DELETE VIDEO</h2></center>
+
+	<center>	<span><br></br><br></br></span>
+    
+	<div><button class='btn btn-primary' >ID</button><input type='text' id='id' name='name'   required/></div>
+	<span><br></br><br></br></span> 
+
+		<button class='btn btn-danger'  onClick={this.fun2.bind(this)}>Delete</button>
+	
+	</center>
+</div>);
+}
+
+
+
+fun2=()=>{
+		
+ var data={id:document.getElementById('id').value};
+	fetch('http://localhost:8080/deleteVideo',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
+     
+
+}
+}
+
+
+
 class Delete extends Component{
 	constructor(props){
 		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
@@ -141,6 +179,8 @@ render()
 		<span><br></br><br></br></span>
 	<div><a href='/DeleteProduct'><button class='btn btn-success' >Delete Products</button></a></div>
 		<span><br></br><br></br></span>
+	<div><a href='/DeleteVideo'><button class='btn btn-warning' >Delete Videos</button></a></div>
+		<span><br></br><br></br></span>	
 	</center>
 </div>);
 }
@@ -148,4 +188,4 @@ render()
 }
 
 
-export {DeleteBlog,DeleteHospital,DeleteProduct,Delete};
+export {DeleteBlog,DeleteHospital,DeleteProduct,DeleteVideo,Delete};

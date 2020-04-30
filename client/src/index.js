@@ -18,8 +18,9 @@ import {GetAmbulance} from './GetAmbulance';
 import {WorldPan} from './WorldPan';
 import {CountryPan} from './CountryPan';
 import {Pandemic} from './Pandemic';
-import {InsertBlog,InsertHospital,InsertProduct,Insert} from './Insertion';
-import {DeleteBlog,DeleteHospital,DeleteProduct,Delete} from './Deletion';
+import {InsertBlog,InsertHospital,InsertProduct,InsertVideo,Insert} from './Insertion';
+import {DeleteBlog,DeleteHospital,DeleteProduct,DeleteVideo,Delete} from './Deletion';
+import {Video} from './Video';
 
 ReactDOM.render(
 <Router>
@@ -51,11 +52,15 @@ ReactDOM.render(
 		  <Route exact path='/Pandemic' component={Pandemic}/>
 		  <Route exact path='/InsertHospital' component={InsertHospital}/>
 		  <Route exact path='/InsertProduct' component={InsertProduct}/>
+		  <Route exact path='/InsertVideo' component={InsertVideo}/>
 		  <Route exact path='/Insert' component={Insert}/>
 		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
 		  <Route exact path='/DeleteHospital' component={DeleteHospital}/>
 		  <Route exact path='/DeleteProduct' component={DeleteProduct}/>
+		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
+		  <Route exact path='/DeleteVideo' component={DeleteVideo}/>
 		  <Route exact path='/Delete' component={Delete}/>
+		  <Route exact path='/Video' component={Video}/>
 	
 
 

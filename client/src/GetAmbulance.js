@@ -29,7 +29,7 @@ componentDidMount()
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
 		          
-					if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; alert(body);
+					if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
 							document.getElementById('Cancel').innerHTML='Cancel';
 				}			}).catch(err=>console.log(err));    }  
 		  }
@@ -190,7 +190,7 @@ render()
 		  		<br></br>
 
             <div class="features-icons-icon d-flex" >
-<div class="col-lg-4">	<button class='btn btn-secondary'>Ride ID</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{this.state.id}</button></center></div>
+<div class="col-lg-3">	<button class='btn btn-secondary'>Ride ID</button></div><div class="col-lg-9"><center><button class='btn btn-primary'>{this.state.id}</button></center></div>
 			</div><br></br>
 			<div class="features-icons-icon d-flex">
 						
@@ -201,7 +201,7 @@ render()
 				  <div class="col-lg-9"><center><button class='btn btn-danger'> {this.state.arr[0].phone}</button></center></div>
 			</div><br></br><br></br>
 			  <div class="features-icons-icon d-flex" >
-<div class="col-lg-4">	<button class='btn btn-secondary'>Car No.</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{this.state.arr[0].car}</button></center></div>
+<div class="col-lg-3">	<button class='btn btn-secondary'>Car No.</button></div><div class="col-lg-9"><center><button class='btn btn-primary'>{this.state.arr[0].car}</button></center></div>
 			</div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Status</button></div>

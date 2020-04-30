@@ -55,7 +55,7 @@ fun=(event)=>{
 	if(document.getElementById('1').value.length==0 || document.getElementById('2').value.length==0 || document.getElementById('3').value.length==0 
 	|| (document.getElementById('5').value==='Doctor' && document.getElementById('6').value.length===0) ){alert('Please Fill The Required Places'); return false;}
 	var data={name:document.getElementById('1').value,email:document.getElementById('2').value,pass:document.getElementById('3').value,type:
-	document.getElementById('5').value  };
+	document.getElementById('5').value,specialist:document.getElementById('6').value   };
 fetch('http://localhost:8080/localSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username); 
 localStorage.setItem('type',body.type); 		}

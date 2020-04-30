@@ -2,7 +2,7 @@ mongoose=require('mongoose');
 function con(mongoose){
 	//mongodb+srv://has123:<password>@cluster0-xzpel.mongodb.net/test
 	//mongodb://localhost/test
-mongoose.connect('mongodb+srv://has123:yaali@786@cluster0-xzpel.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});                
+mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});                
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -41,5 +41,9 @@ var ambulance=mongoose.model('ambulance',ambulanceSchema);
 var rideSchema=new mongoose.Schema({user:String,amb:String,status:String,timestamp:String});
 var ride=mongoose.model('ride',rideSchema);
 
-module.exports={con:con,user:user,cart:cart,product:product,order:order,appoint:appoint,hospital:hospital,donation:donation,blog:blog,ambulance:ambulance,ride:ride};
+var videoSchema=new mongoose.Schema({name:String,tags:String,link1:String,likes:Number});
+var video=mongoose.model('video',videoSchema);
+
+
+module.exports={con:con,user:user,cart:cart,product:product,order:order,appoint:appoint,hospital:hospital,donation:donation,blog:blog,ambulance:ambulance,ride:ride,video:video};
 

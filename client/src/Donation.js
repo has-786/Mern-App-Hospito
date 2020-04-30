@@ -47,6 +47,7 @@ render()
 fun2=()=>{
 	if(!this.state.username){alert('Please Login First');return false;}
 	var tempDate = new Date();
+	var username=this.state.username;
   var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
   const currDate = date;
   this.state.amount=document.getElementById('amount').value;
@@ -98,7 +99,7 @@ componentDidMount()
 	fetch('http://localhost:8080/showDonation',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
- (body)=>{this.setState({arr:body}); alert(JSON.toString(this.state.arr)); document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	
+ (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	
 
 }
 
@@ -127,12 +128,12 @@ render()
 			</div><br></br>
 			<div class="features-icons-icon d-flex">
 						
-		<div class="col-lg-3"><button class='btn btn-secondary'>Amount</button></div><div class="col-lg-9"><center><button class='btn btn-success'> Rs.{res.amount} </button></center></div>
+		<div class="col-lg-3"><button class='btn btn-secondary'>Amount</button></div><div class="col-lg-9"><center><button class='btn btn-success'> Rs.&nbsp;{res.amount} </button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Cause</button></div>
 				  <div class="col-lg-9"><center><button class='btn btn-danger'> {res.cause} </button></center></div>
-			</div><br></br><br></br>
+			</div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Time</button></div>
 				  <div class="col-lg-9"><center><button class='btn btn-danger'> {res.timestamp} </button></center></div>

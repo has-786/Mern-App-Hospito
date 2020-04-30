@@ -176,10 +176,10 @@ render()
  )
 }
 fun=(username,docname)=>{
-	var data={"name":username,"docname":docname};      alert(JSON.stringify(data));
+	var data={"name":username,"docname":docname};     // alert(JSON.stringify(data));
 		fetch('http://localhost:8080/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
- (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='Request An Appointment'; }).catch(err=>console.log(err));
+ (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='____'; }).catch(err=>console.log(err));
 }
 }
 

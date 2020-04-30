@@ -10,6 +10,7 @@ require('./ambulanceRoutes.js')(app);
 require('./appointRoutes.js')(app,nodemailer);
 require('./donationRoutes.js')(app);
 require('./blogRoutes.js')(app);
+require('./videoRoutes.js')(app);
 
 
 

@@ -60,7 +60,7 @@ render()
 		  		<br></br>
 
             <div class="features-icons-icon d-flex" >
-					<div class="col-lg-3">	<button class='btn btn-secondary'>Blog ID</button></div>
+					<div class="col-lg-3"><button class='btn btn-secondary'>Blog ID</button></div>
 					<div class="col-lg-9"><span style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}>{res._id}</span></div>
 			</div><br></br>
 						
