@@ -9,7 +9,7 @@ class forgotPassword extends Component
 	render(){
 	return (
 		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Forgot Password</h1></center>
-		<button class='btn btn-danger'>Enter Email ID</button><input type='text' id='1' name='email' pattern="[0-9a-zA-Z]+@gmail.com" required />
+		<button class='btn btn-danger'>Enter Email ID</button class='btn btn-primary'><input type='text' id='1' name='email' pattern="[0-9a-zA-Z]+@gmail.com" required />
 		<button type='submit' onClick={this.fun.bind(this)}>Submit</button>
 			<br></br>	<a href='/changePassword' id='2' style={{'display':'None'}}><button class='btn btn-primary'>Enter OTP</button></a>
 		</div>)

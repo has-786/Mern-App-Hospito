@@ -39,7 +39,7 @@ app.post('/addAppoint',(req,res)=>{
 			else
 			{
 				global.msg="Requested";
-				var transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com',pass:'labbaikyahussain'}});
+				var transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com',pass:'*****'}});
 				const mailOptions = {from: 'syedhasnain9163@gmail.com', to: req.body.email, subject: 'Appointment Request', text:'Appointment Request....Please Check Hospito'};
 				transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});    
 				console.log(appoint1); 	
@@ -58,7 +58,7 @@ app.post('/addAppoint',(req,res)=>{
 app.post('/removeAppoint',(req,res)=>{
 		appoint.findOneAndDelete({ name:req.body.name,docname:req.body.docname }).then((appoint1)=>{
 			
-   var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'labbaikyahussain' //put your password
+   var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'*****' //put your password
 									}});
    const mailOptions = {from: 'syedhasnain9163@gmail.com', to: req.body.email,subject: 'One request cancelled', text:'Appointment Request Cancelled....Please Check Hospito'};
    transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});	
@@ -74,7 +74,7 @@ app.post('/removeAppoint',(req,res)=>{
 		 });
 });
 app.post('/showAppointToDoctor',(req,res)=>{
-	if(!global.name){res.redirect('http://localhost:3000/signin');return;}
+	//if(!global.name){res.redirect('http://localhost:3000/signin');return;}
 
 		 appoint.find({docname:req.body.docname},(err,appoint1)=>{
 			if(err)console.log(err);
@@ -89,7 +89,7 @@ app.post('/showAppointToDoctor',(req,res)=>{
 					user.findOne({name:req.body.name},(err,user1)=>{
 						if(err)console.log(err);
 						else {
-							var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'labbaikyahussain' //put your password
+							var  transporter = nodemailer.createTransport({service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'*****' //put your password
 							}}); 
 				if(req.body.stat==='Confirmed'){ var txt='The Appoinment is confirmed.Visit this link on '+req.body.timestamp+'\n'+'https://whereby.com/sdroom';  }
 				else {  var txt='The Appoinment Request is rejected';  }

@@ -6,9 +6,9 @@ var randomstring=require('randomstring');
 path=require('path');
 
 app=express();
-
-app.use(express.static(path.join(__dirname, 'client/build')));
 /*
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('*',(req,res)=>{
 	res.sendFile(path.join(__dirname,'client','build','index.html'));
 	
@@ -18,6 +18,8 @@ app.get('*',(req,res)=>{
 passport=require('passport');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));   app.use(bodyParser.json());
+
+
 
 require('./server/security/passport.js')(passport);   
 require('./server/routes/mainRoutes.js')(app,passport,bcrypt,nodemailer);
