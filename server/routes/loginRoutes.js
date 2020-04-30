@@ -8,6 +8,7 @@ user=db.user;
 order=db.order;
 cart=db.cart;
 donation=db.donation;
+bcrypt=require('bcryptjs');
 
 
 name=null; 
@@ -36,6 +37,9 @@ app.get('/auth/linkedin/callback', (req,res,next)=>{
   passport.authenticate('linkedin',(err)=>{ if(err)console.log(err); console.log(global.name); 
 res.send({msg:'Signed In SuccessFully'});  })(req,res,next); }  );
   
+  
+  
+  
 app.post('/localSignin',(req,res,next)=>{
 	console.log(req.body);
 	
@@ -56,6 +60,8 @@ app.post('/localSignin',(req,res,next)=>{
     }); 
 }  );
 
+
+
 app.post('/localSignup',(req,res,next)=>{
 	console.log(req.body);   global.name=req.body.name; global.mail=req.body.email; type=req.body.type;
 	if(type==='Doctor')specialist=req.body.specialist; else specialist=null;
@@ -63,11 +69,10 @@ app.post('/localSignup',(req,res,next)=>{
 	   if(err)console.log(err); 
 	   else if(user1){ console.log('Already A User');console.log(user1); global.name=null;}
 		else{
-			    bcrypt.hash(req.body.pass,12).then(
-				function(hashedPassword) {
-				var Newuser=new user({name:req.body.name,email:req.body.email,pass:hashedPassword,type:type,specialist:specialist});			
+			    bcrypt.hash(req.body.pass,12,(err,hash)=>{
+				var Newuser=new user({name:req.body.name,email:req.body.email,pass:hash,type:type,specialist:specialist});			
 				Newuser.save((err,user2)=>{ if(err)console.log(err); else{ console.log(user2); global.name=user2.name;  }  });
-					  }).catch(  function(error){console.log("Error saving user: ");	console.log(error);  next();   });
+				});
 		}
 		res.send({username:global.name}); 
 	});
@@ -80,13 +85,11 @@ app.post('/driverSignup',(req,res,next)=>{
 	   if(err)console.log(err); 
 	   else if(user1){ console.log('Already A User');console.log(user1); global.name=null;}
 		else{
-			    bcrypt.hash(req.body.pass,12).then(
-				function(hashedPassword) {
-				var Newambulance=new ambulance({name:req.body.name,pass:hashedPassword,car:car,lat:null,lng:null,available:1,phone:req.body.phone});			
+			    bcrypt.hash(req.body.pass,12,(err,hash)=>{
+				var Newambulance=new ambulance({name:req.body.name,pass:hash,car:car,lat:null,lng:null,available:1,phone:req.body.phone});			
 				Newambulance.save((err,user2)=>{ if(err)console.log(err); else{ console.log(user2); global.name=user2.name;  }  });
-					  }).catch(  function(error){console.log("Error saving user: ");	console.log(error);  next();   });
+					  });
 		}
-		
 		res.send({drivername:global.name}); 
 	});
   });

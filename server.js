@@ -1,6 +1,6 @@
 var mongoose=require('mongoose');
 var express=require('express');
-var bcrypt=require('bcrypt');
+var bcrypt=require('bcryptjs');
 var nodemailer=require('nodemailer');
 var randomstring=require('randomstring');
 path=require('path');
@@ -19,10 +19,10 @@ passport=require('passport');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));   app.use(bodyParser.json());
 
-
+var bcrypt;
 
 require('./server/security/passport.js')(passport);   
-require('./server/routes/mainRoutes.js')(app,passport,bcrypt,nodemailer);
+require('./server/routes/mainRoutes.js')(app,passport,bcrypt,nodemailer,randomstring);
 
 var port = 8080;
 

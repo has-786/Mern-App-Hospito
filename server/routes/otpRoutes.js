@@ -1,6 +1,8 @@
-module.exports=function(app,nodemailer,bcrypt)
+module.exports=function(app,nodemailer,bcrypt,randomstring)
 {
 otp=null; otpFlag=null;
+var randomstring=require('randomstring');
+bcrypt=require('bcryptjs');
 
 app.post('/passwordForgot',(req,res)=>{
 
@@ -11,7 +13,7 @@ var transporter = nodemailer.createTransport({
  service:'Gmail',
  auth: {
         user:'syedhasnain9163@gmail.com',
-        pass:'***' //put your password
+        pass:'****' //put your password
     }
 });
 const mailOptions = {

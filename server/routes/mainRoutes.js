@@ -1,7 +1,7 @@
-module.exports=function(app,passport,bcrypt,nodemailer){
+module.exports=function(app,passport,bcrypt,nodemailer,randomstring){
 
 require('./loginRoutes.js')(app,passport,bcrypt,nodemailer);
-require('./otpRoutes.js')(app,nodemailer,bcrypt);
+require('./otpRoutes.js')(app,nodemailer,bcrypt,randomstring);
 require('./productRoutes.js')(app);
 require('./orderRoutes.js')(app);
 require('./pandemicRoutes.js')(app);
