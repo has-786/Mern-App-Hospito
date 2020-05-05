@@ -59,7 +59,7 @@ fun2=()=>{
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS50VEonvgI1-sTW6CHykn0U_7xk8N2_ntoTusf5VatlP7d4ukU",
       handler: function(response) {
      var data={paymentId:response.razorpay_payment_id,username:username,amount:document.getElementById('amount').value,cause:document.getElementById('cause').value,timestamp:currDate};
-	fetch('http://localhost:8080/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
       },  
       prefill: {
@@ -96,13 +96,12 @@ componentDidMount()
 	var data={name:this.state.username};   
 		if(!this.state.username){alert('Please Login First');}
 
-	fetch('http://localhost:8080/showDonation',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showDonation',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	
 
 }
-
 
 
 render()

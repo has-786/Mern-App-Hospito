@@ -19,7 +19,7 @@ componentDidMount()
 	
 setTimeout(function(){	
 	var data={name:this.state.username};   
-	fetch('http://localhost:8080/showblog',{ method: 'GET',
+	fetch('/showblog',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});    }).catch(err=>console.log(err));	

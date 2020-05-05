@@ -3,7 +3,7 @@ module.exports=function(app){
 
 hospital=db.hospital;
 
-      app.get('/showAllHospitals',(req,res)=>{
+      app.post('/showAllHospitals',(req,res)=>{
 	hospital.find({},(err,hospital1)=>{
 		if(err)console.log(err);
 		else  res.send(hospital1);  
@@ -48,16 +48,11 @@ app.post('/inserthospital',(req,res)=>{
 
 app.post('/deletehospital',(req,res)=>{
 	var name=req.body.name;
-	hospital.findOne({name:name},(err,hospital1)=>{
+	hospital.findOneAndDelete({name:name},(err,hospital1)=>{
 		if(err)console.log(err); 
 		else if(!hospital1)res.send({msg:"No such Hospital"});	
-		else   
-		{
-			hospital.findOneAndDelete({name:name},(err,hospital2)=>{
-						if(err)res.send({msg:"Error Occured!!!"}); 
-						else res.send({msg:"Hospital Removed Successfully"});
-			});
-		}
+		else res.send({msg:"Hospital Removed Successfully"});
+		
 	});
 });
 

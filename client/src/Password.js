@@ -18,7 +18,7 @@ class forgotPassword extends Component
 	fun=(event)=>{
 		event.preventDefault();
 		var data={email:document.getElementById('1').value};
-		fetch('http://localhost:8080/passwordForgot',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch('/passwordForgot',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{  
 					if(body.msg!='error'){alert(body.msg); localStorage.setItem('otp',body.otp); document.getElementById('2').style.display='block'; }
 					else alert('An Error Occured!!! Try Again');
@@ -71,7 +71,7 @@ class updatePassword extends Component
 	fun=(event)=>{
 		event.preventDefault();
 		var data={email:document.getElementById('1').value,pass:document.getElementById('2').value};
-		fetch('http://localhost:8080/passwordUpdated',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch('/passwordUpdated',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{  
 					if(body.msg!='error'){alert(body.msg);	document.getElementById('3').style.display='block'; 
    }

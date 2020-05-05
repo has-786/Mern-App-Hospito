@@ -44,7 +44,7 @@ fun=(event)=>{
 	|| document.getElementById('5').value.length==0){alert('Please Fill The Required Places'); return false;}
 	var data={name:document.getElementById('1').value,phone:document.getElementById('2').value,pass:document.getElementById('3').value,car:
 	document.getElementById('5').value  };
-fetch('http://localhost:8080/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+fetch('/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.drivername){this.state.drivername=body.drivername; alert(this.state.drivername); 
 		
 		var cookies={};
@@ -69,7 +69,7 @@ class OldDriver extends Component{
 			if(document.getElementById('1').value.length==0 || document.getElementById('2').value.length==0 ){alert('Please Fill Required Places'); return false;} 
 
 		var data={name:document.getElementById('1').value,pass:document.getElementById('2').value };
-		fetch('http://localhost:8080/driverSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch('/driverSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.drivername){this.state.drivername=body.drivername; alert(this.state.drivername); 
 		var cookies={};
 		if(localStorage.getItem('cookies')){var cookies=JSON.parse(localStorage.getItem('cookies')); }
@@ -141,7 +141,7 @@ setInterval(function(){
 setInterval(function(){						//		alert(this.state.status); 
 		  
 							var data={name:this.state.drivername,lat:this.state.lat,lng:this.state.lng};    
-							fetch('http://localhost:8080/updateLocation',{ method: 'POST', body:JSON.stringify(data),
+							fetch('/updateLocation',{ method: 'POST', body:JSON.stringify(data),
 							headers: {"Content-Type": "application/json" } }).then(response=>{
 							return response.json()}).then((body)=>{if(body.length){this.setState({arr:body}); 
 							//alert(this.state.status); 
@@ -163,7 +163,7 @@ setInterval(function(){						//		alert(this.state.status);
 							{						
 								var data={id:this.state.id};  
 								//alert(this.state.id);								
-							fetch('http://localhost:8080/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
+							fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
 								headers: {"Content-Type": "application/json" } }).then(response=>{	return response.json()}).then((body)=>{ 
 								this.setState({status:body.status});
                                     
@@ -185,7 +185,7 @@ event.preventDefault();
 if(document.getElementById('Cancel').innerHTML==='Accept'){
    					var data={id:this.state.id};    
 
-		fetch('http://localhost:8080/AcceptDriver',{ method: 'POST',body:JSON.stringify(data),
+		fetch('/AcceptDriver',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Accepted');
 		this.state.status='Ongoing';  document.getElementById('Cancel').innerHTML='Cancel';
 		}).catch(err=>console.log(err));    
@@ -196,7 +196,7 @@ if(document.getElementById('Cancel').innerHTML==='Accept'){
 {
 	
    					var data={id:this.state.id};     //alert(this.state.id);
-fetch('http://localhost:8080/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
+fetch('/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled'); 
 		this.setState({status:'Done'});    
 		document.getElementById('Cancel').innerHTML='Done';

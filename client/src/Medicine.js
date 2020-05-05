@@ -21,7 +21,7 @@ componentDidMount()
 	if(this.state.username)alert("Hi "+this.state.username);
     
 	var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('http://localhost:8080/showAllProds',{ method: 'GET',
+	fetch('/showAllProds',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -98,7 +98,7 @@ render()
  fun=(event)=>{
 	    event.preventDefault(); 
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/showProduct',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/showProduct',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{ if(!Array.isArray(body)){this.setState({obj:body});document.getElementById('show2').style.opacity=1;} 
            else { this.setState({arr:body});if(!body.length)alert('No result found'); document.getElementById('show1').style.opacity=1;} }).catch(err=>console.log(err));
@@ -110,7 +110,7 @@ fun1=(username,prodName,quantity)=>{
 if(document.getElementById(prodName+quantity).innerHTML==='Add To Cart'){
 	if(!this.state.username){alert('Please Login First');return false;}
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/addToCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/addToCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg);   if(body.msg=='Added to cart')document.getElementById(prodName+quantity).innerHTML='Remove From Cart';  }).catch(err=>console.log(err));
 }
@@ -118,7 +118,7 @@ if(document.getElementById(prodName+quantity).innerHTML==='Add To Cart'){
 else 
 {
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
 (body)=>{alert(body.msg);document.getElementById(prodName+quantity).innerHTML='Add To Cart';}).catch(err=>console.log(err));                                                                                                    
 }
@@ -144,7 +144,7 @@ componentDidMount()
 	if(!this.state.username)alert('Please Login First');
 	else {
 		var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('http://localhost:8080/showCart',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{if(!Array.isArray(body.prods)){this.setState({obj:body.prods});document.getElementById('show4').style.opacity=1;	
@@ -214,7 +214,7 @@ render()
   )}
   fun=(username,prodName,quantity)=>{
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); if(!body.length)document.getElementById(prodName+quantity).innerHTML='____'; }).catch(err=>console.log(err));
 }

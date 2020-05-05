@@ -14,7 +14,8 @@ componentDidMount()
 {
 	this.state.username=localStorage.getItem('user');
 	if(this.state.username)alert("Hi "+this.state.username);
-	fetch('http://localhost:8080/showAllDoctors',{ method: 'GET', 
+	var data={name:null};
+	fetch('/showAllDoctors',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -79,14 +80,14 @@ if(username===null){ alert('Please Login First'); return false;}
 	if( document.getElementById(docname).innerHTML==='Request An Appointment') 
 	{		
 	var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/addAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/addAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
     (body)=>{alert(body.msg); if(body.msg=="Requested")document.getElementById(docname).innerHTML='Cancel Request'; }).catch(err=>console.log(err));
 	}
 	else 
 	{
 		var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
        (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='Request An Appointment'; }).catch(err=>console.log(err));
 	}	
@@ -96,7 +97,7 @@ if(username===null){ alert('Please Login First'); return false;}
 	    event.preventDefault();
 
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/getDoctors',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/getDoctors',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{ if(!Array.isArray(body)){this.setState({obj:body});document.getElementById('show6').style.opacity=1;} 
      else{ this.setState({arr:body});if(!body.length)alert('No result found'); document.getElementById('show5').style.opacity=1;} }).catch(err=>console.log(err));
@@ -123,7 +124,7 @@ componentDidMount()
 	else {
 	if(this.state.username)alert("Hi "+this.state.username);
 		var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('http://localhost:8080/showAppoint',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{
@@ -177,7 +178,7 @@ render()
 }
 fun=(username,docname)=>{
 	var data={"name":username,"docname":docname};     // alert(JSON.stringify(data));
-		fetch('http://localhost:8080/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='____'; }).catch(err=>console.log(err));
 }
@@ -194,7 +195,7 @@ this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name
 	this.state.username=localStorage.getItem('user');
 	
 	var data={docname:this.state.username}; //this.setState({ position: 1 });
-	fetch('http://localhost:8080/showAppointToDoctor',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showAppointToDoctor',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{
@@ -311,7 +312,7 @@ render()
 	' '+document.getElementById(timestamp+'hour').value+':'+document.getElementById(timestamp+'minute').value+':'+document.getElementById(timestamp+'second').value
 	+' '+document.getElementById(timestamp+'ampm').value};
 	alert(JSON.stringify(data));
-		fetch('http://localhost:8080/updateAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/updateAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); document.getElementById(name).innerHTML='Done'; }).catch(err=>console.log(err));
 }

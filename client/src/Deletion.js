@@ -34,7 +34,7 @@ render()
 fun2=(event)=>{
 		
  var data={id:document.getElementById('id').value};
-	fetch('http://localhost:8080/deleteblog',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/deleteblog',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   
@@ -73,7 +73,7 @@ render()
 fun2=()=>{
 		
  var data={name:document.getElementById('name').value};
-	fetch('http://localhost:8080/deletehospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/deletehospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   
@@ -111,7 +111,7 @@ render()
 fun2=()=>{
 		
  var data={id:document.getElementById('id').value};
-	fetch('http://localhost:8080/deleteproduct',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/deleteproduct',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
 
@@ -149,7 +149,7 @@ render()
 fun2=()=>{
 		
  var data={id:document.getElementById('id').value};
-	fetch('http://localhost:8080/deleteVideo',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/deleteVideo',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
 

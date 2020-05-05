@@ -12,8 +12,8 @@ this.fun.bind(this);
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
-	
-	fetch('http://localhost:8080/showAllHospitals',{ method: 'GET',
+	var data={name:null};
+	fetch('/showAllHospitals',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -67,7 +67,7 @@ render()
  fun=(event)=>{
 	    event.preventDefault();
 		var data={"name":document.getElementById('1').value};     
-		fetch('http://localhost:8080/showHospital',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/showHospital',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  this.setState({arr:body}); if(!body.length)alert('No result found'); document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));
  

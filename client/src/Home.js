@@ -9,9 +9,6 @@ class Home  extends Component{
 	constructor(props){
 		super(props); this.state={username:null}
 	}
-		redirect=(event)=>{			  
-	if(redir)return <Redirect to='/' />	
-	}
 
 
  signout=(event)=>{
@@ -51,7 +48,7 @@ return (<div>
  <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4" width="1000px" height="300px" />
 	  </div></center>
 
-<span id='link' style={{float:"right",marginTop:"-20%"}}>
+<span id='link' >
 <button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
 <a  href='/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a>
 <br></br>
@@ -67,8 +64,8 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 </div> 
 
  <br></br>
-<div style={{float:"right", marginTop:"0%", }}><button style={{float:"right",marginTop:"-22%",marginRight:"10%"}} class='btn btn-warning'>Ask Hospito</button>
-<iframe style={{float:"right", marginTop:"-10%", }}
+<div id='chatbot' ><button id='ask' style={{float:'right',marginRight:"50%",marginTop:"-10%"}} class='btn btn-warning'>Ask Hospito</button>
+<iframe id='iframe' 
     allow="microphone;"
     width="260"
     height="500"

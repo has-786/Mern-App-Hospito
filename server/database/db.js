@@ -2,7 +2,7 @@ mongoose=require('mongoose');
 function con(mongoose){
 	//mongodb+srv://has123:<password>@cluster0-xzpel.mongodb.net/test
 	//mongodb://localhost/test
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});                
+mongoose.connect('mongodb+srv://has123:<password>@cluster0-xzpel.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});                
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

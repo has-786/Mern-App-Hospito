@@ -1,13 +1,13 @@
 var mongoose=require('mongoose');
 var express=require('express');
-var bcrypt=require('bcryptjs');
+bcrypt=require('bcryptjs');
 var nodemailer=require('nodemailer');
 var randomstring=require('randomstring');
 path=require('path');
 
 app=express();
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client','build')));
 
 app.get('*',(req,res)=>{
 	res.sendFile(path.join(__dirname,'client','build','index.html'));

@@ -3,7 +3,7 @@ module.exports=function(app){
 
 video=db.video;
 
-   app.get('/showAllVideos',(req,res)=>{
+   app.post('/showAllVideos',(req,res)=>{
 	 video.find({},(err,video1)=>{
 		if(err)console.log(err);
 		else  res.send(video1);  

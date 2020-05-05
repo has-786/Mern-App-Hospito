@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcrypt-js": "^2.4.3",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
@@ -24,8 +25,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "npm install && node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "cd client && npm run build && cd .. && node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

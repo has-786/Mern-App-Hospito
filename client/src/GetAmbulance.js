@@ -25,7 +25,7 @@ componentDidMount()
 			  alert("Phone No: "+this.state.phone);
 				var data={user:this.state.phone};    
 
-					fetch('http://localhost:8080/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
+					fetch('/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
 		          
@@ -34,8 +34,6 @@ componentDidMount()
 				}			}).catch(err=>console.log(err));    }  
 		  }
 		}.bind(this),500);	
-		
-		
 		
 		
 	setInterval(function(){	
@@ -67,7 +65,8 @@ componentDidMount()
 			     
 	  if(this.state.status==='Searching')
       {   	
-		  fetch('http://localhost:8080/getAmbulance',{ method: 'GET',headers: {"Content-Type": "application/json" } }).then(response=>{
+  var data={name:null};
+  fetch('/getAmbulance',{ method: 'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 				return response.json()}).then((body)=>{   
 				//alert(body.length);
 				if(body.length)
@@ -89,7 +88,7 @@ componentDidMount()
 								var data={id:this.state.id};
 									
 								//alert(this.state.id);			
-								fetch('http://localhost:8080/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
+								fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
 											headers: {"Content-Type": "application/json" } }).then(response=>{
 											return response.json()}).then((body)=>{ 	this.setState({status:body.status});
 																		//	alert(this.state.status);  
@@ -145,7 +144,7 @@ event.preventDefault();
 	{
 
 				var data={id:this.state.id};  //alert(this.state.id);    
-		fetch('http://localhost:8080/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
+		fetch('/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
 				headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled');	
 				this.setState({status:body.status});  this.state.status='Done'; 
 				if(this.state.status==='Done')document.getElementById('Cancel').innerHTML='___';  
@@ -163,7 +162,7 @@ document.getElementById('book').style.display='None';
 		const currDate = date;
 						var data={user:this.state.phone,amb:this.state.arr[0].name,status:'Pending',timestamp:currDate};
 						
-						fetch('http://localhost:8080/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
+						fetch('/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
 						headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body1)=>{ alert('Booked');
 						this.setState({status:'Pending'});    
 						var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id2=body1._id; 

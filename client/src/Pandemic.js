@@ -11,8 +11,9 @@ constructor(props){ super(props);  this.state={username:null,obj:{op1:'Loading..
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
+		var data={name:null};
 	document.getElementById('show1').style.opacity=1;
-	fetch('http://localhost:8080/getPandemic',{ method: 'GET',
+	fetch('/getPandemic',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({obj:body});  }).catch(err=>console.log(err));	

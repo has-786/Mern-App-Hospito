@@ -17,7 +17,7 @@ app.post('/insertblog',(req,res)=>{
 				
 });
  
-app.get('/showblog',(req,res)=>{
+app.post('/showblog',(req,res)=>{
 
  blog.find({},(err,blog1)=>{if(err)console.log(err); else { console.log(blog1); res.send(blog1);}  });
 

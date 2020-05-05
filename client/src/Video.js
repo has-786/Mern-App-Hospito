@@ -12,8 +12,8 @@ this.fun.bind(this);
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
-	
-	fetch('http://localhost:8080/showAllVideos',{ method: 'GET',
+	var data={name:null};
+	fetch('/showAllVideos',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -71,7 +71,7 @@ render()
 
  fun=(id,name)=>{
 		var data={"id":id};     
-		fetch('http://localhost:8080/like',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/like',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  if(body.msg)alert(body.msg); }).catch(err=>console.log(err));
  
@@ -79,7 +79,7 @@ render()
 
  fun1=(event)=>{
 		var data={"name":document.getElementById('1').value};     
-		fetch('http://localhost:8080/showVideo',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/showVideo',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  this.setState({arr:body}); }).catch(err=>console.log(err));
  

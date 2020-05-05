@@ -20,7 +20,7 @@ var c1,c2,c3,url
 //var json={c1:"",c2:"",c3:""}
 
 
-app.get('/getCountry',(req,res)=>{
+app.post('/getCountry',(req,res)=>{
 	var op=''
 	
 	url="https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
@@ -63,7 +63,7 @@ app.get('/getCountry',(req,res)=>{
 	
 });
 
-app.get('/getState',(req,res)=>{
+app.post('/getState',(req,res)=>{
 	var op='';
 	
 	url="https://www.mygov.in/corona-data/covid19-statewise-status/"
@@ -107,7 +107,7 @@ app.get('/getState',(req,res)=>{
 });
 
 op={};
-app.get('/getPandemic',(req,res)=>{
+app.post('/getPandemic',(req,res)=>{
 	let op=''
 	url='https://www.who.int/health-topics/coronavirus#tab=tab_1'
 	

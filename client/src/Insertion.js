@@ -44,7 +44,7 @@ fun2=()=>{
   const currDate = date;
  var data={img:document.getElementById('img').value,topic:document.getElementById('topic').value,data:document.getElementById('data').value,
  timestamp:currDate};
-	fetch('http://localhost:8080/insertblog',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/insertblog',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   }
@@ -92,7 +92,7 @@ fun2=()=>{
 		
  var data={name:document.getElementById('name').value,address:document.getElementById('address').value,email:document.getElementById('email').value,
  phone:document.getElementById('phone').value};
-	fetch('http://localhost:8080/inserthospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/inserthospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   }
@@ -139,7 +139,7 @@ fun2=()=>{
 	
  var data={name:document.getElementById('name').value,quantity:document.getElementById('quantity').value,price:document.getElementById('price').value,
  disease:document.getElementById('disease').value};
-	fetch('http://localhost:8080/insertproduct',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/insertproduct',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   }

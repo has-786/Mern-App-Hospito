@@ -15,7 +15,7 @@ class Payment extends Component{
 if(!this.state.username){alert('Please Login First');}
 else{
 	var data={name:this.state.username}; 
-	fetch('http://localhost:8080/showCart',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{ var amt=0; body.prods.map((prod)=>amt+=prod.price); this.setState({amount:amt});}).catch(err=>console.log(err));	
@@ -53,7 +53,7 @@ fun1=()=>{
   var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
   const currDate = date;
 	var data={username:this.state.username,amount:this.state.amount,address:document.getElementById('address').value,timestamp:currDate};
-	fetch('http://localhost:8080/CompleteCashOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/CompleteCashOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ this.state.amount=0;  alert(body.msg);}  ).catch(err=>console.log(JSON.stringify(err)));
 	
 }
@@ -74,7 +74,7 @@ fun2=()=>{
       handler: function(response) {
         alert(response.razorpay_payment_id);
      var data={paymentId:response.razorpay_payment_id,username:username,amount:0,address:document.getElementById('address').value,timestamp:currDate};
-	fetch('http://localhost:8080/CompletePaidOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('/CompletePaidOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ this.state.amount=0;  }  ).catch(err=>console.log(JSON.stringify(err)));		
       },
       prefill: {
@@ -110,7 +110,7 @@ componentDidMount()
 	alert(this.state.username);  
 		
 	var data={name:this.state.username}; 
-	fetch('http://localhost:8080/showOrder',{ method: 'POST', body:JSON.stringify(data),
+	fetch('/showOrder',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	

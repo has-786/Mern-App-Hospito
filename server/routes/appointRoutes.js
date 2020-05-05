@@ -5,7 +5,7 @@ module.exports=function(app,nodemailer)
 	user=db.user;
 
 	msg=null;
-app.get('/showAllDoctors',(req,res)=>{
+app.post('/showAllDoctors',(req,res)=>{
 	user.find({type:'Doctor'},(err,doctors)=>{
 		if(err)console.log(err);
 		else  res.send(doctors);  

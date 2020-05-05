@@ -3,7 +3,7 @@ module.exports=function(app){
 ambulance=db.ambulance;
 ride=db.ride;
 
-app.get('/getAmbulance',(req,res)=>{
+app.post('/getAmbulance',(req,res)=>{
 	
 	ambulance.find({available:1},(err,ambulance1)=>{
 		res.send(ambulance1);

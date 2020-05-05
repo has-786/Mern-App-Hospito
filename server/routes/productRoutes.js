@@ -47,7 +47,7 @@ app.post('/deleteproduct',(req,res)=>{
 
 
 
-app.get('/showAllProds',(req,res)=>{
+app.post('/showAllProds',(req,res)=>{
 	product.find({},(err,prods)=>{
 		if(err)console.log(err);
 		else  res.send(prods);  
