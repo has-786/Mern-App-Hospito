@@ -25,7 +25,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "cd client && npm run build && cd.. && node server.js"
+    "start": "npm install && node server.js",
+	"heroku-postbuild": "cd client && npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
