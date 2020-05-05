@@ -11,8 +11,9 @@ constructor(props){ super(props);  this.state={username:null,arr:[{name:null,add
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
-	
-	fetch('http://localhost:8080/getState',{ method: 'GET',
+		var data={name:null};
+
+	fetch('/getState',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -27,7 +28,7 @@ render()
 <br></br><br></br> 
 	<center><div class="row" style={{width:"60%"}}>
 			<div class="col-lg-3"><button class='btn btn-primary'>STATE</button></div> 
-			<div class="col-lg-3"><button class='btn btn-warning'>SUSPECTED</button></div>
+			<div class="col-lg-3"><button class='btn btn-warning'>CURED/DISCHARGED</button></div>
 			<div  class="col-lg-3"><button class='btn btn-danger'>DIED</button></div>
 			 <div class="col-lg-3"><button class='btn btn-success'>CONFIRMED</button></div>
 	</div></center>
