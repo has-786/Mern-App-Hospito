@@ -23,8 +23,8 @@ render()
 {
 	
  return (
- <div>
- <center><h2 >FIND HOSPITALS</h2></center>   
+ <div style={{width:"100%"}}>
+ <center><h2 style={{width:"100%"}}>FIND HOSPITALS</h2></center>   
    			<form onSubmit={this.fun}>
 
 			<button class='btn btn-primary'>Search Hospitals</button>&nbsp;&nbsp;&nbsp;&nbsp;	

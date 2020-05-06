@@ -33,14 +33,12 @@ render()
 	
  return (
  <div>
- <center><h2 >BUY MEDICINES</h2></center>   
-<a href="./cart"><button  id='showcart' class='btn btn-success' >Show Cart</button></a>   
-   			<form onSubmit={this.fun}>
-
-			<button class='btn btn-primary'>Search for Medicines </button>&nbsp;&nbsp;&nbsp;&nbsp;	
-			<input type='text'  name='name'  id='1' required/>
-				<input type='submit'  value='Search' />
-           </form>	<br></br><br></br><br></br>		
+ <center><h2 style={{"width":"100%"}}>BUY MEDICINES</h2></center>  
+<div class='row'>
+<div class='col-lg-8'>
+<form onSubmit={this.fun}><button class='btn btn-sm btn-primary'>Search Medicines </button><input type='text'  name='name'  id='1' required/><input type='submit'  value='Search' /></form></div>
+<div class='col-lg-4'> <a href="./cart"><button  id='showcart' class='btn btn-success' >Show Cart</button></a>   </div>
+</div>					
 	<div id='show1'>
 	<section class="features-icons bg-light text-center"  >
     <div id='contain' class="container"   >
@@ -54,19 +52,19 @@ render()
 		  		<br></br>
 
 				    <div class="features-icons-icon d-flex" >
-<div class="col-lg-4">	<button class='btn btn-secondary'>ID</button></div><div class="col-lg-8" ><span style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}>{res._id}</span></div>
-			</div><br></br>
+<div class="col-lg-3">	<center><button class='btn btn-secondary'>ID</button></center></div><div class="col-lg-9" style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}><center>{res._id}</center></div>
+			</div><br></br><br></br>
 				
 				
 				
             <div class="features-icons-icon d-flex" >
-<div class="col-lg-4">	<button class='btn btn-secondary'>Name</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{res.prodName}</button></center></div>
+<div class="col-lg-3">	<center><button class='btn btn-secondary'>Name</button></center></div><div class="col-lg-9"><center><button class='btn btn-primary'>{res.prodName}</button></center></div>
 			</div><br></br>
 			
 			
 			
 			   <div class="features-icons-icon d-flex" >
-<div class="col-lg-4">	<button class='btn btn-secondary'>Quantity</button></div><div class="col-lg-8"><center><button class='btn btn-primary'>{res.quantity}</button></center></div>
+<div class="col-lg-3">	<button class='btn btn-secondary'>Quantity</button></div><div class="col-lg-9"><center><button class='btn btn-primary'>{res.quantity}</button></center></div>
 			</div><br></br>
 			
 			<div class="features-icons-icon d-flex">

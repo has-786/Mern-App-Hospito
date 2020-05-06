@@ -29,7 +29,7 @@ setTimeout(function(){
 
 fun=(event)=>{	    event.preventDefault();
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/searchblog',{ method: 'POST', body:JSON.stringify(data),
+		fetch('/searchblog',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{if(!body.length)alert('No result found'); this.setState({arr:body});  }).catch(err=>console.log(err));
  
@@ -39,7 +39,7 @@ fun=(event)=>{	    event.preventDefault();
 render()
 {
  return (
- <div>
+ <div style={{width:"100%"}}>
  <center><h2 >BLOGS</h2></center>
  	<div><form onSubmit={this.fun.bind(this)}>
 <button class='btn btn-primary'>Search Blogs </button>&nbsp;&nbsp;&nbsp;&nbsp;	<input type='text'  name='name'  id='1' required/>

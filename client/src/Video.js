@@ -23,10 +23,9 @@ render()
 {
 	
  return (
- <div>
- <center><h2 >INFORMATIVE&nbsp;&nbsp; VIDEOS</h2></center>   
-
-			<button class='btn btn-primary'>Search Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;	
+ <div style={{width:"100%"}}>
+ <center><h2 style={{width:"100%"}}>INFORMATIVE&nbsp;&nbsp; VIDEOS</h2></center>   
+			<button class='btn btn-sm btn-primary'>Search Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;	
 			<input type='text'  name='name'  id='1' required/>
 			<button onClick={this.fun1.bind(this)}>Search</button>
 <br></br><br></br><br></br><br></br>

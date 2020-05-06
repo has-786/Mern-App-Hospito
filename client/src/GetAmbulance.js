@@ -16,7 +16,7 @@ componentDidMount()
 
 		  if( !JSON.parse(localStorage.getItem('cookies')) )alert('Please Enter Mobile No.');
 		  else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
-		  if(!this.state.phone)alert('Please Enter Mobile No.');
+		  if(!this.state.phone){}
 
 		  else
 		  {
@@ -37,10 +37,9 @@ componentDidMount()
 		
 		
 	setInterval(function(){	
-					   if( !JSON.parse(localStorage.getItem('cookies')) )alert('Please Enter Mobile No.');
+					   if( !JSON.parse(localStorage.getItem('cookies')) ){}
 						else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
-					if(!this.state.phone)alert('Please Enter Mobile No.');
-					if(!this.state.phone){alert('Please Enter Valid Phone No.');}	  
+					if(!this.state.phone){}	  
 					else
 					{
 						if(navigator.geolocation)
@@ -58,9 +57,10 @@ componentDidMount()
 	
 	
   setInterval(function(){	
-	  if( !JSON.parse(localStorage.getItem('cookies')) )alert('Please Enter Mobile No.');
+  	  if( !JSON.parse(localStorage.getItem('cookies')) ){}
+
 		  else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
-		  if(!this.state.phone)alert('Please Enter Mobile No.');
+		  if(!this.state.phone){}
 		  else{
 			     
 	  if(this.state.status==='Searching')
@@ -118,6 +118,8 @@ componentDidMount()
 
 search=(event)=>{
 event.preventDefault();
+if( !JSON.parse(localStorage.getItem('cookies')) ){alert('Please Enter Mobile No.'); return false;}
+
 this.state.status='Searching'; 
 }
 
@@ -128,6 +130,7 @@ event.preventDefault();
 
 	var phone=document.getElementById('1').value;
 	if(phone.length!=10){ alert('Enter Valid Phone Number'); return false;}
+	alert('Phone No. Added');
 	this.state.phone=phone;
 	
 	 var cookies={};
@@ -174,8 +177,8 @@ document.getElementById('book').style.display='None';
 render()
 {
  return (
- <div>
-  <center><h2>BOOK AN AMBULANCE</h2></center><br></br>
+ <div style={{"width":"100%"}}>
+  <center><h2 style={{"width":"100%"}}>BOOK AN AMBULANCE</h2></center><br></br>
   <center><button class='btn btn-primary'>Phone No.</button><input type='text' id='1' /><button class='btn btn-primary' onClick={this.fun.bind(this)}>Save</button></center>
     <br></br>
   <section>
@@ -217,6 +220,8 @@ render()
 		</div></section>
 	 <center>	<div><button class='btn btn-primary' id='search'  onClick={this.search.bind(this)}>Search</button>&nbsp;&nbsp;&nbsp; 
  <button class='btn btn-primary' id='book'  style={{display:'None'}} onClick={this.book.bind(this)}>Book Now</button></div> </center>
+ 		<br></br><br></br><br></br>
+
 </div>);
 }
 

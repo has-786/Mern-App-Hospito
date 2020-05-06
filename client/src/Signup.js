@@ -13,10 +13,10 @@ class Signup extends Component{
 render()
 {
  return (
- <div>
- 
- <div id = "login-box">
+ <div style={{width:"100%"}}>
+ <div id = "login-box" >
 		<div class = "right-box">
+
 			<center><h5><span class = "signin">Sign Up </span></h5></center>
 				
 			<input type = "text" name = "name" id='1' placeholder="Username" required/><br></br><br></br>
@@ -28,21 +28,21 @@ render()
 			</select>
 			<br></br><br></br>
 			<input type='text' placeholder='specialist if Doctor' id='6' name='specialist' /><br></br><br></br>
-			<button  name = "signup-button"  class='btn btn-primary' value = "sign up" onClick={this.fun.bind(this)}>Sign Up</button><br></br><br></br>
-				
-
+			<button  name = "signup-button"  class='btn btn-primary' value = "sign up" onClick={this.fun.bind(this)}>Sign Up</button><br></br><br></br>		
 		</div>
-			<div class = "left-box" style={{display:'block',marginTop:"-100px"}}>
+		<div class = "left-box" style={{display:'block',marginTop:"-100px"}}>
 			<center><h5><span class = "signinwith">Sign in with Social Network</span></h5></center><br></br>
 			<div style={{display:'inline'}}><a class="fa fa-google" href="http://localhost:8080/auth/google"></a></div>
 			<div style={{display:'inline'}}><a class="fa fa-facebook-square" href="http://localhost:8080/auth/facebook"></a></div>
 			<div style={{display:'inline'}}><a class="fa fa-linkedin-square" href = "http://localhost:8080/auth/linkedin"></a></div><br></br><br></br><br></br>	<br></br><br></br>	<br></br>	
 			<div style={{display:'block'}}><a href='/signin'><button class='btn btn-warning'>Already have an account</button></a></div><br></br>	
-				<div class={{display:'block'}}><a href='/'><button class='btn btn-success'>Back to Home</button></a></div>	
-			</div>
+			<div class={{display:'block'}}><a href='/'><button class='btn btn-success'>Back to Home</button></a></div>	
+		</div>
+	
 			
 			
 	</div>
+
  </div>
  
 )}

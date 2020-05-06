@@ -123,7 +123,7 @@ render()
 {
  return (
  <div>
- <center><h2 >MY ORDERS</h2></center>
+ <center><h2 style={{"width":"100%"}}>MY ORDERS</h2></center>
 <br></br><br></br>
 
 <div id='show3'>

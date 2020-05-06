@@ -22,11 +22,10 @@ render()
 {
 	
  return (
- <div >
- <center><h2>PANDEMIC IN WORLD NOW</h2></center>   
+ <div style={{width:"100%"}}>
+ <center><h2 style={{width:"100%"}}>PANDEMIC IN WORLD NOW</h2></center>   
  <br></br><br></br> 
-
-	<center><div class="row" style={{width:"60%"}} >
+<center><div class="row" style={{width:"60%"}} >
 			<div class="col-lg-3"><button class='btn btn-primary'>COUNTRY</button></div> <div class="col-lg-3"><button class='btn btn-danger'>DIED</button></div>
 			<div class="col-lg-3"><button class='btn btn-warning'>SUFFERING</button></div> <div class="col-lg-3"><button class='btn btn-success'>CONTINENT</button></div>
 	</div>
@@ -45,6 +44,7 @@ render()
 				<br></br><br></br></section>
              ))}
 		 </div>
+     
 </div>
   )
 }

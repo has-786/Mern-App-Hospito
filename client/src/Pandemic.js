@@ -12,7 +12,7 @@ componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
 		var data={name:null};
-	document.getElementById('show1').style.opacity=1;
+	//document.getElementById('show1').style.opacity=1;
 	fetch('/getPandemic',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
@@ -23,24 +23,63 @@ render()
 {
 	
  return (
- <div style={{backgroundColor:'pink'}}>
+ <div style={{"width":"100%",backgroundColor:'pink'}}>
  <center><h2 >PANDEMIC UPDATES</h2></center>  
-<br></br><br></br> 
+ 
+ 
 	<div class="row" >
-			<div class="col-lg-6"><center><a href='/World'><button class='btn btn-primary'>Pandemic In World</button></a></center></div>
-			<div class="col-lg-3"><center><a href='/Country'><button class='btn btn-success'>Pandemic In My Country</button></a></center></div>
+			<div class="col-lg-6" style={{padding:"50px"}} ><center><a href='/World'><button class='btn btn-primary' >Pandemic In World</button></a></center></div>
+			<div class="col-lg-3" style={{padding:"50px"}}><center><a href='/Country'><button class='btn btn-success' >Pandemic In My Country</button></a></center></div>
 	</div>
 <br></br><br></br>
-	<div id='show1'>		
+	
+
+<section class="features-icons bg-light text-center">
+    <div id='contain' class="container" >
+      <div class="row">
+        <div class="col-lg-4" style={{padding:"30px"}}>
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+				<i class='fa fa-heartbeat' style={{fontSize:"40px",color:"purple"}}></i>            
+			</div>
+            <h3 >Threat of Covid-19 </h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>{this.state.obj.op1}</p>
+          </div>
+        </div>
+        <div class="col-lg-4" style={{padding:"30px"}}>
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+				<i class="fa fa-h-square" style={{fontWeight:"bold",fontSize:"40px",color:"green"}}></i>
+
+            </div>
+            <h3 >Danger Ebola Virus</h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}> {this.state.obj.op2}</p>
+          </div>
+        </div>
+        <div class="col-lg-4" style={{padding:"30px"}}>
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class="fas fa-diagnoses" style={{fontSize:"40px",color:"red"}}></i>
+
+</div>
+            <h3 >Most Dangerous Hepatitis</h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>{this.state.obj.op3}</p>
+          </div>
+        </div>
 		
-			<div class='row' style={{backgroundColor:'white',border:'5px solid pink', borderRadius:'10px',paddingTop:'10px' ,paddingBottom:'10px' }}>
-				<div class="col-lg-3" style={{backgroundColor:'beige',fontWeight:'bold',border:'5px solid pink',fontSize:'15px',borderRadius:'10px',padding:'10px' }}>1.<br></br>{this.state.obj.op1}</div><br></br><br></br>
-			    <div class="col-lg-3" style={{backgroundColor:'white',fontWeight:'bold',border:'5px solid pink',fontSize:'15px',borderRadius:'10px',padding:'10px' }}>2.<br></br>{this.state.obj.op2}</div>
-				<div class="col-lg-3" style={{backgroundColor:'lightgreen',fontWeight:'bold',border:'5px solid pink',fontSize:'15px',borderRadius:'10px',padding:'10px' }}>3.<br></br>{this.state.obj.op3}</div>
-				<div class="col-lg-3" style={{backgroundColor:'cyan',fontWeight:'bold',border:'5px solid pink',fontSize:'15px',borderRadius:'10px',padding:'10px' }}>4.<br></br>{this.state.obj.op4}</div>
-				</div>
-				<br></br><br></br>
-		 </div>
+      </div>
+	 
+		
+		
+      </div>
+
+	  
+  </section>
+
+
+
+		 
+		 
 </div>
   )
 }

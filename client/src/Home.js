@@ -31,7 +31,6 @@ username=this.state.username;
 	 {
 		 document.getElementById('login1').style.display='block';document.getElementById('login').style.display='None';
 		 		document.getElementById('profile').style.display='block';  
-
 	 }
 	 else 
 	 {
@@ -40,12 +39,13 @@ username=this.state.username;
 		 
   
 }	
+
 render()
 {
 return (<div>
 
  <center> <h2 style={{backgroundColor:"pink",color:"white",padding:"20px",marginTop:"0%"}}>Welcome to Hospito<br></br><button class='btn btn-info' >We care about your health </button></h2>
- <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4" width="1000px" height="300px" />
+ <div ><img id="MainImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4"   height="300px" />
 	  </div></center>
 
 <span id='link' >
@@ -64,101 +64,104 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 </div> 
 
  <br></br>
-<div id='chatbot' ><button id='ask' style={{float:'right',marginRight:"50%",marginTop:"-10%"}} class='btn btn-warning'>Ask Hospito</button>
+<div id='chatbot' >
+<button id='ask' class='btn btn-warning' onClick={this.ask.bind(this)}>Ask Hospito</button>
 <iframe id='iframe' 
     allow="microphone;"
     width="260"
     height="500"
-    src="https://console.dialogflow.com/api-client/demo/embedded/bec5d9dd-8f79-44bc-9143-76128a4a6df6">
+    src="https://console.dialogflow.com/api-client/demo/embedded/bec5d9dd-8f79-44bc-9143-76128a4a6df6"
+	style={{display:"None"}}>
 </iframe>
+<button id='notask' style={{display:'None'}} class='btn btn-warning' onClick={this.notask.bind(this)}>Close This</button>
 </div>
   <section class="features-icons bg-light text-center">
     <div id='contain' class="container" >
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
             <h3 ><a href="/hospital">Seach Health Centres</a></h3>
-            <p class="lead mb-0">Search Nearby Hospitals and Nursey Homes</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}} >Search Nearby Hospitals and Nursey Homes</p>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
 
             </div>
             <h3 ><a href='/showdoctor'> Ask An Appointment</a> </h3>
-            <p class="lead mb-0">Ask a doctor for appointment</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Ask a doctor for appointment</p>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
 
 </div>
             <h3 ><a href='/medicine'>Buy Medicines</a></h3>
-            <p class="lead mb-0">Buy medicines online</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Buy medicines online</p>
           </div>
         </div>
 		
       </div>
 	  <div class="row">
-<div class="col-lg-4">
+<div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-money' style={{fontSize:"40px",color:"green"}}></i>
 
 </div>
             <h3 ><a href='/Donation'>Donate And Save A Life</a></h3>
-            <p class="lead mb-0">Donate Online Here</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Donate Online Here</p>
           </div>
         </div>
 
-<div class="col-lg-4">
+<div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-file' style={{fontSize:"40px",color:"grey"}}></i>
 
 </div>
             <h3 ><a href='/ShowBlog'>Blogs</a></h3>
-            <p class="lead mb-0">Check Out Daily Updates in the world of Health and Fitness</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Check Out Daily Updates in the world of Health and Fitness</p>
           </div>
         </div>
 		
-<div class="col-lg-4">
+<div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-ambulance' style={{fontSize:"40px",color:"tomato"}}></i>
 
 </div>
             <h3 ><a href='/GetAmbulance'>Book An Ambulance</a></h3>
-            <p class="lead mb-0">Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
           </div>
         </div>
 		
-		<div class="col-lg-4">
+		<div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-video' style={{fontSize:"40px",color:"darkblue"}}></i>
 
 </div>
             <h3 ><a href='Video'>Informative Videos</a></h3>
-            <p class="lead mb-0">Videos By Eminent Doctors And Physicians</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Videos By Eminent Doctors And Physicians</p>
           </div>
         </div>
 		
 		
-		<div class="col-lg-4">
+		<div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-info' style={{fontSize:"40px",color:"red"}}></i>
 
 </div>
             <h3 ><a href='/Pandemic'>Updates During Pandemic</a></h3>
-            <p class="lead mb-0">Authentic Updates During Pandemic</p>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Authentic Updates During Pandemic</p>
           </div>
         </div>
 		
@@ -184,53 +187,69 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
       </div>
 
 <br></br>
+<div class="row">
+  <div class="col-lg-6" style={{padding:"50px"}}>
+	<section class="call-to-action text-white text-center" >
+		<div class="container" style={{float:"right", marginRight:"0%", marginTop:"0%"}}><br></br>
+			<div > <b class="btn btn-primary">Contact Details:</b></div>   	<span><br></br></span>
+			<div ><b class="btn btn-danger">Email:</b><b class="btn">hospito9163@gmail.com</b></div>	<span><br></br></span>
+			<div><b class="btn btn-success">Phone:</b><b style={{marginRight:"8%"}} class="btn">7003905424</b></div>	<span><br></br></span>
+			<div><b class="btn btn-warning">Address:</b><b class="btn btn-default">Hiland Park,Kolkata,India</b></div>
+		</div>   <span><br></br></span>
+    </section>
+  </div>
+  <div class="col-lg-6" style={{padding:"50px"}}>
+	<footer class="footer bg-light">
+		<div class="container" >
+			<div class="row">
+				
+				<div class="col-lg-6" style={{padding:"50px"}}>
 
- <section class="call-to-action text-white text-center" >
-    <div class="container" style={{float:"right", marginRight:"0%", marginTop:"0%"}}>
-	<span><br></br></span>
-         <div > <b class="btn btn-primary">Contact Details:</b></div>   	<span><br></br></span>
-		<div ><b class="btn btn-danger">Email:</b><b class="btn">hospito9163@gmail.com</b></div>	<span><br></br></span>
-	<div>	   <b class="btn btn-success">Phone:</b><b style={{marginRight:"8%"}} class="btn">7003905424</b></div>	<span><br></br></span>
-	<div >		<b class="btn btn-warning">Address:</b><b class="btn btn-default">Hiland Park,Kolkata,India</b></div>
-	 </div>   
-
-	<span><br></br></span>
-  </section>
-	<span><br></br></span>
-
-<footer class="footer bg-light">
-<div class="container" >
-      <div class="row">
-	  <b class="btn btn-info">VISIT US AT SOCIAL MEDIA :</b>
-       	<span><br></br></span>
-
-        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-           
-            <li class="list-inline-item">
-              <a href="#">
-                <i style={{marginRight:"20%"}} class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
-            
-            <li class="list-inline-item">
-              <a href="#">
-                <i style={{marginRight:"20%"}} class="fab fa-youtube fa-2x fa-fw"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-
+<b class="btn btn-info">VISIT US AT SOCIAL MEDIA :</b>	<br></br><br></br>			
+			
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item mr-3">
+							<a href="#">
+								<i class="fab fa-facebook fa-2x fa-fw"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#">
+								<i class="fab fa-instagram fa-2x fa-fw"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#">
+								<i  class="fab fa-youtube fa-2x fa-fw"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+  </div>
+</div>
 
 </div>)
+}
+
+ask=(event)=>{
+	event.preventDefault();
+	document.getElementById('ask').style.display='None';
+	document.getElementById('notask').style.display='block';
+		document.getElementById('iframe').style.display='block';
+
+
+}
+
+notask=(event)=>{
+	event.preventDefault();
+	document.getElementById('notask').style.display='None';
+	document.getElementById('ask').style.display='block';
+		document.getElementById('iframe').style.display='None';
+
+
 }
 
 }

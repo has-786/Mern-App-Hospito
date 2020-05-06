@@ -26,18 +26,20 @@ componentDidMount()
 render()
 {
  return (
- <div>
- <center><h2 >FIND DOCTORS</h2></center> 
-	<a href='/showappoint'><button  id='showcart' class='btn btn-success' >Show Appointments</button></a>
- 
-    <form onSubmit={this.fun1}>
-			<div class="row">
-				<div class="col-lg-4"><button class='btn btn-primary'>Search for Doctors </button>	
+ <div style={{width:"100%"}}>
+ <center><h2 style={{width:"100%"}}>FIND DOCTORS</h2></center> 
+ <div class='row'>
+
+ <div class='col-lg-6'>
+   
+		<form onSubmit={this.fun1}><button class='btn btn-sm btn-primary'>Search Doctors </button>	
 				<input type='text' id='1' name='name'  required/>
-				<input type='submit'  value='Search'  />
-				</div>
+				<input type='submit'  value='Search'  />    </form>
 			</div>
-    </form>
+ <div class='col-lg-6'>
+	<a href='/showappoint'><button  id='showcart' class='btn btn-sm btn-success' >Show Appointments</button></a>
+ </div>
+</div>
 	<br></br><br></br>
 	<div id='show1'><br></br><br></br>
 	<section class="features-icons bg-light text-center"  >
@@ -135,8 +137,8 @@ componentDidMount()
 render()
 {
  return (
- <div>
-  <center><h2 >MY APPOINTMENTS WITH DOCTORS</h2></center>   
+ <div style={{width:"100%"}}>
+  <center><h2 style={{width:"100%"}}>MY APPOINTMENTS WITH DOCTORS</h2></center>   
 
   <div id='show3'><br></br><br></br>
 	<section class="features-icons bg-light text-center"  >
@@ -207,8 +209,8 @@ this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name
 render()
 {
  return (
- <div>
- <center><h2 >MY APPOINTMENTS WITH PATIENTS</h2></center>   
+ <div style={{width:"100%"}}>
+ <center><h2 style={{width:"100%"}} >MY APPOINTMENTS WITH PATIENTS</h2></center>   
  
  
 <div id='show3'><br></br><br></br>
