@@ -25,7 +25,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "cd client && npm install && npm run build && cd.. && npm install && node server.js"
+    "start": "npm install && node server.js && cd client && npm install && npm run build && cd.."
   },
   "eslintConfig": {
     "extends": "react-app"
