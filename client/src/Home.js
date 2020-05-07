@@ -82,7 +82,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
-            <h3 ><a href="/hospital">Seach Health Centres</a></h3>
+            <h3 ><a href="/hospital">Search Health Centres</a></h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}} >Search Nearby Hospitals and Nursey Homes</p>
           </div>
         </div>
