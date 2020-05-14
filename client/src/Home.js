@@ -2,6 +2,8 @@ import React ,{Component} from 'react';
 import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './App.css';
+import {connect} from "react-redux";
+
 let username=null,redir=false;
 
 
@@ -17,7 +19,7 @@ class Home  extends Component{
 	 	localStorage.removeItem('user');
 
 	 this.componentDidMount();
-	redir=true;  
+	 redir=true;  
 }
 
 componentDidMount()
@@ -47,6 +49,7 @@ return (<div>
  <center> <h2 style={{backgroundColor:"pink",color:"white",padding:"20px",marginTop:"0%"}}>Welcome to Hospito<br></br><button class='btn btn-info' >We care about your health </button></h2>
  <div ><img id="MainImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBoA6k0Bf8E7A5FUJhfEwq2bGvfy7x-x6qAeT5TlaYba-XljO4"   height="300px" />
 	  </div></center>
+	  <br></br><br></br>
 
 <span id='link' >
 <button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
@@ -252,7 +255,10 @@ notask=(event)=>{
 
 }
 
+	
 }
 
 
-export  {Home};
+
+
+export default Home;

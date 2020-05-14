@@ -1,19 +1,23 @@
 import React ,{Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
 
 import './index.css';
-import {Home} from './Home';
+import Home from './Home';
 import {Profile} from './Profile';
 import {Signup,Signin} from './Signup';
 import {forgotPassword,changePassword,updatePassword} from './Password';
-import {Medicine,Showcart} from './Medicine';
+import Medicine from './Medicine';
+import Showcart from './Showcart';
 import {Order,Payment} from './Order';
 import {Donation,ShowDonation} from './Donation';
 import {ShowBlog} from './Blog';
 import {Showdoctor,Showappoint,Updateappoint} from './Appoint';
-import {Hospital} from './Hospital';
-import {Ambulance,NewDriver,OldDriver} from './Ambulance';
+import {Hospital} from './Hospital';                                 
+import {Ambulance,NewDriver,OldDriver} from './Ambulance';            
 import {GetAmbulance} from './GetAmbulance';   
 import {WorldPan} from './WorldPan';
 import {CountryPan} from './CountryPan';
@@ -22,15 +26,55 @@ import {InsertBlog,InsertHospital,InsertProduct,InsertVideo,Insert} from './Inse
 import {DeleteBlog,DeleteHospital,DeleteProduct,DeleteVideo,Delete} from './Deletion';
 import {Video} from './Video';
 
+const homeReducer = (state = {
+    name: "Hasnain" }, action) => {
+    switch (action.type) {
+        case "SET_MYNAME":
+            state = {
+                ...state,
+                name: action.payload
+            };
+            break;
+    }
+    return state;
+};
+
+const prodReducer = (state = {
+    username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:null,price:null,disease:null},msg:null }, action) => {
+    switch (action.type) {
+        case "SHOW_ALL_PROD":
+            state = {
+                ...state,
+                arr: action.payload
+            };
+            break;
+		case "SEARCH_PROD":
+            state = {
+                ...state,
+                arr: action.payload
+            };
+            break;
+    }
+    return state;
+};
+
+const store = createStore(
+    combineReducers({prod: prodReducer,home: homeReducer}),{}
+);
+
+
 ReactDOM.render(
 <Router>
-		  <Route exact path='/' component={Home}/>		  
+		  <Provider store={store}>
+			<Route exact path='/' component={Home}/>
+		  </Provider>
+		  <Provider store={store}>  
+			<Route exact path='/medicine' component={Medicine}/>
+		  </Provider>		  
 		  <Route exact path='/signup' component={Signup}/>
 		  <Route exact path='/signin' component={Signin}/>
 		  <Route exact path='/profile' component={Profile}/>
-		  <Route exact path='/medicine' component={Medicine}/>
 		  <Route exact path='/showdoctor' component={Showdoctor}/>
-		  <Route exact path='/cart' component={Showcart}/>
 		  <Route exact path='/showappoint' component={Showappoint}/>
 		  <Route exact path='/order' component={Order}/>
 		  <Route exact path='/payment' component={Payment}/>
@@ -42,6 +86,7 @@ ReactDOM.render(
 		  <Route exact path='/Donation' component={Donation}/>
 		  <Route exact path='/ShowDonation' component={ShowDonation}/>
 		  <Route exact path='/InsertBlog' component={InsertBlog}/>
+		  <Route exact path='/cart' component={Showcart}/>
 		  <Route exact path='/ShowBlog' component={ShowBlog}/>
 		  <Route exact path='/Ambulance' component={Ambulance}/>
 		  <Route exact path='/GetAmbulance' component={GetAmbulance}/>  
@@ -62,9 +107,85 @@ ReactDOM.render(
 		  <Route exact path='/Delete' component={Delete}/>
 		  <Route exact path='/Video' component={Video}/>
 	
-
-
 </Router>
 ,document.getElementById('root'));
+
+/*
+//import {render} from "react-dom";
+//import React from "react";
+/*
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
+
+import App from "./App";
+		  <Route exact path='/cart' component={Showcart}/>
+
+const mathReducer = (state = {
+    result: 1,
+	num:0,
+    lastValues: []
+}, action) => {
+    switch (action.type) {
+        case "ADD":
+            state = {
+                ...state,
+                result: state.result + action.payload,
+				num:state.num+action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            };
+            break;
+        case "SUBTRACT":
+            state = {
+                ...state,
+                result: state.result - action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            };
+            break;
+    }
+    return state;
+};
+
+const userReducer = (state = {
+    name: "Max",
+    age: 27
+}, action) => {
+    switch (action.type) {
+        case "SET_NAME":
+            state = {
+                ...state,
+                name: action.payload
+            };
+            break;
+        case "SET_AGE":
+            state = {
+                ...state,
+                age: action.payload
+            };
+            break;
+    }
+    return state;
+};
+const homeReducer = (state = {
+    name: "Hasnain" }, action) => {
+    switch (action.type) {
+        case "SET_MYNAME":
+            state = {
+                ...state,
+                name: action.payload
+            };
+            break;
+    }
+    return state;
+};
+
+const store = createStore(
+    combineReducers({math: mathReducer, user: userReducer,home: homeReducer}),{}
+);
+
+store.subscribe(() => {
+    // console.log("Store updated!", store.getState());
+});
+*/
 
 
