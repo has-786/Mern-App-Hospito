@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+//import PropTypes from 'prop-types';
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
 
@@ -62,50 +63,19 @@ const store = createStore(
 );
 
 
-const Root = ({ store }) => (
-			 <Provider store={store}>  
 
+const Root = ({ store }) => (			
+<Provider store={store}>  
 <Router>	  
-			<Route exact path='/' component={Home}/>
-			<Route exact path='/medicine' component={Medicine}/>
-		  <Route exact path='/signup' component={Signup}/>
-		  <Route exact path='/signin' component={Signin}/>
-		  <Route exact path='/profile' component={Profile}/>
-		  <Route exact path='/showdoctor' component={Showdoctor}/>
-		  <Route exact path='/showappoint' component={Showappoint}/>
-		  <Route exact path='/order' component={Order}/>
-		  <Route exact path='/payment' component={Payment}/>
-		  <Route exact path='/updateappoint' component={Updateappoint}/>
-          <Route exact path='/hospital' component={Hospital}/>
-          <Route exact path='/forgotPassword' component={forgotPassword}/>
-          <Route exact path='/changePassword' component={changePassword}/>
-		  <Route exact path='/updatePassword' component={updatePassword}/>
-		  <Route exact path='/Donation' component={Donation}/>
-		  <Route exact path='/ShowDonation' component={ShowDonation}/>
-		  <Route exact path='/InsertBlog' component={InsertBlog}/>
-		  <Route exact path='/cart' component={Showcart}/>
-		  <Route exact path='/ShowBlog' component={ShowBlog}/>
-		  <Route exact path='/Ambulance' component={Ambulance}/>
-		  <Route exact path='/GetAmbulance' component={GetAmbulance}/>  
-		  <Route exact path='/newdriver' component={NewDriver}/>
-		  <Route exact path='/olddriver' component={OldDriver}/>
-		  <Route exact path='/World' component={WorldPan}/>
-		  <Route exact path='/Country' component={CountryPan}/>
-		  <Route exact path='/Pandemic' component={Pandemic}/>
-		  <Route exact path='/InsertHospital' component={InsertHospital}/>
-		  <Route exact path='/InsertProduct' component={InsertProduct}/>
-		  <Route exact path='/InsertVideo' component={InsertVideo}/>
-		  <Route exact path='/Insert' component={Insert}/>
-		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
-		  <Route exact path='/DeleteHospital' component={DeleteHospital}/>
-		  <Route exact path='/DeleteProduct' component={DeleteProduct}/>
-		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
-		  <Route exact path='/DeleteVideo' component={DeleteVideo}/>
-		  <Route exact path='/Delete' component={Delete}/>
-		  <Route exact path='/Video' component={Video}/>
-	
+			<Route exact path='/' component={Home}/>		 
 </Router>
-		  </Provider>)
+</Provider>
+)
+
+/*Root.propTypes = {
+  store: PropTypes.object.isRequired
+}*/
+
 		
 ReactDOM.render(<Root store={store} />,document.getElementById('root'));
 
@@ -192,5 +162,47 @@ store.subscribe(() => {
     // console.log("Store updated!", store.getState());
 });
 */
+			/*<Provider store={store}>  
 
+<Router>	  
+			<Route exact path='/' component={Home}/>
+			<Route exact path='/medicine' component={Medicine}/>
+		  <Route exact path='/signup' component={Signup}/>
+		  <Route exact path='/signin' component={Signin}/>
+		  <Route exact path='/profile' component={Profile}/>
+		  <Route exact path='/showdoctor' component={Showdoctor}/>
+		  <Route exact path='/showappoint' component={Showappoint}/>
+		  <Route exact path='/order' component={Order}/>
+		  <Route exact path='/payment' component={Payment}/>
+		  <Route exact path='/updateappoint' component={Updateappoint}/>
+          <Route exact path='/hospital' component={Hospital}/>
+          <Route exact path='/forgotPassword' component={forgotPassword}/>
+          <Route exact path='/changePassword' component={changePassword}/>
+		  <Route exact path='/updatePassword' component={updatePassword}/>
+		  <Route exact path='/Donation' component={Donation}/>
+		  <Route exact path='/ShowDonation' component={ShowDonation}/>
+		  <Route exact path='/InsertBlog' component={InsertBlog}/>
+		  <Route exact path='/cart' component={Showcart}/>
+		  <Route exact path='/ShowBlog' component={ShowBlog}/>
+		  <Route exact path='/Ambulance' component={Ambulance}/>
+		  <Route exact path='/GetAmbulance' component={GetAmbulance}/>  
+		  <Route exact path='/newdriver' component={NewDriver}/>
+		  <Route exact path='/olddriver' component={OldDriver}/>
+		  <Route exact path='/World' component={WorldPan}/>
+		  <Route exact path='/Country' component={CountryPan}/>
+		  <Route exact path='/Pandemic' component={Pandemic}/>
+		  <Route exact path='/InsertHospital' component={InsertHospital}/>
+		  <Route exact path='/InsertProduct' component={InsertProduct}/>
+		  <Route exact path='/InsertVideo' component={InsertVideo}/>
+		  <Route exact path='/Insert' component={Insert}/>
+		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
+		  <Route exact path='/DeleteHospital' component={DeleteHospital}/>
+		  <Route exact path='/DeleteProduct' component={DeleteProduct}/>
+		  <Route exact path='/DeleteBlog' component={DeleteBlog}/>
+		  <Route exact path='/DeleteVideo' component={DeleteVideo}/>
+		  <Route exact path='/Delete' component={Delete}/>
+		  <Route exact path='/Video' component={Video}/>
+	
+</Router>
+		  </Provider>*/
 
