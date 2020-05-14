@@ -106,9 +106,7 @@ const Root = ({ store }) => (
 	
 </Router>
 		  </Provider>)
-		  Root.propTypes = {
-  store: PropTypes.object.isRequired
-}
+		
 ReactDOM.render(<Root store={store} />,document.getElementById('root'));
 
 /*
