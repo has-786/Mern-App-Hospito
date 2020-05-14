@@ -24,7 +24,7 @@ import {Pandemic} from './Pandemic';
 import {InsertBlog,InsertHospital,InsertProduct,InsertVideo,Insert} from './Insertion';
 import {DeleteBlog,DeleteHospital,DeleteProduct,DeleteVideo,Delete} from './Deletion';
 import {Video} from './Video';
-/*
+
 const homeReducer = (state = {
     name: "Hasnain" }, action) => {
     switch (action.type) {
@@ -60,12 +60,15 @@ const prodReducer = (state = {
 const store = createStore(
     combineReducers({prod: prodReducer,home: homeReducer}),{}
 );
-*/
+
 
 ReactDOM.render(
 <Router>
 		 	  
 			<Route exact path='/' component={Home}/>
+			 <Provider store={store}>  
+			<Route exact path='/medicine' component={Medicine}/>
+		  </Provider>	
 		  <Route exact path='/signup' component={Signup}/>
 		  <Route exact path='/signin' component={Signin}/>
 		  <Route exact path='/profile' component={Profile}/>
@@ -172,9 +175,7 @@ const homeReducer = (state = {
             break;
     }
     return state;
-}; <Provider store={store}>  
-			<Route exact path='/medicine' component={Medicine}/>
-		  </Provider>	
+};
 
 const store = createStore(
     combineReducers({math: mathReducer, user: userReducer,home: homeReducer}),{}
