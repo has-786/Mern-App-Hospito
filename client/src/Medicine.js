@@ -22,13 +22,12 @@ componentDidMount()
 	this.state.username=localStorage.getItem('user');
 	if(this.state.username)alert("Hi "+this.state.username);
     
-	alert(this.props.prod);
 	var data={name:this.state.username}; //this.setState({ position: 1 });
 	fetch('/showAllProds',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
- (body)=>{//this.setState({arr:body});  
- this.props.showAllProds(body);               
+ (body)=>{this.setState({arr:body});  
+ //this.props.showAllProds(body);               
  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
 }	
 		
@@ -48,7 +47,7 @@ render()
 	<section class="features-icons bg-light text-center"  >
     <div id='contain' class="container"   >
       <div class="row" >
-		{this.props.prod.arr.map( res=>( 
+		{this.state.arr.map( res=>( 
 
 	    <div class="col-lg-4"  >		<br></br><br></br>
 
@@ -134,10 +133,10 @@ else
 
 
 }
-//export default Medicine;
+export default Medicine;
 
 
-
+/*
 const mapStateToProps = (state) => {
   return {
       prod:state.prod
@@ -160,8 +159,8 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 };
-
+*/
 //export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Medicine);
+//export default connect(mapStateToProps, mapDispatchToProps)(Medicine);
 //export Showcart;
