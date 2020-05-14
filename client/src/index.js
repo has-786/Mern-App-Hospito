@@ -1,8 +1,7 @@
 import React ,{Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers, applyMiddleware} from "redux";
-import logger from "redux-logger";
+import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
 
 import './index.css';

@@ -19,7 +19,6 @@ constructor(props){ super(props);  this.state={username:null,arr:[{prodName:null
 }
 componentDidMount()
 { 
-//alert(this.props.prod.arr);
 	this.state.username=localStorage.getItem('user');
 	if(this.state.username)alert("Hi "+this.state.username);
     

@@ -1,9 +1,5 @@
 
 import React ,{Component} from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import './App.css';import { GoogleMap } from "react-google-maps";
-import {connect} from "react-redux";
 
 class Showcart extends Component{
 	constructor(props){
@@ -87,6 +83,7 @@ render()
 	
 </div>
   )}
+  
   fun=(username,prodName,quantity)=>{
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
 		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
@@ -96,34 +93,4 @@ render()
   
 }
 
-
-
-/*
-
-const mapStateToProps = (state) => {
-  return {
-      prod:state.prod
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        showAllProds: (arr) => {
-            dispatch({
-                type: "SHOW_ALL_PRODS",
-                payload: arr
-            });
-        },
-		searchProds: (arr) => {
-            dispatch({
-                type: "SEARCH_PRODS",
-                payload: arr
-            });
-        }
-    };
-};
-
-//export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Showcart);*/
 export  default Showcart;
