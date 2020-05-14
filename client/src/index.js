@@ -62,7 +62,7 @@ const store = createStore(
 );
 
 
-ReactDOM.render(
+const Root = ({ store }) => (
 			 <Provider store={store}>  
 
 <Router>	  
@@ -105,9 +105,11 @@ ReactDOM.render(
 		  <Route exact path='/Video' component={Video}/>
 	
 </Router>
-		  </Provider>	
-
-,document.getElementById('root'));
+		  </Provider>)
+		  Root.propTypes = {
+  store: PropTypes.object.isRequired
+}
+ReactDOM.render(<Root store={store} />,document.getElementById('root'));
 
 /*
 //import {render} from "react-dom";
