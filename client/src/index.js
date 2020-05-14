@@ -61,13 +61,12 @@ const prodReducer = (state = {
 const store = createStore(
     combineReducers({prod: prodReducer,home: homeReducer}),{}
 );
-
 		
 ReactDOM.render(
-
+<Provider store={store}>
 <Router>  
-			<Route exact path='/' component={Home}/>
-			<Route exact path='/medicine' component={Medicine}/>
+		  <Route exact path='/' component={Home}/>
+		  <Route exact path='/medicine' component={Medicine}/>
 		  <Route exact path='/signup' component={Signup}/>
 		  <Route exact path='/signin' component={Signin}/>
 		  <Route exact path='/profile' component={Profile}/>
@@ -105,6 +104,7 @@ ReactDOM.render(
 		  <Route exact path='/Video' component={Video}/>
 	
 </Router>
+</Provider>
 ,document.getElementById('root'));
 
 /*
