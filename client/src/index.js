@@ -65,11 +65,9 @@ const store = createStore(
 
 
 const Root = ({ store }) => (			
-<Provider store={store}>  
 <Router>	  
 			<Route exact path='/' component={Home}/>		 
 </Router>
-</Provider>
 )
 
 /*Root.propTypes = {
@@ -77,7 +75,7 @@ const Root = ({ store }) => (
 }*/
 
 		
-ReactDOM.render(<Root store={store} />,document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><Home /><Root store={store} /></Provider>,document.getElementById('root'));
 
 /*
 //import {render} from "react-dom";
