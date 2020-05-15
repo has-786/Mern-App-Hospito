@@ -65,7 +65,9 @@ const store = createStore(
 ReactDOM.render(
 			<Provider store={store}>  
 <Router>  
-		<Route exact path='/' component={Medicine}/>
+		<Route exact path='/' component={Home}/>
+
+		<Route  path='/medicine' component={Medicine}/>
 </Router>
 </Provider>
 ,document.getElementById('root'));
