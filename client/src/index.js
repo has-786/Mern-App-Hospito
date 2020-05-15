@@ -36,13 +36,13 @@ import Payment from './Payment';
 
 import Donation from './Donation';
 //import Showdonation from './Showdonation';
-/*
+
 import Forgotpassword from './Forgotpassword';
 import Changepassword from './Changepassword';
 import Updatepassword from './Updatepassword';
-*/
+
 import Ambulance from './Ambulance';  
-/*import Getambulance from './Getambulance';          
+//import Getambulance from './Getambulance';          
 import Newdriver from './Newdriver';            
 import Olddriver from './Olddriver';            
 
@@ -57,7 +57,7 @@ import Deleteproduct from './Deleteproduct';
 import Deletehospital from './Deletehospital';
 import Deletevideo from './Deletevideo';
 import Delete from './Delete';
-*/
+
 
 
 
