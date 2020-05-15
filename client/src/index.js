@@ -46,6 +46,12 @@ import Ambulance from './Ambulance';
 import Newdriver from './Newdriver';            
 import Olddriver from './Olddriver';            
 
+import Showdoctor from './Showdoctor';
+import Updateappoint from './Updateappoint';
+import Showappoint from './Showappoint';
+
+
+
 import Insertblog from './Insertblog';
 import Inserthospital from './Inserthospital';
 import Insertproduct from './Insertproduct';
