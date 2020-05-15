@@ -23,22 +23,22 @@ import Hospital from './Hospital';
                                  
 import Video from './Video';
    
-//import Worldpan from './Worldpan';
-//import Countrypan from './Countrypan';
+import Worldpan from './Worldpan';
+import Countrypan from './Countrypan';
 import Pandemic from './Pandemic';
 
 import Order from './Order';
 import Payment from './Payment';
 
 import Donation from './Donation';
-//import Showdonation from './Showdonation';
+import Showdonation from './Showdonation';
 
 import Forgotpassword from './Forgotpassword';
 import Changepassword from './Changepassword';
 import Updatepassword from './Updatepassword';
 
 import Ambulance from './Ambulance';  
-//import Getambulance from './Getambulance';          
+import Getambulance from './Getambulance';          
 import Newdriver from './Newdriver';            
 import Olddriver from './Olddriver';            
 
@@ -114,7 +114,8 @@ ReactDOM.render(
           <Route  path='/Hospital' component={Hospital}/>
 		
 		  <Route  path='/Donation' component={Donation}/>
-		
+				      <Route  path='/Showdonation' component={Showdonation}/>
+
 		  <Route  path='/Ambulance' component={Ambulance}/>
 	
 		  <Route  path='/Pandemic' component={Pandemic}/>
@@ -123,6 +124,11 @@ ReactDOM.render(
 
 		   <Route  path='/Signup' component={Signup}/>
 		  <Route  path='/Signin' component={Signin}/>
+		  
+		  		  		  	  <Route  path='/Getambulance' component={Getambulance}/>  
+		  <Route  path='/Worldpan' component={Worldpan}/>
+		  <Route  path='/Countrypan' component={Countrypan}/>
+
 		  <Route  path='/Newdriver' component={Newdriver}/>
 		  <Route  path='/Olddriver' component={Olddriver}/>
 		
@@ -130,7 +136,7 @@ ReactDOM.render(
 		  <Route  path='/showappoint' component={Showappoint}/>
 		  <Route  path='/Updateappoint' component={Updateappoint}/>
 		  <Route  path='/Showcart' component={Showcart}/>
-		    <Route  path='/Insertblog' component={Insertblog}/>
+		  <Route  path='/Insertblog' component={Insertblog}/>
 		  <Route  path='/Inserthospital' component={Inserthospital}/>
 		  <Route  path='/Insertproduct' component={Insertproduct}/>
 		  <Route  path='/Insertvideo' component={Insertvideo}/>
