@@ -23,7 +23,7 @@ import Hospital from './Hospital';
                                  
 import Video from './Video';
    
-import Worldpan from './Worldpan';
+//import Worldpan from './Worldpan';
 import Countrypan from './Countrypan';
 import Pandemic from './Pandemic';
 
@@ -133,7 +133,6 @@ ReactDOM.render(
 		  <Route  path='/Newdriver' component={Newdriver}/>
 		  <Route  path='/Olddriver' component={Olddriver}/>
 		  
-		  <Route  path='/Worldpan' component={Worldpan}/>
 		  <Route  path='/Countrypan' component={Countrypan}/>
 		  <Route  path='/Pandemic' component={Pandemic}/>
 
