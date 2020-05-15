@@ -23,8 +23,8 @@ import Hospital from './Hospital';
                                  
 import Video from './Video';
    
-import Worldpan from './Worldpan';
-import Countrypan from './Countrypan';
+import Worldpan from './WorldPan';
+import Countrypan from './CountryPan';
 import Pandemic from './Pandemic';
 
 import Order from './Order';
@@ -38,7 +38,7 @@ import Changepassword from './Changepassword';
 import Updatepassword from './Updatepassword';
 
 import Ambulance from './Ambulance';  
-import Getambulance from './Getambulance';          
+import Getambulance from './GetAmbulance';          
 import Newdriver from './Newdriver';            
 import Olddriver from './Olddriver';            
 
