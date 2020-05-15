@@ -105,50 +105,22 @@ ReactDOM.render(
 			
 			<Route  path='/Profile' component={Profile}/>
 
-		  <Route  path='/Signup' component={Signup}/>
-		  <Route  path='/Signin' component={Signin}/>
-		  		  
-		  <Route  path='/Showdoctor' component={Showdoctor}/>
-		  <Route  path='/showappoint' component={Showappoint}/>
-		  <Route  path='/Updateappoint' component={Updateappoint}/>
-
 		  <Route  path='/Medicine' component={Medicine}/>
 		  <Route  path='/Order' component={Order}/>
 		  <Route  path='/Payment' component={Payment}/>
-		  <Route  path='/Showcart' component={Showcart}/>
 
           <Route  path='/Hospital' component={Hospital}/>
-		  
-          <Route  path='/Forgotpassword' component={Forgotpassword}/>
-          <Route  path='/Changepassword' component={Changepassword}/>
-		  <Route  path='/Updatepassword' component={Updatepassword}/>
-		  
-		  <Route  path='/Donation' component={Donation}/>
-		  <Route  path='/Showdonation' component={Showdonation}/>
-		  
-		  <Route  path='/Showblog' component={Showblog}/>
-		  
-		  <Route  path='/Ambulance' component={Ambulance}/>
-		  <Route  path='/Getambulance' component={Getambulance}/>  
-		  <Route  path='/Newdriver' component={Newdriver}/>
-		  <Route  path='/Olddriver' component={Olddriver}/>
 		
+		  <Route  path='/Donation' component={Donation}/>
+		
+		  <Route  path='/Ambulance' component={Ambulance}/>
+	
 		  <Route  path='/Pandemic' component={Pandemic}/>
 
 		  <Route  path='/Video' component={Video}/>
 
 		  
-		  <Route  path='/Insertblog' component={Insertblog}/>
-		  <Route  path='/Inserthospital' component={Inserthospital}/>
-		  <Route  path='/Insertproduct' component={Insertproduct}/>
-		  <Route  path='/Insertvideo' component={Insertvideo}/>
-		  <Route  path='/Insert' component={Insert}/>
-		  
-		  <Route  path='/Deletehospital' component={Deletehospital}/>
-		  <Route  path='/Deleteproduct' component={Deleteproduct}/>
-		  <Route  path='/Deleteblog' component={Deleteblog}/>
-		  <Route  path='/Deletevideo' component={Deletevideo}/>
-		  <Route  path='/Delete' component={Delete}/>
+		
 	
 </Router>
 		  </Provider>
@@ -164,6 +136,39 @@ import {Provider} from "react-redux";
 
 import App from "./App";
 		  <Route exact path='/cart' component={Showcart}/>
+
+		  
+		Here you go  
+		  <Route  path='/Signup' component={Signup}/>
+		  <Route  path='/Signin' component={Signin}/>
+		  		  	  <Route  path='/Getambulance' component={Getambulance}/>  
+		  <Route  path='/Newdriver' component={Newdriver}/>
+		  <Route  path='/Olddriver' component={Olddriver}/>
+		
+		  <Route  path='/Showdoctor' component={Showdoctor}/>
+		  <Route  path='/showappoint' component={Showappoint}/>
+		  <Route  path='/Updateappoint' component={Updateappoint}/>
+		  <Route  path='/Showcart' component={Showcart}/>
+		    <Route  path='/Insertblog' component={Insertblog}/>
+		  <Route  path='/Inserthospital' component={Inserthospital}/>
+		  <Route  path='/Insertproduct' component={Insertproduct}/>
+		  <Route  path='/Insertvideo' component={Insertvideo}/>
+		  <Route  path='/Insert' component={Insert}/>
+		  
+		  <Route  path='/Deletehospital' component={Deletehospital}/>
+		  <Route  path='/Deleteproduct' component={Deleteproduct}/>
+		  <Route  path='/Deleteblog' component={Deleteblog}/>
+		  <Route  path='/Deletevideo' component={Deletevideo}/>
+		  <Route  path='/Delete' component={Delete}/>
+		  
+		      <Route  path='/Showdonation' component={Showdonation}/>
+		  
+		  <Route  path='/Showblog' component={Showblog}/>
+		  
+          <Route  path='/Forgotpassword' component={Forgotpassword}/>
+          <Route  path='/Changepassword' component={Changepassword}/>
+		  <Route  path='/Updatepassword' component={Updatepassword}/>
+		  
 
 const mathReducer = (state = {
     result: 1,
