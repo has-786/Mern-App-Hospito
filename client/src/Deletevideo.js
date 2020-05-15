@@ -44,36 +44,6 @@ fun2=()=>{
 
 
 
-class Delete extends Component{
-	constructor(props){
-		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
-	}
-	
-	componentDidMount(){this.state.username=localStorage.getItem('user'); }
-
-render()
-{
- return (
- <div>
-  <center><h2 >DELETE</h2></center>
-
-	<center>	<span><br></br><br></br></span>
-    
-	<div><a href='/DeleteBlog'><button class='btn btn-primary' >Delete Blogs</button></a></div>
-	<span><br></br><br></br></span>
-	<div><a href='/DeleteHospital'><button class='btn btn-danger' >Delete Hospitals</button></a></div>
-		<span><br></br><br></br></span>
-	<div><a href='/DeleteProduct'><button class='btn btn-success' >Delete Products</button></a></div>
-		<span><br></br><br></br></span>
-	<div><a href='/DeleteVideo'><button class='btn btn-warning' >Delete Videos</button></a></div>
-		<span><br></br><br></br></span>	
-	</center>
-</div>);
-}
-
-}
-
-
 
 
 const mapStateToProps = (state) => {

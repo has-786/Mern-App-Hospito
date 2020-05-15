@@ -32,7 +32,6 @@ import Showappoint from './Showappoint';
 import Updateappoint from './Updateappoint';
 
 import Order from './Order';
-import Showorder from './Showorder';
 import Payment from './Payment';
 
 import Donation from './Donation';
@@ -115,7 +114,6 @@ ReactDOM.render(
 
 		  <Route  path='/Medicine' component={Medicine}/>
 		  <Route  path='/Order' component={Order}/>
-		  <Route  path='/Showorder' component={Showorder}/>
 		  <Route  path='/Payment' component={Payment}/>
 		  <Route  path='/Showcart' component={Showcart}/>
 
@@ -257,7 +255,6 @@ store.subscribe(() => {
 
 		  <Route  path='/Medicine' component={Medicine}/>
 		  <Route  path='/Order' component={Order}/>
-		  <Route  path='/Showorder' component={Showorder}/>
 		  <Route  path='/Payment' component={Payment}/>
 		  <Route  path='/Showcart' component={Showcart}/>
 

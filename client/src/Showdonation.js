@@ -1,8 +1,9 @@
-
-
 import React ,{Component} from 'react';
-import { Redirect,BrowserRouter as Router, Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import './App.css';
+import {connect} from "react-redux";
+
 let username=null;
 
 class Showdonation extends Component{
@@ -99,11 +100,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-//export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Showdonation);
-//export Showcart;
-
-
-
-//export default Home;

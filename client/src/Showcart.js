@@ -1,5 +1,9 @@
 
 import React ,{Component} from 'react';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import './App.css';
+import {connect} from "react-redux";
 
 class Showcart extends Component{
 	constructor(props){

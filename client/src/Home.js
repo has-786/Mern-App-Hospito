@@ -53,7 +53,7 @@ return (<div>
 
 <span id='link' >
 <button id='login' class='btn btn-primary' id='login1'  onClick={this.signout.bind(this)}>Logout</button>
-<a  href='/signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a>
+<a  href='/Signin' ><button id='login' class='btn btn-primary btn-sm'>Login</button></a>
 <br></br>
 <a href='/Insert'><button class='btn btn-success' id='admin1' style={{display:'None'}}>Insert</button></a><br></br>
 <a href='/Delete'><button class='btn btn-danger' id='admin2' style={{display:'None'}}>Delete</button></a>
@@ -62,7 +62,7 @@ return (<div>
 		
 <div id='profile' style={{display:"None"}}>
  <i class='fa fa-male' style={{float:"left",marginTop:"-15%",marginLeft:"10px",color:"green",fontSize:"60px"}}></i> <a class='btn btn-primary' 
-style={{marginTop:"-20%"}}href="/profile" >My Profile</a>   
+style={{marginTop:"-20%"}} href="/Profile" >My Profile</a>   
 
 </div> 
 
@@ -85,7 +85,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
-            <h3 ><a href="/hospital">Search Health Centres</a></h3>
+            <h3 ><a href="/Hospital">Search Health Centres</a></h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}} >Search Nearby Hospitals and Nursey Homes</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 <i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
 
             </div>
-            <h3 ><a href='/showdoctor'> Ask An Appointment</a> </h3>
+            <h3 ><a href='/Showdoctor'> Ask An Appointment</a> </h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}}>Ask a doctor for appointment</p>
           </div>
         </div>
@@ -105,7 +105,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 			<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
 
 </div>
-            <h3 ><a href='/medicine'>Buy Medicines</a></h3>
+            <h3 ><a href='/Medicine'>Buy Medicines</a></h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}}>Buy medicines online</p>
           </div>
         </div>
@@ -129,7 +129,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 			<i class='fa fa-file' style={{fontSize:"40px",color:"grey"}}></i>
 
 </div>
-            <h3 ><a href='/ShowBlog'>Blogs</a></h3>
+            <h3 ><a href='/Showblog'>Blogs</a></h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}}>Check Out Daily Updates in the world of Health and Fitness</p>
           </div>
         </div>
@@ -140,7 +140,7 @@ style={{marginTop:"-20%"}}href="/profile" >My Profile</a>
 			<i class='fa fa-ambulance' style={{fontSize:"40px",color:"tomato"}}></i>
 
 </div>
-            <h3 ><a href='/GetAmbulance'>Book An Ambulance</a></h3>
+            <h3 ><a href='/Getambulance'>Book An Ambulance</a></h3>
             <p class="lead mb-0" style={{fontWeight:"bold"}}>Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
           </div>
         </div>
