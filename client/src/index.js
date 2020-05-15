@@ -26,11 +26,7 @@ import Video from './Video';
 //import Worldpan from './Worldpan';
 //import Countrypan from './Countrypan';
 import Pandemic from './Pandemic';
-/*
-import Showdoctor from './Showdoctor';
-import Showappoint from './Showappoint';
-import Updateappoint from './Updateappoint';
-*/
+
 import Order from './Order';
 import Payment from './Payment';
 
@@ -146,7 +142,6 @@ ReactDOM.render(
 		  <Route  path='/Deletevideo' component={Deletevideo}/>
 		  <Route  path='/Delete' component={Delete}/>
 		  
-		      <Route  path='/Showdonation' component={Showdonation}/>
 		  
 		  <Route  path='/Showblog' component={Showblog}/>
 		  
@@ -170,7 +165,8 @@ import {Provider} from "react-redux";
 import App from "./App";
 		  <Route exact path='/cart' component={Showcart}/>
 
-		  
+		  		      <Route  path='/Showdonation' component={Showdonation}/>
+
 		Here you go  
 		  <Route  path='/Signup' component={Signup}/>
 		  <Route  path='/Signin' component={Signin}/>
