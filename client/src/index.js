@@ -151,9 +151,9 @@ const store = createStore(
 
 store.subscribe(() => {
     // console.log("Store updated!", store.getState());
-});*/
+});
 
-			/*<Provider store={store}>  
+			<Provider store={store}>  
 
 <Router>	  
 			<Route exact path='/' component={Home}/>
