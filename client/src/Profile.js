@@ -1,7 +1,8 @@
 import React ,{Component} from 'react';
-import { Redirect , BrowserRouter as Router , Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
-
+import './App.css';
+import {connect} from "react-redux";
 
 
 class Profile  extends Component{
@@ -37,7 +38,7 @@ return (<div>
 <div id='profile'>
  <i class='fa fa-home' style={{float:"left",marginTop:"-15%",marginLeft:"5px",color:"green",fontSize:"60px"}}> </i> <a class='btn btn-primary' 
  style={{marginTop:"-20%"}}href="/" >Home</a>
- <a  href='/updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
+ <a  href='/Updateappoint'> <button id='update' class='btn btn-danger' style={{display:"None",marginTop:"-5%"}}>Update Appointments </button></a>
  
  <button class='btn btn-success' style={{float:"left",marginTop:"-25%",marginLeft:"0px"}}>{this.state.username}</button>   
  </div>
@@ -49,7 +50,7 @@ return (<div>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-shopping-cart' style={{fontSize:"40px",color:"purple"}}></i>            </div>
-            <h3 ><a href="/cart">My Cart</a></h3>
+            <h3 ><a href="/Showcart">My Cart</a></h3>
             <p class="lead mb-0">Check What's in your cart</p>
           </div>
         </div>
@@ -60,7 +61,7 @@ return (<div>
 <i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
 
             </div>
-            <h3 ><a href='/showappoint'> Appointments With Doctors</a> </h3>
+            <h3 ><a href='/Showappoint'> Appointments With Doctors</a> </h3>
             <p class="lead mb-0">Check your appointments</p>
           </div>
         </div>
@@ -69,7 +70,7 @@ return (<div>
             <div class="features-icons-icon d-flex">
 <i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
 </div>
-            <h3 ><a href='/order'>My Orders</a></h3>
+            <h3 ><a href='/Order'>My Orders</a></h3>
             <p class="lead mb-0">Check Your Medicine Orders</p>
           </div>
         </div>
@@ -87,7 +88,7 @@ return (<div>
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 <i class='fa fa-money' style={{fontSize:"40px",color:"green"}}></i>            </div>
-            <h3 ><a href="/showDonation">My Donations</a></h3>
+            <h3 ><a href="/Showdonation">My Donations</a></h3>
             <p class="lead mb-0">Check Your Donations Here</p>
           </div>
         </div>
@@ -162,4 +163,35 @@ return (<div>
 }
 
 
-export {Profile};
+
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+//export Showcart;
+
+
+
+//export default Home;

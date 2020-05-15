@@ -81,7 +81,39 @@ fun2=()=>{
 }
 
 
-class ShowDonation extends Component{
+
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Donation);
+//export Showcart;
+
+
+
+//export default Home;
+class Showdonation extends Component{
 	constructor(props)
 	{
 		super(props);
@@ -150,5 +182,36 @@ render()
 }
 
 }
-export {Donation,ShowDonation};
 
+
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowDonation);
+//export Showcart;
+
+
+
+//export default Home;

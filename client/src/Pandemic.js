@@ -1,8 +1,8 @@
 import React ,{Component} from 'react';
-import { Redirect , BrowserRouter as Router , Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
-
-
+import './App.css';
+import {connect} from "react-redux";
 
 
 class Pandemic extends Component{
@@ -28,8 +28,8 @@ render()
  
  
 	<div class="row" >
-			<div class="col-lg-6" style={{padding:"50px"}} ><center><a href='/World'><button class='btn btn-primary' >Pandemic In World</button></a></center></div>
-			<div class="col-lg-3" style={{padding:"50px"}}><center><a href='/Country'><button class='btn btn-success' >Pandemic In My Country</button></a></center></div>
+			<div class="col-lg-6" style={{padding:"50px"}} ><center><a href='/Worldpan'><button class='btn btn-primary' >Pandemic In World</button></a></center></div>
+			<div class="col-lg-3" style={{padding:"50px"}}><center><a href='/Countrypan'><button class='btn btn-success' >Pandemic In My Country</button></a></center></div>
 	</div>
 <br></br><br></br>
 	
@@ -85,6 +85,36 @@ render()
 }
 
 }
-export {Pandemic};
 
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pandemic);
+//export Showcart;
+
+
+
+//export default Home;
 

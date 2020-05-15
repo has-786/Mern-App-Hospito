@@ -41,7 +41,7 @@ render()
 <div class='row'>
 <div class='col-lg-8'>
 <form onSubmit={this.fun}><button class='btn btn-sm btn-primary'>Search Medicines </button><input type='text'  name='name'  id='1' required/><input type='submit'  value='Search' /></form></div>
-<div class='col-lg-4'> <a href="./cart"><button  id='showcart' class='btn btn-success' >Show Cart</button></a>   </div>
+<div class='col-lg-4'> <a href="/Showcart"><button  id='showcart' class='btn btn-success' >Show Cart</button></a>   </div>
 </div>					
 	<div id='show1'>
 	<section class="features-icons bg-light text-center"  >

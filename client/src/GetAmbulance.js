@@ -1,9 +1,10 @@
 import React ,{Component} from 'react';
-import { Redirect , BrowserRouter as Router , Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import './App.css';
+import {connect} from "react-redux";
 
-
-class GetAmbulance extends Component{
+class Getambulance extends Component{
 	constructor(props){
 		super(props);  this.state={id:null,phone:null,lat:null,lng:null,arr:[{_id:'___',name:'___',phone:'___',car:'___',status:'___'}],status:'___'};
 	}
@@ -227,4 +228,35 @@ render()
 
 }
 
-export {GetAmbulance};
+
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Getambulance);
+//export Showcart;
+
+
+
+//export default Home;

@@ -1,11 +1,11 @@
 import React ,{Component} from 'react';
-import { Redirect , BrowserRouter as Router , Route} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import './App.css';
+import {connect} from "react-redux";
 
 
-
-
-class  CountryPan extends Component{
+class  Countrypan extends Component{
 constructor(props){ super(props);  this.state={username:null,arr:[{name:null,address:null,email:null,phone:null}],msg:null};
 }
 componentDidMount()
@@ -51,6 +51,36 @@ render()
 }
 
 }
-export {CountryPan};
 
+const mapStateToProps = (state) => {
+  return {
+      prod:state.prod
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        showAllProds: (arr) => {
+            dispatch({
+                type: "SHOW_ALL_PROD",
+                payload: arr
+            });
+        },
+		searchProds: (arr) => {
+            dispatch({
+                type: "SEARCH_PROD",
+                payload: arr
+            });
+        }
+    };
+};
+
+//export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Countrypan);
+//export Showcart;
+
+
+
+//export default Home;
 
