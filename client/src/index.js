@@ -119,7 +119,34 @@ ReactDOM.render(
 
 		  <Route  path='/Video' component={Video}/>
 
+		   <Route  path='/Signup' component={Signup}/>
+		  <Route  path='/Signin' component={Signin}/>
+		  <Route  path='/Newdriver' component={Newdriver}/>
+		  <Route  path='/Olddriver' component={Olddriver}/>
+		
+		  <Route  path='/Showdoctor' component={Showdoctor}/>
+		  <Route  path='/showappoint' component={Showappoint}/>
+		  <Route  path='/Updateappoint' component={Updateappoint}/>
+		  <Route  path='/Showcart' component={Showcart}/>
+		    <Route  path='/Insertblog' component={Insertblog}/>
+		  <Route  path='/Inserthospital' component={Inserthospital}/>
+		  <Route  path='/Insertproduct' component={Insertproduct}/>
+		  <Route  path='/Insertvideo' component={Insertvideo}/>
+		  <Route  path='/Insert' component={Insert}/>
 		  
+		  <Route  path='/Deletehospital' component={Deletehospital}/>
+		  <Route  path='/Deleteproduct' component={Deleteproduct}/>
+		  <Route  path='/Deleteblog' component={Deleteblog}/>
+		  <Route  path='/Deletevideo' component={Deletevideo}/>
+		  <Route  path='/Delete' component={Delete}/>
+		  
+		      <Route  path='/Showdonation' component={Showdonation}/>
+		  
+		  <Route  path='/Showblog' component={Showblog}/>
+		  
+          <Route  path='/Forgotpassword' component={Forgotpassword}/>
+          <Route  path='/Changepassword' component={Changepassword}/>
+		  <Route  path='/Updatepassword' component={Updatepassword}/>
 		
 	
 </Router>
