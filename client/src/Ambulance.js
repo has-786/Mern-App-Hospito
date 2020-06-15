@@ -15,15 +15,15 @@ class Ambulance extends Component{
 componentDidMount()
 {
 		
-setTimeout(function(){  this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
-		  this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 		
+setTimeout(function(){ 
+ 
+  if(JSON.parse(localStorage.getItem('cookies'))){this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
+  this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 	}	
 if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}}.bind(this),500);
 		
 
 setInterval(function(){	
 		
-		    this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
-		  this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 		
 		  if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}	
 				
 					if (navigator.geolocation) 
@@ -113,8 +113,8 @@ signout=()=>{
 	 document.getElementById('login').innerHTML="<a href='/oldriver'><button class='btn btn-danger' >Login</button></a>";
 	 localStorage.setItem('cookies',JSON.stringify(cookies));  
 	 var data={name:this.state.drivername}
-	 this.state.username=null;
-	 fetch(this.state.path+'/driverSignout',{ method: 'POST',body:JSON.stringify(data),
+	 this.state.drivername=null;
+	 fetch('/driverSignout',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled'); 
 		this.setState({status:'Done'});    
 		document.getElementById('Cancel').innerHTML='Done';

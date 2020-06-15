@@ -14,7 +14,7 @@ componentDidMount()
 {
 	this.state.id=null;
 	      setTimeout(function(){	
-		  this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
+		  if(JSON.parse(localStorage.getItem('cookies')))this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
 
 		  if( !this.state.phone )alert('Please Enter Mobile No.');
 		  else
@@ -132,8 +132,8 @@ event.preventDefault();
 	
 	 var cookies={};
 	   if(localStorage.getItem('cookies'))var cookies=JSON.parse(localStorage.getItem('cookies')); 
-	   cookies.phone=phone;
-	   localStorage.setItem('cookies',JSON.stringify(cookies)); 
+	   cookies.phone=phone;  
+	   localStorage.setItem('cookies',JSON.stringify(cookies));  
 }
 
 
@@ -162,7 +162,7 @@ document.getElementById('book').style.display='None';
 		const currDate = date;
 						var data={user:this.state.phone,amb:this.state.arr[0].name,status:'Pending',timestamp:currDate};
 						
-						fetch(this.state.path+'/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
+						fetch('/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
 						headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body1)=>{ alert('Booked');
 						this.setState({status:'Pending'});    
 						var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id2=body1._id; 
