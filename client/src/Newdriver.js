@@ -7,7 +7,7 @@ let username=null;
 
 class Newdriver extends Component{
 	constructor(props){
-		super(props); this.fun.bind(this); this.state={drivername:null};
+		super(props); this.fun.bind(this); this.state={path:"http://localhost:5000",drivername:null};
 	}
 	
 render()
@@ -46,7 +46,7 @@ fun=(event)=>{
 	|| document.getElementById('5').value.length==0){alert('Please Fill The Required Places'); return false;}
 	var data={name:document.getElementById('1').value,phone:document.getElementById('2').value,pass:document.getElementById('3').value,car:
 	document.getElementById('5').value  };
-fetch('/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+fetch(this.state.path+'/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.drivername){this.state.drivername=body.drivername; alert(this.state.drivername); 
 		
 		var cookies={};
@@ -54,7 +54,7 @@ fetch('/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Conte
 		
 		  localStorage.setItem('cookies',JSON.stringify(cookies)); 
 		}
-		else alert('Username is already taken!! Please Try Another');
+		else alert('Username or Phone no. is already taken!! Please Try Another');
 		}).catch(err=>console.log(err));
 	}
 }

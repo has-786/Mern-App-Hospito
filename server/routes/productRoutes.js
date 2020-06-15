@@ -111,7 +111,7 @@ app.post('/addToCart',(req,res,next)=>{
 							   for(var i=0;i<Oldprod.length;i++){console.log(Oldprod[i].prodName+" "+global.prodReq); if(Oldprod[i].prodName===global.prodReq)global.status=1;     }
 							   console.log(global.status);
 							   if(global.status==0){
-		                cart.updateOne({ userId: id},{ $push: {prods: prod1} },(err, cart1)=> 
+		                cart.updateOne({ userId: id},{ $push: {prods:prod1} },(err, cart1)=> 
 						{ if (err) res.send({msg:"Error Occured"}); else{ console.log(cart1); res.send({msg:"Added to cart"}); }  }); 
 							   }
 							 else res.send({msg:"Already Added"});
@@ -141,7 +141,7 @@ app.post('/removeFromCart',(req,res,next)=>{
 			cart.findOne({userId:id},(err,cart1)=>{
 			if(err)console.log(err); 
 			else if(!cart1)  console.log("No such Cart\n");	
-			else cart.update({ userId: id }, { $pull: { prods: { prodName:prodName,quantity:quantity } }}, { safe: true},(err, cart1)=> {
+			else cart.update({ userId: id }, { $pull: { prods: { prodName:prodName,quantity:quantity }}}, { safe: true},(err, cart1)=> {
 				
 				if (err) res.send({msg:"Error Occured"}); console.log(cart1);res.send({msg:" removed from cart"});});
 				

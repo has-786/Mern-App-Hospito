@@ -90,7 +90,7 @@ app.post('/driverSignup',(req,res,next)=>{
 				Newambulance.save((err,user2)=>{ if(err)console.log(err); else{ console.log(user2); global.name=user2.name;  }  });
 					  });
 		}
-		res.send({drivername:global.name}); 
+		res.send({drivername:global.name}); global.name=null;
 	});
   });
 	
@@ -116,6 +116,20 @@ app.post('/driverSignin',(req,res,next)=>{
         next();
     }); 
 }  );	
+	
+
+app.post('/driverSignOut',(req,res,next)=>{
+	console.log(req.body);   global.name=req.body.name;  car=req.body.car;
+	ambulance.updateOne({name:req.body.name},{lat:null,lng:null},(err,user1)=>{
+	   if(err)console.log(err); 
+		else{
+			 console.log("successful logout");   
+		}
+		//res.send({drivername:global.name}); global.name=null;
+	});
+  });
+	
+		
 	
 	
 }

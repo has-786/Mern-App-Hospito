@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 class Getambulance extends Component{
 	constructor(props){
-		super(props);  this.state={id:null,phone:null,lat:null,lng:null,arr:[{_id:'___',name:'___',phone:'___',car:'___',status:'___'}],status:'___'};
+		super(props);  this.state={path:"http://localhost:5000",id:null,driverLat:null,driverLng:null,phone:null,lat:null,lng:null,arr:[{_id:'___',name:'___',phone:'___',car:'___',status:'___'}],status:'___',distance:'____'};
 	}
 	
 	
@@ -14,87 +14,83 @@ componentDidMount()
 {
 	this.state.id=null;
 	      setTimeout(function(){	
+		  this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
 
-		  if( !JSON.parse(localStorage.getItem('cookies')) )alert('Please Enter Mobile No.');
-		  else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
-		  if(!this.state.phone){}
-
+		  if( !this.state.phone )alert('Please Enter Mobile No.');
 		  else
 		  {
 			  if(JSON.parse(localStorage.getItem('cookies')))this.state.id=JSON.parse(localStorage.getItem('cookies')).id2;
 				if(this.state.id){
-			  alert("Phone No: "+this.state.phone);
+			    alert("Phone No: "+this.state.phone);
 				var data={user:this.state.phone};    
 
 					fetch('/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
-		          
-					if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
-							document.getElementById('Cancel').innerHTML='Cancel';
-				}			}).catch(err=>console.log(err));    }  
+		    
+					   if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
+						         	document.getElementById('Cancel').innerHTML='Cancel';
+					           		document.getElementById('search').style.display='none';
+							}	
+				}).catch(err=>console.log(err));    }  
 		  }
 		}.bind(this),500);	
 		
 		
 	setInterval(function(){	
-					   if( !JSON.parse(localStorage.getItem('cookies')) ){}
-						else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
 					if(!this.state.phone){}	  
 					else
 					{
 						if(navigator.geolocation)
 						{
 							navigator.geolocation.getCurrentPosition((position)=>{this.setState({lat:position.coords.latitude});   
-							this.setState({lng:position.coords.longitude});  });
+							this.setState({lng:position.coords.longitude});  }); 
 						}
 						else alert( "Geolocation is not supported by this browser.");
 				   }
 
-	}.bind(this),5000);				
+	}.bind(this),1000);				
   
 
 	
 	
 	
-  setInterval(function(){	
-  	  if( !JSON.parse(localStorage.getItem('cookies')) ){}
-
-		  else this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
+  setInterval(function(){				    
 		  if(!this.state.phone){}
 		  else{
-			     
+
 	  if(this.state.status==='Searching')
       {   	
-  var data={name:null};
-  fetch('/getAmbulance',{ method: 'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+			var data={name:null,lat:this.state.lat,lng:this.state.lng};
+			fetch('/getAmbulance',{ method: 'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 				return response.json()}).then((body)=>{   
-				//alert(body.length);
-				if(body.length)
+				
+				if(Object.keys(body).length)
 				{
-						this.setState({arr:body});  this.state.status='Bookable';	
+					this.state.arr[0]=body;
+						this.state.status='Bookable';	
 						alert('Found'); 	document.getElementById('book').style.display='inline';
-
 				}
-				else {alert("Sorry!! No AMBULANCE available");  }
+				else alert("Sorry!! No AMBULANCE available");  
 			}).catch(err=>console.log(err)); 
-      }
+       }
   
 				else if(this.state.status==='Pending' || this.state.status==='Ongoing' || this.state.status==='Done')
 				{
 													document.getElementById('search').style.display='None';
 
-						if(JSON.parse(localStorage.getItem('cookies')))this.state.id=JSON.parse(localStorage.getItem('cookies')).id2;
 									if(this.state.id){		
 								var data={id:this.state.id};
 									
-								//alert(this.state.id);			
-								fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
+									fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
 											headers: {"Content-Type": "application/json" } }).then(response=>{
 											return response.json()}).then((body)=>{ 	this.setState({status:body.status});
-																		//	alert(this.state.status);  
-					                  if(this.state.status==='Ongoing'){
-													document.getelementById('Cancel').innerHTML='Cancel';
+																		
+														this.setState({driverLat:body.lat,driverLng:body.lng});
+					                  if( this.state.status==='Ongoing'){
+												var d=this.calcCrow(this.state.lat,this.state.lng,this.state.driverLat,this.state.driverLng);
+												if(this.state.driverLat && this.state.driverLng)this.state.distance=d;
+											
 													
 												}									  
 									 else if(this.state.status==='Done'){
@@ -103,28 +99,28 @@ componentDidMount()
 											document.getElementById('search').style.display='inline';
 			
 													document.getElementById('Cancel').innerHTML='Done';
+													
 																 var cookies=JSON.parse(localStorage.getItem('cookies'));
 																 cookies.id2=null;  
 																 localStorage.setItem('cookies',JSON.stringify(cookies));
 															}
 														}).catch(err=>console.log(err)); 
 									}					
-									
+								
 					}		
 		  }	  
-   }.bind(this),6000);
+   }.bind(this),2000);
  
 
 }
 
 search=(event)=>{
 event.preventDefault();
-if( !JSON.parse(localStorage.getItem('cookies')) ){alert('Please Enter Mobile No.'); return false;}
 
-this.state.status='Searching'; 
+if( !this.state.phone ){alert('Please Enter Mobile No.'); return false;}
+
+this.setState({status:'Searching'}); 
 }
-
-
 
 fun=(event)=>{
 event.preventDefault();
@@ -166,7 +162,7 @@ document.getElementById('book').style.display='None';
 		const currDate = date;
 						var data={user:this.state.phone,amb:this.state.arr[0].name,status:'Pending',timestamp:currDate};
 						
-						fetch('/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
+						fetch(this.state.path+'/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
 						headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body1)=>{ alert('Booked');
 						this.setState({status:'Pending'});    
 						var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id2=body1._id; 
@@ -174,6 +170,26 @@ document.getElementById('book').style.display='None';
 						document.getElementById('Cancel').innerHTML='Cancel'; }).catch(err=>console.log(err));	
 	
 }
+ calcCrow=(lat1, lon1, lat2, lon2)=>
+    {
+      var R = 6371; // km
+      var dLat = this.toRad(lat2-lat1);
+      var dLon = this.toRad(lon2-lon1);
+      var lat1 = this.toRad(lat1);
+      var lat2 = this.toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      return d;
+    }
+
+    // Converts numeric degrees to radians
+     toRad=(Value)=> 
+     {
+        return Value * Math.PI / 180;
+     }
 	
 render()
 {
@@ -198,6 +214,10 @@ render()
 			<div class="features-icons-icon d-flex">
 						
 <div class="col-lg-3"><button class='btn btn-secondary'>Driver Name</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.arr[0].name}</button></center></div>
+            </div><br></br>
+			<div class="features-icons-icon d-flex">
+						
+<div class="col-lg-3"><button class='btn btn-secondary'>Distane</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.distance}</button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Contact</button></div>
@@ -227,7 +247,7 @@ render()
 }
 
 }
-
+ 
 
 const mapStateToProps = (state) => {
   return {

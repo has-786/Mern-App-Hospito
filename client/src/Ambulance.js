@@ -8,7 +8,7 @@ let username=null;
 
 class Ambulance extends Component{
 	constructor(props){
-		super(props);  this.state={status:'___',drivername:null,lat:null,lng:null,available:null,arr:[{user:'___',lat:null,lng:null,available:null,status:'___'}]};
+		super(props);  this.state={path:"http://localhost:5000",status:'___',drivername:null,lat:null,lng:null,available:null,arr:[{user:'___',lat:null,lng:null,available:null,status:'___'}]};
 	}
 	
 	
@@ -24,7 +24,7 @@ setInterval(function(){
 		
 		    this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
 		  this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 		
-		  if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/oldriver'><button class='btn btn-danger' >Login</button></a>";}	
+		  if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}	
 				
 					if (navigator.geolocation) 
 					{
@@ -34,7 +34,7 @@ setInterval(function(){
 							});
 					}
 					else alert( "Geolocation is not supported by this browser.");
-}.bind(this),3000);	
+}.bind(this),1000);	
 
 setInterval(function(){						//		alert(this.state.status); 
 		  
@@ -47,12 +47,12 @@ setInterval(function(){						//		alert(this.state.status);
 					     		  var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id1=body[0]._id; 
 						    	  localStorage.setItem('cookies',JSON.stringify(cookies));
 							}  
-							else if(body[0].status==='Ongoing'){document.getElementById('Cancel').innerHTML='Cancel';this.setState({status:'Ongoing'});} 
+							else if(body[0].status==='Ongoing'){this.setState({status:'Ongoing'});} 
 
 							}
 		          }).catch(err=>console.log(err)); 	  
 		 
-	}.bind(this),4000);  
+	}.bind(this),2000);  
 	
 				    setInterval(function(){	
 												//alert(this.state.drivername); 
@@ -72,7 +72,7 @@ setInterval(function(){						//		alert(this.state.status);
 											localStorage.setItem('cookies',JSON.stringify(cookies));   
 								   }   }).catch(err=>console.log(err)); 
 							}					
-						}.bind(this),5000);
+						}.bind(this),3000);
 			     
 
 }
@@ -112,6 +112,13 @@ signout=()=>{
 	 cookies.drivername=null;
 	 document.getElementById('login').innerHTML="<a href='/oldriver'><button class='btn btn-danger' >Login</button></a>";
 	 localStorage.setItem('cookies',JSON.stringify(cookies));  
+	 var data={name:this.state.drivername}
+	 this.state.username=null;
+	 fetch(this.state.path+'/driverSignout',{ method: 'POST',body:JSON.stringify(data),
+		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled'); 
+		this.setState({status:'Done'});    
+		document.getElementById('Cancel').innerHTML='Done';
+		}).catch(err=>console.log(err));  
 	alert('Successfully Signed Out');
 }	
 	

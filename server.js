@@ -22,7 +22,7 @@ var bcrypt;
 require('./server/security/passport.js')(passport);   
 require('./server/routes/mainRoutes.js')(app,passport,bcrypt,nodemailer,randomstring);
 
-var port = process.env.PORT || 8080;
+var port =  5000;
 
 app.listen(port,()=>{console.log("Server On");}); 
 

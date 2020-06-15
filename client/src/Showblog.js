@@ -19,7 +19,7 @@ componentDidMount()
 	
 setTimeout(function(){	
 	var data={name:this.state.username};   
-	fetch('/showblog',{ method: 'POST',body:JSON.stringify(data),
+	fetch('http://localhost:5000/showblog',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});    }).catch(err=>console.log(err));	
@@ -48,50 +48,57 @@ render()
 <br></br><br></br>
 
 <div id='show3' style={{opacity:1}}> 
-	<section class="features-icons bg-light text-center"  >
+	<section class="features-icons bg-light text-center" >
     <div id='contain' class="container"   >
       
-		{this.state.arr.reverse().map( res=>( 
-<div class="row" >
-	    <div class="col-lg-4"  >		<br></br><br></br>
+		{this.state.arr.reverse().map( res=>( <div style={{width:"100%"}}>
+		
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid white",borderRadius:"10px",backgroundColor:"pink"}} >
+		  						<br></br>		
 
-					 <div class="row" >
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style={{border:"5px solid red",borderRadius:"10px",backgroundColor:"pink"}} >
-		  		<br></br>
-
-            <div class="features-icons-icon d-flex" >
-					<div class="col-lg-3"><button class='btn btn-secondary'>Blog ID</button></div>
-					<div class="col-lg-9"><span style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}>{res._id}</span></div>
-			</div><br></br>
-						
-			<div class="features-icons-icon d-flex">
-				  <div class="col-lg-3"><button class='btn btn-secondary'>Topic</button></div>
-		<div class="col-lg-9"><center><button class='btn btn-success'>{res.topic}</button></center></div>
-			</div><br></br>				
+				<div  class="row">
+							<div class="col-lg-12">
+								<button class='btn btn-secondary'>Blog ID</button>
+								<span style={{border:"2px solid purple",backgroundColor:"cyan",padding:"5px",borderRadius:"10px"}}>{res._id} </span>
+							</div>
+				</div>
+						<br></br>						<br></br>
 
 			
-			<div class="features-icons-icon d-flex">
-					<div class="col-lg-12"><center><p class='junbotron' style={{borderRadius:'10px',backgroundColor:'white',border:'3px solid purple',padding:'5px', fontSize:"15px"}}>{res.data}</p></center></div>
-		<div class="col-lg-12"><center><img src={res.img} alt='not found' width={300} height={400} /></center></div>
-			</div><br></br><br></br>
-			
-			
+				<div class="row" >
+					<div class="col-lg-12" style={{width:"100%"}}><p style={{backgroundColor:"purple",color:"white",fontFamily:"Sans-serif-condensed",padding:"5px",fontSize:"20px"}}>
+					<button class="btn btn-primary">Topic:</button>&nbsp; &nbsp; &nbsp; 
+					Today Basic Updates on Importance of {res.topic} and how to take full benefits from it</p></div> 
+				</div>
+			<div class="row" >
+			 <div class="col-lg-6">
+					<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3"  >
+						<div class="features-icons-icon d-flex">
+							<center><img src={res.img} alt='not found' width={"100%"} height={400} /></center>
+						</div>
+					</div>	
+	         </div>
+			  <div class="col-lg-6"  >		
+					<center>
+						<div class="row" >
+					    	<div class="features-icons-icon d-flex">
+					 	     	<div class="col-lg-12"><center><p class='junbotron' style={{borderRadius:'10px',backgroundColor:'white',fontFamily:"Sans-serif",border:'3px solid purple',padding:'5px', fontSize:"20px"}}>{res.data}</p></center></div>
+					        </div><br></br><br></br>
+				        </div>
+                   </center>
+				</div>	
+		   </div>		
+		   	<div  class="row">
+						<div class="col-lg-3"><p style={{"color":"white",backgroundColor:"purple",fontSize:"15px",fontFamily:"Sans-serif"}}>Published On: &nbsp; &nbsp;{res.timestamp}</p></div> 
+				</div>
+   	   </div>	
+	   
+		
+     </div>	
 	
-				
-			<div class="features-icons-icon d-flex">
-				  <div class="col-lg-3"><button class='btn btn-secondary'>Date & Time</button></div>
-				  <div class="col-lg-9"><center><button class='btn btn-danger'> {res.timestamp} </button></center></div>
-			</div><br></br><br></br>
-			</div>
-		</div><br></br><br></br><br></br>
-	
-        </div>		
-        
-		</div>	
-		))}
+			))}
 		</div></section>
-<br></br>   <br></br>       <br></br>   <br></br>      
-<br></br>   <br></br></div></div>)
+			</div></div>)
 }
 
 }
