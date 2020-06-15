@@ -39,7 +39,7 @@ import Changepassword from './Changepassword';
 import Updatepassword from './Updatepassword';
 
 import Ambulance from './Ambulance';  
-import Getambulance from './Getambulance';          
+import Getambulance from './GetAmbulance';          
 import Newdriver from './Newdriver';            
 import Olddriver from './Olddriver';            
 
