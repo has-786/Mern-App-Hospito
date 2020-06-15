@@ -217,7 +217,7 @@ render()
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 						
-<div class="col-lg-3"><button class='btn btn-secondary'>Distane</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.distance}</button></center></div>
+<div class="col-lg-3"><button class='btn btn-secondary'>Distane</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.distance}Km</button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Contact</button></div>
