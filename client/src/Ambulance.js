@@ -47,7 +47,7 @@ setInterval(function(){						//		alert(this.state.status);
 					     		  var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id1=body[0]._id; 
 						    	  localStorage.setItem('cookies',JSON.stringify(cookies));
 							}  
-							else if(body[0].status==='Ongoing'){this.setState({status:'Ongoing'});} 
+							else if(body[0].status==='Ongoing'){this.setState({status:'Ongoing'});document.getElementById('Cancel').innerHTML='Cancel';} 
 
 							}
 		          }).catch(err=>console.log(err)); 	  
