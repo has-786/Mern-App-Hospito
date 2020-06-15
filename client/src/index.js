@@ -24,8 +24,8 @@ import Insertimage from './Insertimage';
                                  
 import Video from './Video';
    
-import Worldpan from './Worldpan';
-import Countrypan from './Countrypan';
+import Worldpan from './WorldPan';
+import Countrypan from './CountryPan';
 import Pandemic from './Pandemic';
 
 import Order from './Order';
