@@ -9,7 +9,7 @@ let username=null;
 class Order extends Component{
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{_id:null,paymentMethod:null,timestamp:null , prods:[{prodName:null,price:null,disease:null}]}],msg:null,position:null}; 
+this.state={path:"http://localhost:5000",username:null,arr:[{_id:null,paymentMethod:null,timestamp:null , prods:[{prodName:null,price:null,disease:null}]}],msg:null,position:null}; 
 	}
 	
 componentDidMount()
@@ -18,7 +18,7 @@ componentDidMount()
 	alert(this.state.username);  
 		
 	var data={name:this.state.username}; 
-	fetch('/showOrder',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showOrder',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	

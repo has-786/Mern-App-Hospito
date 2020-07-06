@@ -14,7 +14,7 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
 let username=null;
 
 class  Medicine extends Component{
-constructor(props){ super(props);  this.state={username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:null,price:null,disease:null},msg:null}; 
+constructor(props){ super(props);  this.state={path:"http://localhost:5000",username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:null,price:null,disease:null},msg:null}; 
  this.fun = this.fun.bind(this);  this.fun1 = this.fun1.bind(this);  
 }
 componentDidMount()
@@ -23,7 +23,7 @@ componentDidMount()
 	if(this.state.username)alert("Hi "+this.state.username);
     
 	var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('/showAllProds',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/showAllProds',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{//this.setState({arr:body});  
@@ -100,7 +100,7 @@ render()
  fun=(event)=>{
 	    event.preventDefault(); 
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('/showProduct',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/showProduct',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{ if(!Array.isArray(body)){this.setState({obj:body});document.getElementById('show2').style.opacity=1;} 
            else {// this.setState({arr:body});
@@ -115,7 +115,7 @@ fun1=(username,prodName,quantity)=>{
 if(document.getElementById(prodName+quantity).innerHTML==='Add To Cart'){
 	if(!this.state.username){alert('Please Login First');return false;}
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('/addToCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/addToCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg);   if(body.msg=='Added to cart')document.getElementById(prodName+quantity).innerHTML='Remove From Cart';  }).catch(err=>console.log(err));
 }
@@ -123,7 +123,7 @@ if(document.getElementById(prodName+quantity).innerHTML==='Add To Cart'){
 else 
 {
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
 (body)=>{alert(body.msg);document.getElementById(prodName+quantity).innerHTML='Add To Cart';}).catch(err=>console.log(err));                                                                                                    
 }

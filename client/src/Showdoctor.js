@@ -8,7 +8,7 @@ let username=null;
 class Showdoctor extends Component{
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={path:"http://localhost:5000",username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
  this.fun = this.fun.bind(this);	}
 	
 componentDidMount()
@@ -16,7 +16,7 @@ componentDidMount()
 	this.state.username=localStorage.getItem('user');
 	if(this.state.username)alert("Hi "+this.state.username);
 	var data={name:null};
-	fetch('/showAllDoctors',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/showAllDoctors',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -83,14 +83,14 @@ if(username===null){ alert('Please Login First'); return false;}
 	if( document.getElementById(docname).innerHTML==='Request An Appointment') 
 	{		
 	var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
-		fetch('/addAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/addAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
     (body)=>{alert(body.msg); if(body.msg=="Requested")document.getElementById(docname).innerHTML='Cancel Request'; }).catch(err=>console.log(err));
 	}
 	else 
 	{
 		var data={"name":this.state.username,"docname":docname,"email":email};      alert(JSON.stringify(data));
-		fetch('/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
        (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='Request An Appointment'; }).catch(err=>console.log(err));
 	}	
@@ -100,7 +100,7 @@ if(username===null){ alert('Please Login First'); return false;}
 	    event.preventDefault();
 
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('/getDoctors',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/getDoctors',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{ if(!Array.isArray(body)){this.setState({obj:body});document.getElementById('show6').style.opacity=1;} 
      else{ this.setState({arr:body});if(!body.length)alert('No result found'); document.getElementById('show5').style.opacity=1;} }).catch(err=>console.log(err));

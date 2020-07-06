@@ -6,8 +6,8 @@ import {connect} from "react-redux";
 
 class Updatepassword extends Component
 {
-    constructor(props){super(props);}
-	componentDidMount(){localStorage.removeItem('otp');}
+    constructor(props){super(props); this.state={path:"http://localhost:5000"}}
+	componentDidMount(){localStorage.removeItem('otp'); }
 	render(){
 	return (
 		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Update Password</h1></center>
@@ -23,7 +23,7 @@ class Updatepassword extends Component
 	fun=(event)=>{
 		event.preventDefault();
 		var data={email:document.getElementById('1').value,pass:document.getElementById('2').value};
-		fetch('/passwordUpdated',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch(this.state.path+'/passwordUpdated',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{  
 					if(body.msg!='error'){alert(body.msg);	document.getElementById('3').style.display='block'; 
    }

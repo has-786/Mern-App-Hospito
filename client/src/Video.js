@@ -7,14 +7,14 @@ import {connect} from "react-redux";
 
 
 class  Video extends Component{
-constructor(props){ super(props);  this.state={username:null,arr:[{name:null,tags:null,link1:null,_id:null,likes:null}],msg:null};
+constructor(props){ super(props);  this.state={path:"http://localhost:5000",username:null,arr:[{name:null,tags:null,link1:null,_id:null,likes:null}],msg:null};
 this.fun.bind(this); 
 }
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
 	var data={name:null};
-	fetch('/showAllVideos',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/showAllVideos',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
@@ -71,7 +71,7 @@ render()
 
  fun=(id,name)=>{
 		var data={"id":id};     
-		fetch('/like',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/like',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  if(body.msg)alert(body.msg); }).catch(err=>console.log(err));
  
@@ -79,7 +79,7 @@ render()
 
  fun1=(event)=>{
 		var data={"name":document.getElementById('1').value};     
-		fetch('/showVideo',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/showVideo',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  this.setState({arr:body}); }).catch(err=>console.log(err));
  

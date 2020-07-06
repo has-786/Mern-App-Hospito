@@ -46,7 +46,7 @@ fun=(event)=>{
 	|| document.getElementById('5').value.length==0){alert('Please Fill The Required Places'); return false;}
 	var data={name:document.getElementById('1').value,phone:document.getElementById('2').value,pass:document.getElementById('3').value,car:
 	document.getElementById('5').value  };
-fetch('/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+fetch(this.state.path+'/driverSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.drivername){this.state.drivername=body.drivername; alert(this.state.drivername); 
 		
 		var cookies={};

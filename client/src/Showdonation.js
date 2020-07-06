@@ -10,7 +10,7 @@ class Showdonation extends Component{
 	constructor(props)
 	{
 		super(props);
-		this.state={username:null,arr:[{_id:null,cause:null,amount:null,timestamp:null }]}; 
+		this.state={path:"http://localhost:5000",username:null,arr:[{_id:null,cause:null,amount:null,timestamp:null }]}; 
 	}
 	
 componentDidMount()
@@ -21,7 +21,7 @@ componentDidMount()
 	var data={name:this.state.username};   
 		if(!this.state.username){alert('Please Login First');}
 
-	fetch('/showDonation',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showDonation',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show3').style.opacity=1;}).catch(err=>console.log(err));	

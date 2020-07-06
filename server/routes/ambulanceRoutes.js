@@ -73,8 +73,10 @@ app.post('/addAmbulance',(req,res)=>{
 	var Newride=new ride({user:req.body.user,amb:req.body.amb,status:req.body.status,timestamp:req.body.timestamp});
 	Newride.save((err,ride1)=>{
 						if(err)console.log(err);  
-						else {   console.log(ride1);		ambulance.updateOne({name:req.body.amb},{available:0},(err,ambulance1)=>{});
-							res.send(ride1);   } 
+						else {   console.log(ride1);	
+								ambulance.updateOne({name:req.body.amb},{available:0},(err,ambulance1)=>{});
+								res.send(ride1);  
+							 }  
 					});						
 });
 
@@ -95,8 +97,7 @@ app.post('/updateLocation',(req,res)=>{
 	});
 	    
 		ride.find({amb:name,$or:[{status:'Pending'},{status:'Ongoing'}]},(err,ride1)=>{if(err){console.log('Error'); return;} 
-		else{ //console.log(ride1);	
-                 		res.send(ride1); }   });
+		else{ res.send(ride1); }   });   
 
 });
 	
@@ -107,20 +108,18 @@ app.post('/AcceptDriver',(req,res)=>{
 	});
 });	
 	
-
-
-
 app.post('/removeAmbulance',(req,res)=>{
 	
 	
 	ride.findOne({_id:req.body.id},(err,ride1)=>{
 			if(err){console.log(err);}
-			else{
+			else if(ride1){
 				   ride.updateOne({_id:ride1._id},{status:'Done'},(err,ride2)=>{
 				   });
 				   ambulance.updateOne({name:ride1.amb},{available:1},(err,ambulance1)=>{  });
+				   			res.send(ride1);
+
 			}	    
-			res.send(ride1);
 
 	});
 });
@@ -132,16 +131,17 @@ app.post('/updateAmbulance',(req,res)=>{
 							console.log(ride1);
 
 			ambulance.findOne({name:ride1.amb},(err,amb1)=>{
-								console.log("dd"+amb1);
+						if(amb1){		console.log("dd"+amb1);
 
 				   console.log("fafaf"+ride1);  
-			res.send({status:ride1.status,lat:amb1.lat,lng:amb1.lng});	
+				   					res.send({status:ride1.status,lat:amb1.lat,lng:amb1.lng});	
+						}
 			});
-			
-			
 		}
+
 	});
 });
 
+app.post('/deleteAll',(req,res)=>{console.log("Deleted");ambulance.deleteMany({},(err,amb)=>{console.log('Deleted');}); });
 
 }

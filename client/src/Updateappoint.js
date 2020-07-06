@@ -11,13 +11,13 @@ class Updateappoint extends Component
 {
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={path:"http://localhost:5000",username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
 	}
 		componentDidMount(){
 	this.state.username=localStorage.getItem('user');
 	
 	var data={docname:this.state.username}; //this.setState({ position: 1 });
-	fetch('/showAppointToDoctor',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showAppointToDoctor',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{

@@ -9,13 +9,13 @@ import {connect} from "react-redux";
 
 
 class  Worldpan extends Component{
-constructor(props){ super(props);  this.state={username:null,arr:[{name:null,address:null,email:null,phone:null}],msg:null};
+constructor(props){ super(props);  this.state={path:"http://localhost:5000",username:null,arr:[{name:null,address:null,email:null,phone:null}],msg:null};
 }
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
 	var data={name:null};
-	fetch('/getCountry',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/getCountry',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body}); document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	

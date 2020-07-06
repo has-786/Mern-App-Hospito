@@ -17,7 +17,7 @@ class Olddriver extends Component{
 			if(document.getElementById('1').value.length==0 || document.getElementById('2').value.length==0 ){alert('Please Fill Required Places'); return false;} 
 			
 		var data={name:document.getElementById('1').value,pass:document.getElementById('2').value };
-		fetch('/driverSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch(this.state.path+'/driverSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.drivername){this.state.drivername=body.drivername; alert(this.state.drivername); 
 		var cookies={};
 		

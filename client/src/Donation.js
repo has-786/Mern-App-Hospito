@@ -9,7 +9,7 @@ let username=null;
 
 class Donation extends Component{
 	constructor(props){
-		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
+		super(props);  this.state={path:"http://localhost:5000",username:null,amount:0,cause:null,timestamp:null};
 	}
 	
 	
@@ -61,7 +61,7 @@ fun2=()=>{
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS50VEonvgI1-sTW6CHykn0U_7xk8N2_ntoTusf5VatlP7d4ukU",
       handler: function(response) {
      var data={paymentId:response.razorpay_payment_id,username:username,amount:document.getElementById('amount').value,cause:document.getElementById('cause').value,timestamp:currDate};
-	fetch('/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch(this.state.path+'/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
       },  
       prefill: {

@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 
 class Deletehospital extends Component{
 	constructor(props){
-		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
+		super(props);  this.state={path:"http://localhost:5000",username:null,amount:0,cause:null,timestamp:null};
 	}
 	
 	componentDidMount(){this.state.username=localStorage.getItem('user'); }
@@ -36,7 +36,7 @@ render()
 fun2=()=>{
 		
  var data={name:document.getElementById('name').value};
-	fetch('/deletehospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch(this.state.path+'/deletehospital',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   

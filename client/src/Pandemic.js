@@ -6,14 +6,14 @@ import {connect} from "react-redux";
 
 
 class Pandemic extends Component{
-constructor(props){ super(props);  this.state={username:null,obj:{op1:'Loading...Please Wait..',op2:'Loading...Please Wait..',op3:'Loading...Please Wait..',op4:'Loading...Please Wait..'},msg:null};
+constructor(props){ super(props);  this.state={path:"http://localhost:5000",username:null,obj:{op1:'Loading...Please Wait..',op2:'Loading...Please Wait..',op3:'Loading...Please Wait..',op4:'Loading...Please Wait..'},msg:null};
 }
 componentDidMount()
 { 
 		this.state.username=localStorage.getItem('user');
 		var data={name:null};
 	//document.getElementById('show1').style.opacity=1;
-	fetch('/getPandemic',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/getPandemic',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({obj:body});  }).catch(err=>console.log(err));	
@@ -29,7 +29,7 @@ render()
  
 	<div class="row" >
 			<div class="col-lg-6" style={{padding:"50px"}} ><center><a href='/Worldpan'><button class='btn btn-primary' >Pandemic In World</button></a></center></div>
-			<div class="col-lg-3" style={{padding:"50px"}}><center><a href='/Countrypan'><button class='btn btn-success' >Pandemic In My Country</button></a></center></div>
+			<div class="col-lg-6" style={{padding:"50px"}}><center><a href='/Countrypan'><button class='btn btn-success' >Pandemic In My Country</button></a></center></div>
 	</div>
 <br></br><br></br>
 	

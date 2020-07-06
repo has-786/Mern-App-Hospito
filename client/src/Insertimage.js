@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 
 class Insertimage extends Component{
 	constructor(props){
-		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
+		super(props);  this.state={path:"http://localhost:5000",username:null,amount:0,cause:null,timestamp:null};
 	}
 	
 	componentDidMount(){this.state.username=localStorage.getItem('user'); }
@@ -53,7 +53,7 @@ fun2=(event)=>{
 		var myfile=document.getElementById('img').files[0];
 f.append('image',myfile,"myfile.jpg");   
 
-	fetch('http://localhost:5000/insertImage',{ method:'POST',body:f }).then(response=>{
+	fetch(this.state.path+'/insertImage',{ method:'POST',body:f }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
      
   }

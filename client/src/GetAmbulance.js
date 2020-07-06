@@ -9,9 +9,10 @@ class Getambulance extends Component{
 		super(props);  this.state={path:"http://localhost:5000",id:null,driverLat:null,driverLng:null,phone:null,lat:null,lng:null,arr:[{_id:'___',name:'___',phone:'___',car:'___',status:'___'}],status:'___',distance:'____'};
 	}
 	
-	
+
 componentDidMount()
 {
+	
 	this.state.id=null;
 	      setTimeout(function(){	
 		  if(JSON.parse(localStorage.getItem('cookies')))this.state.phone=JSON.parse(localStorage.getItem('cookies')).phone;
@@ -24,14 +25,14 @@ componentDidMount()
 			    alert("Phone No: "+this.state.phone);
 				var data={user:this.state.phone};    
 
-					fetch('/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
+					fetch(this.state.path+'/showAmbulance',{ method: 'POST', body:JSON.stringify(data),
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
 		    
-					   if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
+					  if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
 						         	document.getElementById('Cancel').innerHTML='Cancel';
 					           		document.getElementById('search').style.display='none';
-							}	
+							}
 				}).catch(err=>console.log(err));    }  
 		  }
 		}.bind(this),500);	
@@ -62,7 +63,7 @@ componentDidMount()
 	  if(this.state.status==='Searching')
       {   	
 			var data={name:null,lat:this.state.lat,lng:this.state.lng};
-			fetch('/getAmbulance',{ method: 'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+			fetch(this.state.path+'/getAmbulance',{ method: 'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 				return response.json()}).then((body)=>{   
 				
 				if(Object.keys(body).length)
@@ -82,7 +83,7 @@ componentDidMount()
 									if(this.state.id){		
 								var data={id:this.state.id};
 									
-									fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
+									fetch(this.state.path+'/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
 											headers: {"Content-Type": "application/json" } }).then(response=>{
 											return response.json()}).then((body)=>{ 	this.setState({status:body.status});
 																		
@@ -110,7 +111,6 @@ componentDidMount()
 					}		
 		  }	  
    }.bind(this),2000);
- 
 
 }
 
@@ -144,7 +144,7 @@ event.preventDefault();
 	{
 
 				var data={id:this.state.id};  //alert(this.state.id);    
-		fetch('/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
+		fetch(this.state.path+'/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
 				headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled');	
 				this.setState({status:body.status});  this.state.status='Done'; 
 				if(this.state.status==='Done')document.getElementById('Cancel').innerHTML='___';  
@@ -162,7 +162,7 @@ document.getElementById('book').style.display='None';
 		const currDate = date;
 						var data={user:this.state.phone,amb:this.state.arr[0].name,status:'Pending',timestamp:currDate};
 						
-						fetch('/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
+						fetch(this.state.path+'/addAmbulance',{ method: 'POST',body:JSON.stringify(data),
 						headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body1)=>{ alert('Booked');
 						this.setState({status:'Pending'});    
 						var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id2=body1._id; 
@@ -170,6 +170,19 @@ document.getElementById('book').style.display='None';
 						document.getElementById('Cancel').innerHTML='Cancel'; }).catch(err=>console.log(err));	
 	
 }
+
+cancel=(event)=>{
+event.preventDefault();
+   
+   var data={};
+		fetch(this.state.path+'/deleteAll',{ method: 'POST',body:JSON.stringify(data),
+				headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled');	
+				//this.setState({status:body.status});  this.state.status='Done'; 
+				alert("Deleted");
+			}).catch(err=>console.log(err));                                                                               
+	}
+
+
  calcCrow=(lat1, lon1, lat2, lon2)=>
     {
       var R = 6371; // km
@@ -213,11 +226,11 @@ render()
 			</div><br></br>
 			<div class="features-icons-icon d-flex">
 						
-<div class="col-lg-3"><button class='btn btn-secondary'>Driver Name</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.arr[0].name}</button></center></div>
+<div class="col-lg-3"><button class='btn btn-secondary'>Driver Name</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.arr[0].car}</button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 						
-<div class="col-lg-3"><button class='btn btn-secondary'>Distane</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.distance}Km</button></center></div>
+<div class="col-lg-3"><button class='btn btn-secondary'>Distane</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.distance}&nbsp;Km</button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 				  <div class="col-lg-3"><button class='btn btn-secondary'>Contact</button></div>
@@ -239,6 +252,8 @@ render()
 	
         </div>	
 		</div></section>
+//			 <center>	<div><button class='btn btn-primary' id='cc'  onClick={this.cancel.bind(this)}>Delete</button></div></center>
+
 	 <center>	<div><button class='btn btn-primary' id='search'  onClick={this.search.bind(this)}>Search</button>&nbsp;&nbsp;&nbsp; 
  <button class='btn btn-primary' id='book'  style={{display:'None'}} onClick={this.book.bind(this)}>Book Now</button></div> </center>
  		<br></br><br></br><br></br>
@@ -246,7 +261,11 @@ render()
 </div>);
 }
 
+
+
 }
+
+
  
 
 const mapStateToProps = (state) => {

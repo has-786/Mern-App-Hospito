@@ -10,10 +10,11 @@ user.findOne({email:req.body.email},(err,user1)=>{if(err)throw err; else if(!use
 	
 global.otp=randomstring.generate(6);
 var transporter = nodemailer.createTransport({
- service:'Gmail',
- auth: {
-        user:'syedhasnain9163@gmail.com',
-        pass:'****' //put your password
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+  auth: {
+        user:'syedhasnain9163@gmail.com', pass:'***' //put your password
     }
 });
 const mailOptions = {

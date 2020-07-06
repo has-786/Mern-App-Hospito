@@ -11,7 +11,7 @@ let username=null;
 class Showappoint extends Component{
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
+this.state={path:"http://localhost:5000",username:null,arr:[{name:null,specialist:null,email:null}],obj:{name:null,specialist:null,email:null},msg:null,position:null}; 
 	}
 	
 
@@ -24,7 +24,7 @@ componentDidMount()
 	else {
 	if(this.state.username)alert("Hi "+this.state.username);
 		var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('/showAppoint',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{
@@ -77,7 +77,7 @@ render()
 }
 fun=(username,docname)=>{
 	var data={"name":username,"docname":docname};     // alert(JSON.stringify(data));
-		fetch('/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/removeAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); document.getElementById(docname).innerHTML='____'; }).catch(err=>console.log(err));
 }

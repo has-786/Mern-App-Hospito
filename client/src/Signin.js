@@ -8,7 +8,7 @@ let username=null;
 
 class Signin extends Component{
 	constructor(props){
-		super(props); username=null;
+		super(props); username=null; this.state={path:"http://localhost:5000"}
 	}
 	
 	
@@ -23,12 +23,10 @@ class Signin extends Component{
 		//alert(username);
 		if(document.getElementById('1').value.length==0 || document.getElementById('2').value.length==0){alert('Please Fill The Required Places'); return false;}
 		
-		
-		
 		var data={name:document.getElementById('1').value,pass:document.getElementById('2').value };
-		fetch('/localSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch(this.state.path+'/localSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username);
-																					localStorage.setItem('type',body.type);
+																			localStorage.setItem('type',body.type);
 		}
 		else alert('The username or password is incorrect!! Please Try Again');
 		}).catch(err=>console.log(err));

@@ -10,7 +10,7 @@ class Showblog extends Component{
 	constructor(props)
 	{
 		super(props);
-		this.state={username:null,arr:[{_id:null,img:null,topic:null,data:null,timestamp:null }]}; 
+		this.state={path:"http://localhost:5000",username:null,arr:[{_id:null,img:null,topic:null,data:null,timestamp:null }]}; 
 	}
 	
 componentDidMount()
@@ -19,7 +19,7 @@ componentDidMount()
 	
 setTimeout(function(){	
 	var data={name:this.state.username};   
-	fetch('http://localhost:5000/showblog',{ method: 'POST',body:JSON.stringify(data),
+	fetch(this.state.path+'/showblog',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});    }).catch(err=>console.log(err));	
@@ -29,7 +29,7 @@ setTimeout(function(){
 
 fun=(event)=>{	    event.preventDefault();
 		var data={"name":document.getElementById('1').value};      alert(JSON.stringify(data));
-		fetch('/searchblog',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/searchblog',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{if(!body.length)alert('No result found'); this.setState({arr:body});  }).catch(err=>console.log(err));
  

@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 
 class Forgotpassword extends Component
 {
-    constructor(props){super(props);} 
+	
+    constructor(props){super(props);   this.state={path:"http://localhost:5000"}  } 
 	render(){
 	return (
 		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Forgot Password</h1></center>
@@ -19,7 +20,7 @@ class Forgotpassword extends Component
 	fun=(event)=>{
 		event.preventDefault();
 		var data={email:document.getElementById('1').value};
-		fetch('/passwordForgot',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
+		fetch(this.state.path+'/passwordForgot',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
 		return response.json()}).then((body)=>{  
 					if(body.msg!='error'){alert(body.msg); localStorage.setItem('otp',body.otp); document.getElementById('2').style.display='block'; }
 					else alert('An Error Occured!!! Try Again');

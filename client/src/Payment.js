@@ -8,7 +8,7 @@ let username=null;
 
 class Payment extends Component{
 	constructor(props){
-		super(props);  this.state={username:null,amount:null};
+		super(props);  this.state={path:"http://localhost:5000",username:null,amount:null};
 	}
 	componentDidMount(){
 	this.state.username=localStorage.getItem('user');
@@ -16,7 +16,7 @@ class Payment extends Component{
 if(!this.state.username){alert('Please Login First');}
 else{
 	var data={name:this.state.username}; 
-	fetch('/showCart',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{ var amt=0; body.prods.map((prod)=>amt+=prod.price); this.setState({amount:amt});}).catch(err=>console.log(err));	
@@ -53,8 +53,9 @@ fun1=()=>{
 	var tempDate = new Date();
   var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
   const currDate = date;
+  if(document.getElementById('address').value.length===0 || document.getElementById('address').value===null){alert("Please Enter Your Address"); return false;}
 	var data={username:this.state.username,amount:this.state.amount,address:document.getElementById('address').value,timestamp:currDate};
-	fetch('/CompleteCashOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch(this.state.path+'/CompleteCashOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ this.state.amount=0;  alert(body.msg);}  ).catch(err=>console.log(JSON.stringify(err)));
 	
 }

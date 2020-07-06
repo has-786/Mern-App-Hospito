@@ -52,6 +52,7 @@ app.post('/localSignin',(req,res,next)=>{
          console.log(samePassword);if(samePassword==true){console.log('Signed In SuccessFully');}
 		 else global.name=null; 
 		 if(global.name)user.findOne({name:global.name},(err,user2)=>{	console.log(user2.type);	res.send({username:global.name,type:user2.type});  }); 
+		 else res.send({username:global.name}); 
      })
     .catch(function(error){
         console.log("Error authenticating user: ");
@@ -67,14 +68,15 @@ app.post('/localSignup',(req,res,next)=>{
 	if(type==='Doctor')specialist=req.body.specialist; else specialist=null;
 	user.findOne({$or:[{name:req.body.name},{email:req.body.email}]},(err,user1)=>{
 	   if(err)console.log(err); 
-	   else if(user1){ console.log('Already A User');console.log(user1); global.name=null;}
+	   else if(user1){ console.log('Already A User');console.log(user1); global.name=null;res.send({username:global.name}); }
 		else{
 			    bcrypt.hash(req.body.pass,12,(err,hash)=>{
 				var Newuser=new user({name:req.body.name,email:req.body.email,pass:hash,type:type,specialist:specialist});			
 				Newuser.save((err,user2)=>{ if(err)console.log(err); else{ console.log(user2); global.name=user2.name;  }  });
 				});
+				res.send({username:global.name}); 
 		}
-		res.send({username:global.name}); 
+		
 	});
   });
  
@@ -84,7 +86,7 @@ app.post('/driverSignup',(req,res,next)=>{
 	ambulance.findOne({$or:[{name:req.body.name},{phone:req.body.phone}]},(err,user1)=>{
 	   if(err)console.log(err); 
 	   else if(user1){ console.log('Already A User');console.log(user1); global.name=null;}
-		else{
+	   else{
 			    bcrypt.hash(req.body.pass,12,(err,hash)=>{
 				var Newambulance=new ambulance({name:req.body.name,pass:hash,car:car,lat:null,lng:null,available:1,phone:req.body.phone});			
 				Newambulance.save((err,user2)=>{ if(err)console.log(err); else{ console.log(user2); global.name=user2.name;  }  });

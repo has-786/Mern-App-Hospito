@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 class Showcart extends Component{
 	constructor(props){
 		super(props);
-this.state={username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:'',quantity:null,price:'',disease:''},msg:null,position:null}; 
+this.state={path:"http://localhost:5000",username:null,arr:[{prodName:null,quantity:null,price:null,disease:null}],obj:{prodName:'',quantity:null,price:'',disease:''},msg:null,position:null}; 
  this.fun = this.fun.bind(this);
  }
 	
@@ -19,7 +19,7 @@ componentDidMount()
 	if(!this.state.username)alert('Please Login First');
 	else {
 		var data={name:this.state.username}; //this.setState({ position: 1 });
-	fetch('/showCart',{ method: 'POST', body:JSON.stringify(data),
+	fetch(this.state.path+'/showCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{if(!Array.isArray(body.prods)){this.setState({obj:body.prods});document.getElementById('show4').style.opacity=1;	
@@ -90,7 +90,7 @@ render()
   
   fun=(username,prodName,quantity)=>{
 	var data={"name":username,"prodName":prodName,"quantity":quantity};      alert(JSON.stringify(data));
-		fetch('http://localhost:8080/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/removeFromCart',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); if(!body.length)document.getElementById(prodName+quantity).innerHTML='____'; }).catch(err=>console.log(err));
 }

@@ -20,11 +20,10 @@ setTimeout(function(){
   if(JSON.parse(localStorage.getItem('cookies'))){this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
   this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 	}	
 if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}}.bind(this),500);
-		
+
 
 setInterval(function(){	
 		
-		  if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}	
 				
 					if (navigator.geolocation) 
 					{
@@ -39,32 +38,30 @@ setInterval(function(){
 setInterval(function(){						//		alert(this.state.status); 
 		  
 							var data={name:this.state.drivername,lat:this.state.lat,lng:this.state.lng};    
-							fetch('/updateLocation',{ method: 'POST', body:JSON.stringify(data),
+							fetch(this.state.path+'/updateLocation',{ method: 'POST', body:JSON.stringify(data),
 							headers: {"Content-Type": "application/json" } }).then(response=>{
 							return response.json()}).then((body)=>{if(body.length){this.setState({arr:body}); 
-							//alert(this.state.status); 
-							if(body[0].status==='Pending'){document.getElementById('Cancel').innerHTML='Accept';this.setState({status:'Pending'});
-					     		  var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id1=body[0]._id; 
-						    	  localStorage.setItem('cookies',JSON.stringify(cookies));
-							}  
-							else if(body[0].status==='Ongoing'){this.setState({status:'Ongoing'});document.getElementById('Cancel').innerHTML='Cancel';} 
-
+							//alert(this.state.status);  
+								if(body[0].status==='Pending'){this.setState({status:'Pending'});
+									var cookies=JSON.parse(localStorage.getItem('cookies')); cookies.id1=body[0]._id; 
+									localStorage.setItem('cookies',JSON.stringify(cookies));
+									document.getElementById('Cancel').innerHTML='Accept';
+								}  
+								else if(body[0].status==='Ongoing'){this.setState({status:'Ongoing'});document.getElementById('Cancel').innerHTML='Cancel';} 
 							}
 		          }).catch(err=>console.log(err)); 	  
 		 
 	}.bind(this),2000);  
 	
-				    setInterval(function(){	
-												//alert(this.state.drivername); 
-                        
+				    setInterval(function(){	                        
 							if(this.state.status!=='___')
 							{						
 								var data={id:this.state.id};  
 								//alert(this.state.id);								
-							fetch('/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
+							fetch(this.state.path+'/updateAmbulance',{ method: 'POST',body:JSON.stringify(data),
 								headers: {"Content-Type": "application/json" } }).then(response=>{	return response.json()}).then((body)=>{ 
-								this.setState({status:body.status});
-                                    
+                                    this.setState({status:body.status});
+									
 								if(this.state.status==='Done'){ alert('The Trip is over');
 								   document.getElementById('Cancel').innerHTML='Done';
 											var cookies=JSON.parse(localStorage.getItem('cookies'));
@@ -73,8 +70,7 @@ setInterval(function(){						//		alert(this.state.status);
 								   }   }).catch(err=>console.log(err)); 
 							}					
 						}.bind(this),3000);
-			     
-
+						
 }
 
 fun1=(event)=>{
@@ -83,18 +79,16 @@ event.preventDefault();
 if(document.getElementById('Cancel').innerHTML==='Accept'){
    					var data={id:this.state.id};    
 
-		fetch('/AcceptDriver',{ method: 'POST',body:JSON.stringify(data),
+		fetch(this.state.path+'/AcceptDriver',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Accepted');
-		this.state.status='Ongoing';  document.getElementById('Cancel').innerHTML='Cancel';
+		    this.setState({status:'Ongoing'});  document.getElementById('Cancel').innerHTML='Cancel';
 		}).catch(err=>console.log(err));    
-		
-	
 }
  else if(document.getElementById('Cancel').innerHTML==='Cancel')
 {
 	
    					var data={id:this.state.id};     //alert(this.state.id);
-fetch('/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
+fetch(this.state.path+'/removeAmbulance',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled'); 
 		this.setState({status:'Done'});    
 		document.getElementById('Cancel').innerHTML='Done';
@@ -110,11 +104,11 @@ signout=()=>{
 	//localStorage.removeItem('driver');
 	var cookies=JSON.parse(localStorage.getItem('cookies'));
 	 cookies.drivername=null;
-	 document.getElementById('login').innerHTML="<a href='/oldriver'><button class='btn btn-danger' >Login</button></a>";
+	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";
 	 localStorage.setItem('cookies',JSON.stringify(cookies));  
 	 var data={name:this.state.drivername}
 	 this.state.drivername=null;
-	 fetch('/driverSignout',{ method: 'POST',body:JSON.stringify(data),
+	 fetch(this.state.path+'/driverSignout',{ method: 'POST',body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then(response=>{  return response.json()}).then((body)=>{ alert('Cancelled'); 
 		this.setState({status:'Done'});    
 		document.getElementById('Cancel').innerHTML='Done';

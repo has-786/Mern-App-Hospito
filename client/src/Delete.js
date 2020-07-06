@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 
 class Delete extends Component{
 	constructor(props){
-		super(props);  this.state={username:null,amount:0,cause:null,timestamp:null};
+		super(props);  this.state={path:"http://localhost:5000",username:null,amount:0,cause:null,timestamp:null};
 	}
 	
 	componentDidMount(){this.state.username=localStorage.getItem('user'); }
