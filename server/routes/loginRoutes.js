@@ -16,24 +16,23 @@ var type=null;
 f=0;
 msg="Already Requested";	
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile','email'] } )  );
+app.post('/auth/google', passport.authenticate('google', { scope: ['profile','email'] } )  );
 
-app.get('/auth/google/callback',(req,res,next)=>{
+app.post('/auth/google/callback',(req,res,next)=>{
   passport.authenticate('google',(err)=>{ if(err)console.log(err); console.log(global.name);
  res.send('Hi '+global.name);  })(req,res,next); }  );
 
 
+app.post('/auth/facebook', passport.authenticate('facebook', {scope: ['user_friends', 'manage_pages'] } )  );
 
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_friends', 'manage_pages'] } )  );
-
-app.get('/auth/facebook/callback',(req,res,next)=>{
+app.post('/auth/facebook/callback',(req,res,next)=>{
   passport.authenticate('facebook',(err)=>{ if(err)console.log(err); console.log(global.name); res.send({user:global.name}); })(req,res,next); }  );
 
 
-app.get('/auth/linkedin',
+app.post('/auth/linkedin',
   passport.authenticate('linkedin', { }));  
 
-app.get('/auth/linkedin/callback', (req,res,next)=>{
+app.post('/auth/linkedin/callback', (req,res,next)=>{
   passport.authenticate('linkedin',(err)=>{ if(err)console.log(err); console.log(global.name); 
 res.send({msg:'Signed In SuccessFully'});  })(req,res,next); }  );
   

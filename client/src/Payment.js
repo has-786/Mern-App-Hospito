@@ -28,7 +28,7 @@ render()
 {
  return (
  <div>
-  <center><h2 >ORDER NOW</h2></center>
+  <center><h2 >ORDER NOW<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>
 
 	<center>	<span><br></br><br></br></span>
     
@@ -76,7 +76,7 @@ fun2=()=>{
       handler: function(response) {
         alert(response.razorpay_payment_id);
      var data={paymentId:response.razorpay_payment_id,username:username,amount:0,address:document.getElementById('address').value,timestamp:currDate};
-	fetch('/CompletePaidOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('http://localhost:5000/CompletePaidOrder',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ this.state.amount=0;  }  ).catch(err=>console.log(JSON.stringify(err)));		
       },
       prefill: {

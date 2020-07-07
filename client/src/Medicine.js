@@ -37,7 +37,7 @@ render()
 	
  return (
  <div>
- <center><h2 style={{"width":"100%"}}>BUY MEDICINES</h2></center>  
+ <center><h2 style={{"width":"100%"}}>BUY MEDICINES<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>  
 <div class='row'>
 <div class='col-lg-8'>
 <form onSubmit={this.fun}><button class='btn btn-sm btn-primary'>Search Medicines </button><input type='text'  name='name'  id='1' required/><input type='submit'  value='Search' /></form></div>

@@ -23,7 +23,6 @@ componentDidMount()
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{if(!Array.isArray(body.prods)){this.setState({obj:body.prods});document.getElementById('show4').style.opacity=1;	
-
 } 
  else{ this.setState({arr:body.prods});  document.getElementById('show1').style.opacity=1;} }).catch(err=>console.log(err));	
 	}
@@ -35,7 +34,7 @@ render()
 {
  return (
  <div>
- <center><h2 >MY CART</h2></center>
+ <center><h2 >MY CART<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>
 <a href='/payment'><button  id='showcart' class='btn btn-success' >Checkout</button></a>
 
 	

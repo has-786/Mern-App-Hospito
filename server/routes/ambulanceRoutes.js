@@ -115,9 +115,10 @@ app.post('/removeAmbulance',(req,res)=>{
 			if(err){console.log(err);}
 			else if(ride1){
 				   ride.updateOne({_id:ride1._id},{status:'Done'},(err,ride2)=>{
-				   });
-				   ambulance.updateOne({name:ride1.amb},{available:1},(err,ambulance1)=>{  });
+					      ambulance.updateOne({name:ride1.amb},{available:1},(err,ambulance1)=>{  });
 				   			res.send(ride1);
+				   });
+				
 
 			}	    
 

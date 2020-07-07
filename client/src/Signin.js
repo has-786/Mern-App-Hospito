@@ -25,7 +25,7 @@ class Signin extends Component{
 		
 		var data={name:document.getElementById('1').value,pass:document.getElementById('2').value };
 		fetch(this.state.path+'/localSignin',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
-		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username);
+		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert("Signed in as "+username); localStorage.setItem('user',username);
 																			localStorage.setItem('type',body.type);
 		}
 		else alert('The username or password is incorrect!! Please Try Again');

@@ -4,13 +4,14 @@ require('./loginRoutes.js')(app,passport,bcrypt,nodemailer);
 require('./otpRoutes.js')(app,nodemailer,bcrypt,randomstring);
 require('./productRoutes.js')(app);
 require('./orderRoutes.js')(app);
-require('./pandemicRoutes.js')(app);
+//require('./pandemicRoutes.js')(app);
 require('./hospitalRoutes.js')(app);
 require('./ambulanceRoutes.js')(app);
 require('./appointRoutes.js')(app,nodemailer);
 require('./donationRoutes.js')(app);
 require('./blogRoutes.js')(app);
 require('./videoRoutes.js')(app);
+require('./pandemicRoute1.js')(app);
 
 
 

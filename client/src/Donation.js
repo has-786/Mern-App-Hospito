@@ -24,7 +24,7 @@ render()
 {
  return (
  <div>
-  <center><h2 >DONATE NOW</h2></center>
+  <center><h2 >DONATE NOW<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>
 
 	<center>	<span><br></br><br></br></span>
     
@@ -32,7 +32,6 @@ render()
 	<span><br></br><br></br></span>
 	<div><button class='btn btn-danger' >Cause</button><input type='text' id='cause' name='cause'   required/></div>
 		<span><br></br><br></br></span>
-
 	<div>
 		<button class='btn btn-danger'  onClick={this.fun2.bind(this)}>Pay</button>
 	</div>
@@ -61,7 +60,7 @@ fun2=()=>{
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS50VEonvgI1-sTW6CHykn0U_7xk8N2_ntoTusf5VatlP7d4ukU",
       handler: function(response) {
      var data={paymentId:response.razorpay_payment_id,username:username,amount:document.getElementById('amount').value,cause:document.getElementById('cause').value,timestamp:currDate};
-	fetch(this.state.path+'/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
+	fetch('http://localhost:5000/donation',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then((body)=>{ if(body.msg)alert(body.msg);  }  ).catch(err=>console.log(JSON.stringify(err)));		
       },  
       prefill: {

@@ -40,9 +40,7 @@ console.log(req.body.email);
 			else
 			{
 				global.msg="Requested";
-				var transporter = nodemailer.createTransport({    host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,auth: {user:'syedhasnain9163@gmail.com', pass:'***' }});
+				var transporter = nodemailer.createTransport({  service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'***' }});
 				const mailOptions = {from: 'syedhasnain9163@gmail.com', to: req.body.email, subject: 'Appointment Request', text:'Appointment Request....Please Check Hospito'};
 				transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});    
 				console.log(appoint1); 	
@@ -61,11 +59,9 @@ console.log(req.body.email);
 app.post('/removeAppoint',(req,res)=>{
 		appoint.findOneAndDelete({ name:req.body.name,docname:req.body.docname }).then((appoint1)=>{
 			
-   var  transporter = nodemailer.createTransport({    host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,auth: {user:'syedhasnain9163@gmail.com', pass:'******'  //put your password
+   var  transporter = nodemailer.createTransport({  service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'***'  //put your password
 									}});
-   const mailOptions = {from: 'syedjah1970@gmail.com', to: req.body.email,subject: 'One request cancelled', text:'Appointment Request Cancelled....Please Check Hospito'};
+   const mailOptions = {from: 'syedhasnain9163@gmail.com', to: req.body.email,subject: 'One request cancelled', text:'Appointment Request Cancelled....Please Check Hospito'};
    transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});	
 			
 			
@@ -94,16 +90,14 @@ app.post('/showAppointToDoctor',(req,res)=>{
 					user.findOne({name:req.body.name},(err,user1)=>{
 						if(err)console.log(err);
 						else {
-							var  transporter = nodemailer.createTransport({    host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,auth: {user:'syedhasnain9163@gmail.com', pass:'****' //put your password
+							var  transporter = nodemailer.createTransport({   service:'Gmail',auth: {user:'syedhasnain9163@gmail.com', pass:'***' //put your password
 							}}); 
 				if(req.body.stat==='Confirmed'){ var txt='The Appoinment is confirmed.Visit this link on '+req.body.timestamp+'\n'+'https://whereby.com/sdroom';  }
 				else {  var txt='The Appoinment Request is rejected';  }
 						
 	user.findOne({name:req.body.docname},(err,doc1)=>{
 		
-		const mailOptions = {from: 'syedjah1970@gmail.com', to:[user1.email,doc1.email], subject: 'Appointment at Hospito', text:txt};
+		const mailOptions = {from: 'syedhasnain9163@gmail.com', to:[user1.email,doc1.email], subject: 'Appointment at Hospito', text:txt};
    transporter.sendMail(mailOptions, function (err, info) { if(err) console.log(err);else {  console.log(info);  }});
 			
 	});					

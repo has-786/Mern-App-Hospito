@@ -10,7 +10,7 @@ class Updatepassword extends Component
 	componentDidMount(){localStorage.removeItem('otp'); }
 	render(){
 	return (
-		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Update Password</h1></center>
+		<div><center><h1 style={{backgroundColor:"black",color:"white"}}>Update Password<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h1></center>
 		<button class='btn btn-danger'>Enter Email ID</button><input type='text' id='1' name='email' pattern="[0-9a-zA-Z]+@gmail.com" required />
 		<button class='btn btn-success'>Enter New Password</button><input type='text' id='2' name='pass'  required />
 		<button type='submit' onClick={this.fun.bind(this)}>Submit</button>

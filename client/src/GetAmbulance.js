@@ -29,7 +29,7 @@ componentDidMount()
 					headers: {"Content-Type": "application/json" } }).then(response=>{
 						return response.json()}).then((body)=>{   
 		    
-					  if(body){ this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
+					  if(body){alert(JSON.stringify(body));// this.state.arr[0]=body.ambu; this.state.status=body.status; //alert(body);
 						         	document.getElementById('Cancel').innerHTML='Cancel';
 					           		document.getElementById('search').style.display='none';
 							}
@@ -50,7 +50,7 @@ componentDidMount()
 						else alert( "Geolocation is not supported by this browser.");
 				   }
 
-	}.bind(this),1000);				
+	}.bind(this),700);				
   
 
 	
@@ -110,7 +110,7 @@ componentDidMount()
 								
 					}		
 		  }	  
-   }.bind(this),2000);
+   }.bind(this),1000);
 
 }
 
@@ -208,7 +208,7 @@ render()
 {
  return (
  <div style={{"width":"100%"}}>
-  <center><h2 style={{"width":"100%"}}>BOOK AN AMBULANCE</h2></center><br></br>
+  <center><h2 style={{"width":"100%"}}>BOOK AN AMBULANCE<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center><br></br>
   <center><button class='btn btn-primary'>Phone No.</button><input type='text' id='1' /><button class='btn btn-primary' onClick={this.fun.bind(this)}>Save</button></center>
     <br></br>
   <section>
@@ -226,7 +226,7 @@ render()
 			</div><br></br>
 			<div class="features-icons-icon d-flex">
 						
-<div class="col-lg-3"><button class='btn btn-secondary'>Driver Name</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.arr[0].car}</button></center></div>
+<div class="col-lg-3"><button class='btn btn-secondary'>Driver Name</button></div><div class="col-lg-9"><center><button class='btn btn-success'>{this.state.arr[0].name}</button></center></div>
             </div><br></br>
 			<div class="features-icons-icon d-flex">
 						
@@ -252,7 +252,6 @@ render()
 	
         </div>	
 		</div></section>
-//			 <center>	<div><button class='btn btn-primary' id='cc'  onClick={this.cancel.bind(this)}>Delete</button></div></center>
 
 	 <center>	<div><button class='btn btn-primary' id='search'  onClick={this.search.bind(this)}>Search</button>&nbsp;&nbsp;&nbsp; 
  <button class='btn btn-primary' id='book'  style={{display:'None'}} onClick={this.book.bind(this)}>Book Now</button></div> </center>
@@ -290,6 +289,7 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 };
+//			 <center>	<div><button class='btn btn-primary' id='cc'  onClick={this.cancel.bind(this)}>Delete</button></div></center>
 
 //export default connect(mapStateToProps, mapDispatchToProps)(App);
 

@@ -40,7 +40,7 @@ render()
 {
  return (
  <div style={{width:"100%"}}>
- <center><h2 >BLOGS</h2></center>
+ <center><h2 >BLOGS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>
  	<div><form onSubmit={this.fun.bind(this)}>
 <button class='btn btn-primary'>Search Blogs </button>&nbsp;&nbsp;&nbsp;&nbsp;	<input type='text'  name='name'  id='1' required/>
 				<input type='submit'  value='Search' />

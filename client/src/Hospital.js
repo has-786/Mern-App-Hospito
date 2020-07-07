@@ -25,7 +25,7 @@ render()
 	
  return (
  <div style={{width:"100%"}}>
- <center><h2 style={{width:"100%"}}>FIND HOSPITALS</h2></center>   
+ <center><h2 style={{width:"100%"}}>FIND HOSPITALS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>   
    			<form onSubmit={this.fun}>
 
 			<button class='btn btn-primary'>Search Hospitals</button>&nbsp;&nbsp;&nbsp;&nbsp;	
@@ -68,7 +68,7 @@ render()
  fun=(event)=>{
 	    event.preventDefault();
 		var data={"name":document.getElementById('1').value};     
-		fetch('/showHospital',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/showHospital',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{  this.setState({arr:body}); if(!body.length)alert('No result found'); document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));
  

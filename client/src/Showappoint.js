@@ -36,7 +36,7 @@ render()
 {
  return (
  <div style={{width:"100%"}}>
-  <center><h2 style={{width:"100%"}}>MY APPOINTMENTS WITH DOCTORS</h2></center>   
+  <center><h2 style={{width:"100%"}}>MY APPOINTMENTS WITH DOCTORS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>   
 
   <div id='show3'><br></br><br></br>
 	<section class="features-icons bg-light text-center"  >

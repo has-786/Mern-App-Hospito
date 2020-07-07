@@ -24,7 +24,7 @@ render()
 	
  return (
  <div >
- <center><h2 >PANDEMIC IN INDIA NOW</h2></center>  
+ <center><h2 >PANDEMIC IN INDIA NOW<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>  
 <br></br><br></br> 
 	<center><div class="row" style={{width:"60%"}}>
 			<div class="col-lg-3"><button class='btn btn-primary'>STATE</button></div> 

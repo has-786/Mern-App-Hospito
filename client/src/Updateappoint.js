@@ -30,7 +30,7 @@ render()
 {
  return (
  <div style={{width:"100%"}}>
- <center><h2 style={{width:"100%"}} >MY APPOINTMENTS WITH PATIENTS</h2></center>   
+ <center><h2 style={{width:"100%"}} >MY APPOINTMENTS WITH PATIENTS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>   
  
  
 <div id='show3'><br></br><br></br>
@@ -134,7 +134,7 @@ render()
 	' '+document.getElementById(timestamp+'hour').value+':'+document.getElementById(timestamp+'minute').value+':'+document.getElementById(timestamp+'second').value
 	+' '+document.getElementById(timestamp+'ampm').value};
 	alert(JSON.stringify(data));
-		fetch('/updateAppoint',{ method: 'POST', body:JSON.stringify(data),
+		fetch(this.state.path+'/updateAppoint',{ method: 'POST', body:JSON.stringify(data),
 		headers: {"Content-Type": "application/json" } }).then((response)=>{ return response.json()}).then(
  (body)=>{alert(body.msg); document.getElementById(name).innerHTML='Done'; }).catch(err=>console.log(err));
 }

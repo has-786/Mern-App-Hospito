@@ -25,7 +25,7 @@ render()
 	
  return (
  <div style={{width:"100%"}}>
- <center><h2 style={{width:"100%"}}>INFORMATIVE&nbsp;&nbsp; VIDEOS</h2></center>   
+ <center><h2 style={{width:"100%"}}>INFORMATIVE&nbsp;&nbsp; VIDEOS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>   
 			<button class='btn btn-sm btn-primary'>Search Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;	
 			<input type='text'  name='name'  id='1' required/>
 			<button onClick={this.fun1.bind(this)}>Search</button>

@@ -33,7 +33,7 @@ render()
 {
  return (
  <div>
- <center><h2 >MY DONATIONS</h2></center>
+ <center><h2 >MY DONATIONS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>
 <br></br><br></br>
 <div id='show3'> 
 	<section class="features-icons bg-light text-center"  >

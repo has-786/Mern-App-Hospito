@@ -34,9 +34,9 @@ render()
 		</div>
 		<div class = "left-box" style={{display:'block',marginTop:"-100px"}}>
 			<center><h5><span class = "signinwith">Sign in with Social Network</span></h5></center><br></br>
-			<div style={{display:'inline'}}><a class="fa fa-google" href="http://localhost:8080/auth/google"></a></div>
-			<div style={{display:'inline'}}><a class="fa fa-facebook-square" href="http://localhost:8080/auth/facebook"></a></div>
-			<div style={{display:'inline'}}><a class="fa fa-linkedin-square" href = "http://localhost:8080/auth/linkedin"></a></div><br></br><br></br><br></br>	<br></br><br></br>	<br></br>	
+			<div style={{display:'inline'}}><a class="fa fa-google" href="http://localhost:5000/auth/google"></a></div>
+			<div style={{display:'inline'}}><a class="fa fa-facebook-square" href="http://localhost:5000/auth/facebook"></a></div>
+			<div style={{display:'inline'}}><a class="fa fa-linkedin-square" href = "http://localhost:5000/auth/linkedin"></a></div><br></br><br></br><br></br>	<br></br><br></br>	<br></br>	
 			<div style={{display:'block'}}><a href='/Signin'><button class='btn btn-warning'>Already have an account</button></a></div><br></br>	
 			<div class={{display:'block'}}><a href='/'><button class='btn btn-success'>Back to Home</button></a></div>	
 		</div>
@@ -59,7 +59,7 @@ fun=(event)=>{
 	var data={name:document.getElementById('1').value,email:document.getElementById('2').value,pass:document.getElementById('3').value,type:
 	document.getElementById('5').value,specialist:document.getElementById('6').value   };
 fetch(this.state.path+'/localSignup',{ method:'POST',body:JSON.stringify(data),headers: {"Content-Type": "application/json" } }).then((response)=>{
-		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert(username); localStorage.setItem('user',username); 
+		return response.json()}).then((body)=>{ if(body.username){username=body.username; alert("Signed up as "+username); localStorage.setItem('user',username); 
 localStorage.setItem('type',body.type); 		}
 		else alert('Username or Email is already taken!! Please Try Another');
 		}).catch(err=>console.log(err));

@@ -9,7 +9,7 @@ let username=null,redir=false;
 
 class Home  extends Component{
 	constructor(props){
-		super(props); this.state={username:null}
+		super(props); this.state={path:"http://localhost:5000",username:null}
 	}
 
 
@@ -82,24 +82,6 @@ style={{marginTop:"-20%"}} href="/Profile" >My Profile</a>
     <div id='contain' class="container" >
       <div class="row">
         <div class="col-lg-4" style={{padding:"50px"}}>
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-<i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
-            <h3 ><a href="/Hospital">Search Health Centres</a></h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}} >Search Nearby Hospitals and Nursey Homes</p>
-          </div>
-        </div>
-        <div class="col-lg-4" style={{padding:"50px"}}>
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-<i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
-
-            </div>
-            <h3 ><a href='/Showdoctor'> Ask An Appointment</a> </h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}}>Ask a doctor for appointment</p>
-          </div>
-        </div>
-        <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
 			<i class='fa fa-medkit' style={{fontSize:"40px",color:"red"}}></i>
@@ -109,19 +91,61 @@ style={{marginTop:"-20%"}} href="/Profile" >My Profile</a>
             <p class="lead mb-0" style={{fontWeight:"bold"}}>Buy medicines online</p>
           </div>
         </div>
-		
-      </div>
-	  <div class="row">
+				
 <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
-<i class='fa fa-money' style={{fontSize:"40px",color:"green"}}></i>
+			<i class='fa fa-ambulance' style={{fontSize:"40px",color:"tomato"}}></i>
 
 </div>
-            <h3 ><a href='/Donation'>Donate And Save A Life</a></h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}}>Donate Online Here</p>
+            <h3 ><a href='/Getambulance'>Book An Ambulance</a></h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
           </div>
         </div>
+		 <div class="col-lg-4" style={{padding:"50px"}}>
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-user-md'  style={{fontSize:"40px",color:"green"}}></i>
+
+            </div>
+            <h3 ><a href='/Showdoctor'> Ask An Appointment</a> </h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Ask a doctor for appointment</p>
+          </div>
+        </div>
+      </div>
+	  <div class="row">
+	  <div class="col-lg-4" style={{padding:"50px"}}>
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-info' style={{fontSize:"40px",color:"red"}}></i>
+
+</div>
+            <h3 ><a href='/Pandemic'>Updates During Pandemic</a></h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Authentic Updates During Pandemic</p>
+          </div>
+        </div>
+	
+
+		<div class="col-lg-4" style={{padding:"50px"}}>
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+<i class='fa fa-hospital-o' style={{fontSize:"40px",color:"purple"}}></i>            </div>
+            <h3 ><a href="/Hospital">Search Health Centres</a></h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}} >Search Nearby Hospitals and Nursey Homes</p>
+          </div>
+        </div>
+		<div class="col-lg-4" style={{padding:"50px"}}>
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+			<i class='fa fa-video' style={{fontSize:"40px",color:"darkblue"}}></i>
+
+</div>
+            <h3 ><a href='Video'>Informative Videos</a></h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Videos By Eminent Doctors And Physicians</p>
+          </div>
+        </div>
+		
+	
 
 <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
@@ -134,40 +158,18 @@ style={{marginTop:"-20%"}} href="/Profile" >My Profile</a>
           </div>
         </div>
 		
+		
+				
 <div class="col-lg-4" style={{padding:"50px"}}>
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
-			<i class='fa fa-ambulance' style={{fontSize:"40px",color:"tomato"}}></i>
+<i class='fa fa-money' style={{fontSize:"40px",color:"green"}}></i>
 
 </div>
-            <h3 ><a href='/Getambulance'>Book An Ambulance</a></h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}}>Emergency!!!Get An Ambulance Right Now At Your DoorStep</p>
+            <h3 ><a href='/Donation'>Donate And Save A Life</a></h3>
+            <p class="lead mb-0" style={{fontWeight:"bold"}}>Donate Online Here</p>
           </div>
         </div>
-		
-		<div class="col-lg-4" style={{padding:"50px"}}>
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-			<i class='fa fa-video' style={{fontSize:"40px",color:"darkblue"}}></i>
-
-</div>
-            <h3 ><a href='Video'>Informative Videos</a></h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}}>Videos By Eminent Doctors And Physicians</p>
-          </div>
-        </div>
-		
-		
-		<div class="col-lg-4" style={{padding:"50px"}}>
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-			<i class='fa fa-info' style={{fontSize:"40px",color:"red"}}></i>
-
-</div>
-            <h3 ><a href='/Pandemic'>Updates During Pandemic</a></h3>
-            <p class="lead mb-0" style={{fontWeight:"bold"}}>Authentic Updates During Pandemic</p>
-          </div>
-        </div>
-		
 		
 		
       </div>

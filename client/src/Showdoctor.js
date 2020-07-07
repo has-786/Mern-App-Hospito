@@ -20,7 +20,6 @@ componentDidMount()
 		headers: {"Content-Type": "application/json" } }).then(response=>{
 	return response.json()}).then(
  (body)=>{this.setState({arr:body});  document.getElementById('show1').style.opacity=1;}).catch(err=>console.log(err));	
-	
 		
 }
 
@@ -28,7 +27,7 @@ render()
 {
  return (
  <div style={{width:"100%"}}>
- <center><h2 style={{width:"100%"}}>FIND DOCTORS</h2></center> 
+ <center><h2 style={{width:"100%"}}>FIND DOCTORS<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center> 
  <div class='row'>
 
  <div class='col-lg-6'>

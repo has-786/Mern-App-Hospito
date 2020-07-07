@@ -24,7 +24,7 @@ render()
 	
  return (
  <div style={{"width":"100%",backgroundColor:'pink'}}>
- <center><h2 >PANDEMIC UPDATES</h2></center>  
+ <center><h2 >PANDEMIC UPDATES<a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>  
  
  
 	<div class="row" >

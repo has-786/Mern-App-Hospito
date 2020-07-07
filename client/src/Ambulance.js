@@ -19,7 +19,7 @@ setTimeout(function(){
  
   if(JSON.parse(localStorage.getItem('cookies'))){this.state.id=JSON.parse(localStorage.getItem('cookies')).id1;
   this.state.drivername=JSON.parse(localStorage.getItem('cookies')).drivername; 	}	
-if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}}.bind(this),500);
+if(!this.state.drivername){alert('Please Login First');	 document.getElementById('login').innerHTML="<a href='/olddriver'><button class='btn btn-danger' >Login</button></a>";}}.bind(this),200);
 
 
 setInterval(function(){	
@@ -33,7 +33,7 @@ setInterval(function(){
 							});
 					}
 					else alert( "Geolocation is not supported by this browser.");
-}.bind(this),1000);	
+}.bind(this),500);	
 
 setInterval(function(){						//		alert(this.state.status); 
 		  
@@ -51,7 +51,7 @@ setInterval(function(){						//		alert(this.state.status);
 							}
 		          }).catch(err=>console.log(err)); 	  
 		 
-	}.bind(this),2000);  
+	}.bind(this),1000);  
 	
 				    setInterval(function(){	                        
 							if(this.state.status!=='___')
@@ -69,7 +69,7 @@ setInterval(function(){						//		alert(this.state.status);
 											localStorage.setItem('cookies',JSON.stringify(cookies));   
 								   }   }).catch(err=>console.log(err)); 
 							}					
-						}.bind(this),3000);
+						}.bind(this),700);
 						
 }
 
@@ -121,7 +121,7 @@ render()
 {
  return (
  <div>
-<center><h2 >AMBULANCE SERVICE</h2></center>	
+<center><h2 >AMBULANCE SERVICE   <a href='/'><button class='btn-sm btn btn-primary'  style={{float:"right",marginRight:"0%"}}>Home</button></a></h2></center>	
 <div id='login' style={{float:'right',marginRight:'0px'}}><button class='btn btn-danger' onClick={this.signout.bind(this)} >Logout</button></div>
 
   <section>
