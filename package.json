@@ -29,9 +29,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "npm install &&  node server.js",
-	"heroku-postbuild":"cd client && npm install && npm run build"
-
+    "start": "cd client && npm install && npm run build && cd.. && npm install &&  node server.js"
 	},
   "eslintConfig": {
     "extends": "react-app"
@@ -49,8 +47,8 @@
     ]
   },
   "engines": {
-    "node": "8.11.3",
-    "npm": "5.7.1"
+    "node": "6.8.0",
+    "npm": "3.10.8"
   },
   "proxy": "http://localhost:8080"
 }
